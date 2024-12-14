@@ -1,7 +1,8 @@
-import { BadRequestException, ConflictException, GoneException, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, ConflictException, GoneException, Injectable, InternalServerErrorException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { User } from './user.model';
-import * as bcrypt from 'bcrypt';
+import * as bcrypt from 'bcrypt'
+import * as jwt from 'jsonwebtoken';
 
 @Injectable()
 export class UserService{
@@ -21,17 +22,17 @@ export class UserService{
         if (!name || !email || !password){
             throw new BadRequestException("Missing Required Field")
         }
+        // Check if email already exists
+        const existingUser = await this.userModel.findOne({where: { email }})
+        console.log("ghhhdhdhdhdhd", existingUser)
+        if (existingUser){
+            throw new ConflictException("Email exist in the database")
+        }
         try {
-            // Check if email already exists
-            const existingUser = await this.userModel.findOne({where: { email }})
-            if (existingUser){
-                throw new ConflictException("Email exist in the database")
-            }
-
             // Hash password
             const hashedPassword = await bcrypt.hash(password.toString(), this.salt)
             if (!hashedPassword){
-                throw new InternalServerErrorException()
+                throw new Error("Error hashing password")
             }
 
             const result = await this.userModel.create({
@@ -45,12 +46,52 @@ export class UserService{
         }
         catch(error){
             console.error('Error during registration:', error);
-            throw new GoneException("Error creating user")
+            throw new InternalServerErrorException("Error creating user")
         }
-        // return this.userModel.create({
-        //     name,
-        //     password,
-        //     email
-        // })
+    }
+
+    async login(email: string, password: string): Promise<{code: number, token: string}> {
+        if ( !email || !password ){
+            throw new BadRequestException("Missing Required Field")
+        }
+        const userData = await this.userModel.findOne({where: { email }})
+        if (!userData){
+            throw new UnauthorizedException("Unknown User")
+        }
+        const databasePassword = userData.dataValues.password
+        const isPasswordValid = bcrypt.compare(password, databasePassword )
+        if (!isPasswordValid){
+            throw new UnauthorizedException("Incorrect Password")
+        }
+        const userName = userData.dataValues.name
+
+        // Generate token
+        const token = jwt.sign({userName}, process.env.JWT_SECRET, {expiresIn: '20m'})
+        return {
+            code: 200,
+            token
+        }
+    }
+
+    async resetPassword(email: string, newPassword: string): Promise<{code: number, status: string}>{
+        if ( !email || !newPassword ){
+            throw new BadRequestException("Missing Required Field")
+        }
+        const userData = await this.userModel.findOne({where: { email }})
+        if(!userData){
+            throw new NotFoundException("User not found")
+        }
+        try {
+            const hashedNewPassword = await bcrypt.hash(newPassword.toString(), 10)
+            if (hashedNewPassword) {
+                userData.dataValues.password = hashedNewPassword
+                await userData.save()
+                return {code: 200, status: 'password updated successfully'}
+            }
+        } catch (error) {
+            console.error(`Error while resetting password ===> ${error}`)
+            throw new InternalServerErrorException("Error resetting password")
+            
+        }
     }
 }
