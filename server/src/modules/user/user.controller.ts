@@ -2,6 +2,7 @@ import { Body, Controller, Get, InternalServerErrorException, Param, Post, Put, 
 import { UserService } from './user.service';
 import { User } from './user.model';
 import { Response, response } from 'express';
+import { Public } from 'src/public/publicKkey';
 
 @Controller('/user')
 export class UserController {
@@ -22,19 +23,35 @@ export class UserController {
         return result
     }
 
+    @Public()
     @Post("login")
     async login(
         @Body() body: {email: string, password: string},
         @Res({ passthrough: true}) response: Response
-    ): Promise<{code: number, status: string}>{
+    ): Promise<{code: number, status: string, token: string}>{
         const {code, token} = await this.userService.login(body.email, body.password);
         try {
             // Set cookie
             response.cookie('token', token)
 
-            return {code, status: 'success'}
+            return {code, status: 'success', token}
         } catch (error) {
             console.error('Error during registration:', error);
+            throw new InternalServerErrorException("Error creating user")
+        } 
+    }
+
+    @Public()
+    @Get("logout")
+    async logout(
+        @Res({ passthrough: true}) response: Response
+    ): Promise<{code: number, status: string}>{
+        try {
+            // Delete cookie from browser
+            response.clearCookie('token')
+            return {code: 200, status: 'success'}
+        } catch (error) {
+            console.error('Error logging out:', error);
             throw new InternalServerErrorException("Error creating user")
         } 
     }

@@ -1,6 +1,10 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
-@Table
+@Table({tableName: 'user',
+    createdAt: "created_at", // Map to DB column
+    updatedAt: "updated_at",
+    deletedAt: "deleted_at"
+})
 export class User extends Model {
   @Column({
     type: DataType.STRING,
@@ -23,4 +27,5 @@ export class User extends Model {
     allowNull: false
   })
   password: boolean;
+
 }
