@@ -1,13 +1,23 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import * as cookieParser from 'cookie-parser';
+import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
 
 async function bootstrap() {
-  const app = await NestFactory.create(AppModule, {cors: {'origin': "http://localhost:3000"}});
-  app.enableCors();
+  const app = await NestFactory.create(AppModule);
+  // Configure CORS explicitly
+  app.enableCors({
+    origin: true, // The frontend URL
+    methods: "*", // Allowed HTTP methods
+    allowedHeaders: "*", // Allowed headers
+    credentials: true,
+  });
+  app.use(cookieParser());
+  app.use(bodyParser.json({limit: '50mb'}));
+  app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
   await app.listen(process.env.PORT ?? 4000, () => {
     console.log(`App running on port ${process.env.PORT}`)
   });
-  app.use(cookieParser())
 }
+
 bootstrap();

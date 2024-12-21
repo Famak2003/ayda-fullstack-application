@@ -1,6 +1,8 @@
 import axios from "axios";
 import axiosRetry from "axios-retry";
 import toast from "react-hot-toast";
+import Cookies from 'js-cookie';
+import { Navigate, replace, useNavigate } from "react-router-dom";
 
 export const API_URL = "http://localhost:4500/";
 
@@ -14,14 +16,8 @@ const axiosInstance = axios.create({
 // Request Interceptor: Called before sending the request
 axiosInstance.interceptors.request.use(
   (config) => {
-    // Add authorization token from local storage
-    const token = localStorage.getItem("token");
-    console.log(token)
-    if (token) {
-      config.headers["Authorization"] = `Bearer ${token}`;
-    }
-
     // Show a loading toast
+    config.withCredentials=true
     config._toastId = toast.loading("Sending request...");
     return config;
   },
@@ -49,6 +45,14 @@ axiosInstance.interceptors.response.use(
       toast.error(
         error.response?.data?.message || "An error occurred during the request."
       );
+    }
+
+
+    if (error.response?.status === 401) {
+      // console.log("status")
+      Cookies.remove('token')
+      window.location.href = 'auth'
+      toast.error("Session expired")
     }
 
     return Promise.reject(error); // Propagate the error

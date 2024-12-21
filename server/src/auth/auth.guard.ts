@@ -31,9 +31,9 @@ async canActivate(context: ExecutionContext): Promise<boolean> {
 
     // Else continue with the verification
     const request = context.switchToHttp().getRequest();
-    console.log('Request Headers:', request.headers);
-    const token = this.extractTokenFromHeader(request);
-    console.log("???????????????", token)
+    const response = context.switchToHttp().getResponse();
+    // const token = this.extractTokenFromHeader(request);
+    const token = request.cookies.token // get token from cookies in the request
     if (!token) {
         throw new UnauthorizedException();
     }
@@ -41,13 +41,18 @@ async canActivate(context: ExecutionContext): Promise<boolean> {
         const payload = await this.jwtService.verifyAsync(
             token,
             {
-            secret: process.env.JWT_SECRET
+                secret: process.env.JWT_SECRET
             }
         );
         // 💡 We're assigning the payload to the request object here
         // so that we can access it in our route handlers
         request['user'] = payload;
-    } catch {
+        if(parseInt(payload.exp + '000') - Date.now()  < 180000){
+            response.cookie('token', await this.jwtService.signAsync({sub: payload.userID, username: payload.username }))
+        }
+
+    } catch (e) {
+        console.log("/// => ",e)
         throw new UnauthorizedException();
     }
     return true;

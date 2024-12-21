@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Navigate } from "react-router-dom";
 import Public from "./Public";
 import Admin from "./Admin";
 import * as AdminPages from './Admin/Pages'
@@ -38,59 +38,55 @@ const Router = createBrowserRouter([
             
         ]
     },
-    { 
-        path: "/admin",
-        element: <Admin/>,
+    {
+        path: "admin/auth",
+        element: <AuthPages.Auth/>,
         children: [
             {
-                path: "auth",
-                element: <AuthPages.Auth/>,
-                children: [
-                    {
-                        index: true,
-                        element: <AuthPages.Login/>
-                    },
-                    {
-                        path: 'ResetPassword',
-                        element: <AuthPages.ResetPassword/>
-                    }
-                ]
+                index: true,
+                element: <AuthPages.Login/>
             },
             {
-                path: "dashboard",
-                element: 
-                    <ProtectedRoute>
-                        <AdminPages.Dashboard/>
-                    </ProtectedRoute>,
-                children: [
-                    {
-                        index: true,
-                        element: <AdminPages.Home/>
-                    },
-                    {
-                        path: 'about-us',
-                        element: <AdminPages.Aboutus/>
-                    },
-                    {
-                        path: 'treatments',
-                        element: <AdminPages.Treatments/>
-                    },
-                    {
-                        path: 'trip',
-                        element: <AdminPages.Trip/>
-                    },
-                    {
-                        path: 'FAQ',
-                        element: <AdminPages.FAQ/>
-                    },
-                    {
-                        path: 'communication',
-                        element: <AdminPages.Communication/>
-                    },
-                ]
+                path: 'ResetPassword',
+                element: <AuthPages.ResetPassword/>
             }
         ]
+    },
+    {
+        path: "admin/dashboard",
+        element: <AdminPages.Dashboard/>,
+        children: [
+            {
+                index: true,
+                element: <AdminPages.Home/>
+            },
+            {
+                path: 'home',
+                element: <Navigate to={'admin/dashboard'}/>
+            },
+            {
+                path: 'about-us',
+                element: <AdminPages.Aboutus/>
+            },
+            {
+                path: 'treatments',
+                element: <AdminPages.Treatments/>
+            },
+            {
+                path: 'trip',
+                element: <AdminPages.Trip/>
+            },
+            {
+                path: 'FAQ',
+                element: <AdminPages.FAQ/>
+            },
+            {
+                path: 'communication',
+                element: <AdminPages.Communication/>
+            },
+        ]
     }
+        
   ]);
   
   export default Router;

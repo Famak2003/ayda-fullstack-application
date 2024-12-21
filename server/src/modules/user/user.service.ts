@@ -75,28 +75,7 @@ export class UserService{
             token
         }
     }
-
-    // async logout(): Promise<{code: number, status: string}> {
-    //     const userData = await this.userModel.findOne({where: { email }})
-    //     console.log(userData.dataValues.userId)
-    //     if (!userData){
-    //         throw new UnauthorizedException("Unknown User")
-    //     }
-    //     const databasePassword = userData.dataValues.password
-    //     const isPasswordValid = bcrypt.compare(password, databasePassword )
-    //     if (!isPasswordValid){
-    //         throw new UnauthorizedException("Incorrect Password")
-    //     }
-    //     const userName = userData.dataValues.name
-
-    //     // Generate token
-    //     const token = jwt.sign({userName}, process.env.JWT_SECRET, {expiresIn: '20m'})
-    //     return {
-    //         code: 200,
-    //         token
-    //     }
-    // }
-
+    
     async resetPassword(email: string, newPassword: string): Promise<{code: number, status: string}>{
         if ( !email || !newPassword ){
             throw new BadRequestException("Missing Required Field")

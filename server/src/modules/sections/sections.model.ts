@@ -1,4 +1,4 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasOne, Model, Table } from 'sequelize-typescript';
 
 @Table
 export class Sections extends Model{

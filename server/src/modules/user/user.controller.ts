@@ -52,7 +52,7 @@ export class UserController {
             return {code: 200, status: 'success'}
         } catch (error) {
             console.error('Error logging out:', error);
-            throw new InternalServerErrorException("Error creating user")
+            throw new InternalServerErrorException("Error logging out")
         } 
     }
 

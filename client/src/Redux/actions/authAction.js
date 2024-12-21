@@ -5,33 +5,31 @@ export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
 export const login = (data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/user/login", data)
-        localStorage.setItem("token", res.data.token)
-        console.log(res)
+        dispatch(setIsAuthenticated(true))
         window.location.href = "/admin/dashboard"
-        dispatch(
-            { 
-                type: IS_AUTHENTICATED,
-                payload: true
-            }
-        )
+        console.log("login")
     } catch (error) {
         console.log("There was an error when loggin in", error)
     }
 };
 
+export const setIsAuthenticated = (value) => async (dispatch) => {
+    dispatch(
+        {  
+            type: IS_AUTHENTICATED,
+            payload: value
+        }
+    )
+};
+
 export const logout = () => async (dispatch) => {
     try {
         const res = await axiosInstance.get("/user/logout")
-        console.log(res)
-        localStorage.removeItem("token")
-        console.log(localStorage.getItem('token'))
-        dispatch(
-                    { 
-                        type: IS_AUTHENTICATED,
-                        payload: false
-                    }
-                )
+        dispatch(setIsAuthenticated(false))
+        console.log("logout")
     } catch (error) {
         console.log("There was an error when loggin out", error)
     }
 };
+
+

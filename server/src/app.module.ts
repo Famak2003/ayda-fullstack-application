@@ -10,6 +10,7 @@ import databaseConfig from './config/database.config'
 import jwtConfig from './config/jwt.config';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
+import { JwtModule } from '@nestjs/jwt';
 
 
 @Module({
@@ -32,6 +33,15 @@ import { AuthGuard } from './auth/auth.guard';
         synchronize: true,
       }),
       inject: [ConfigService],
+    }),
+    JwtModule.registerAsync({
+        imports: [ConfigModule],
+        global: true,
+        useFactory: async (configService: ConfigService) => ({
+            secret: configService.get<string>('jwt.secret'),
+            signOptions: { expiresIn: '3h' }, // Move signOptions here
+        }),
+        inject: [ConfigService],
     }),
     PagesModule,
     SectionsModule,
