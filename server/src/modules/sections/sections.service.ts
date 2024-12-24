@@ -34,7 +34,7 @@ export class SectionsService {
           const { header, subHeader, image } = item;
     
           if (!image || !header || !subHeader) {
-            throw new HttpException('Invalid data', HttpStatus.BAD_REQUEST);
+            throw new HttpException('Missing Required Fields', HttpStatus.BAD_REQUEST);
           }
     
           // Extract Base64 data and save the image

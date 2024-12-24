@@ -1,7 +1,7 @@
 import { Controller, Get, Post } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller()
+@Controller("/")
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
@@ -13,5 +13,10 @@ export class AppController {
   @Get('db')
   getHealth(): Promise<string>{
     return this.appService.getHealth()
+  }
+
+  @Get('auth')
+  checkTokenHealth(): Promise<{expired: boolean}>{
+    return this.appService.checkTokenHealth()
   }
 }

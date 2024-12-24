@@ -2,7 +2,6 @@ import axios from "axios";
 import axiosRetry from "axios-retry";
 import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
-import { Navigate, replace, useNavigate } from "react-router-dom";
 
 export const API_URL = "http://localhost:4500/";
 
@@ -49,10 +48,7 @@ axiosInstance.interceptors.response.use(
 
 
     if (error.response?.status === 401) {
-      // console.log("status")
       Cookies.remove('token')
-      window.location.href = 'auth'
-      toast.error("Session expired")
     }
 
     return Promise.reject(error); // Propagate the error
@@ -60,13 +56,13 @@ axiosInstance.interceptors.response.use(
 );
 
 // Axios Retry Configuration
-axiosRetry(axiosInstance, {
-  retries: 3, // Number of retries
-  retryDelay: axiosRetry.exponentialDelay, // Exponential delay between retries
-  shouldRetry: (error) => {
-    // Retry only on specific conditions (e.g., network errors or server errors)
-    return error.response?.status >= 500 || error.code === "ECONNABORTED";
-  },
-});
+// axiosRetry(axiosInstance, {
+//   retries: 3, // Number of retries
+//   retryDelay: axiosRetry.exponentialDelay, // Exponential delay between retries
+//   shouldRetry: (error) => {
+//     // Retry only on specific conditions (e.g., network errors or server errors)
+//     return error.response?.status >= 500 || error.code === "ECONNABORTED";
+//   },
+// });
 
 export default axiosInstance;

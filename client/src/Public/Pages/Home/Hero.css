@@ -1,0 +1,4 @@
+#carousel > div{
+    border-radius: 0 !important; /* remove annoying border radius */
+    z-index: 1 !important;
+}

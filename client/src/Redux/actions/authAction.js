@@ -1,3 +1,4 @@
+import toast from "react-hot-toast";
 import axiosInstance from "../../utilities/axiosInstance";
 
 export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
@@ -14,13 +15,27 @@ export const login = (data) => async (dispatch) => {
 };
 
 export const setIsAuthenticated = (value) => async (dispatch) => {
-    dispatch(
-        {  
+    dispatch({  
             type: IS_AUTHENTICATED,
             payload: value
         }
     )
 };
+
+export const getTokenHealth = () => async (dispatch) => {
+    try {
+        const res = await axiosInstance.get("/auth")
+    } catch (error) {
+        console.error(error)
+        if (error.status){
+            toast.error("Session expired, try login")
+            dispatch({  
+                type: IS_AUTHENTICATED,
+                payload: false
+            })
+        }
+    }
+}
 
 export const logout = () => async (dispatch) => {
     try {

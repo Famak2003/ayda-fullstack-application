@@ -20,4 +20,8 @@ export class AppService {
       return 'Database connection failed!';
     }
   }
+
+  async checkTokenHealth(): Promise<{expired: boolean}>{
+    return {expired: false}
+  }
 }

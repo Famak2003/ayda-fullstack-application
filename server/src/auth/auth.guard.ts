@@ -34,6 +34,7 @@ async canActivate(context: ExecutionContext): Promise<boolean> {
     const response = context.switchToHttp().getResponse();
     // const token = this.extractTokenFromHeader(request);
     const token = request.cookies.token // get token from cookies in the request
+    console.log("TOKEN ?? ", token)
     if (!token) {
         throw new UnauthorizedException();
     }
