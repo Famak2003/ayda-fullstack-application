@@ -49,6 +49,7 @@ axiosInstance.interceptors.response.use(
 
     if (error.response?.status === 401) {
       Cookies.remove('token')
+      window.location.href = "auth"
     }
 
     return Promise.reject(error); // Propagate the error

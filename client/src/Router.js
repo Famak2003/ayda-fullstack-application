@@ -15,76 +15,59 @@ const Router = createBrowserRouter([
                 element: <PublicPages.Home />,
             },
             {
-                // element: <PublicPages.Body/>
+                path: 'nedenbiz',
+                element: <PublicPages.Whyus/>
             },
             {
-                path: 'about-us',
-                children: [
-                    {
-                        path: 'whyus',
-                        element: <PublicPages.Whyus/>
-                    },
-                    {
-                        path: 'ourteam',
-                        element: <PublicPages.OurTeam/>
-                    },
-                    {
-                        path: 'ourteam',
-                        element: <PublicPages.OurTeam/>
-                    },
-                    {
-                        path: 'ourprices',
-                        element: <PublicPages.OurPrices/>
-                    },
-                    {
-                        path: 'oursuccessrate',
-                        element: <PublicPages.OurSuccessRates/>
-                    }
-                ]
+                path: 'takimimiz',
+                element: <PublicPages.OurTeam/>
             },
             {
-                path: 'treatments',
-                children: [
-                    {
-                        path: 'ivf',
-                        element: <PublicPages.IVF/>
-                    },
-                    {
-                        path: 'eggdonation',
-                        element: <PublicPages.EggDonation/>
-                    },
-                    {
-                        path: 'spermdonation',
-                        element: <PublicPages.SpermDonr/>
-                    },
-                    {
-                        path: 'embryodonation',
-                        element: <PublicPages.EmbryoDonr/>
-                    },
-                    {
-                        path: 'eggfreezing',
-                        element: <PublicPages.EggDonation/>
-                    },
-                    {
-                        path: 'ovarianprp',
-                        element: <PublicPages.Ovarian/>
-                    },
-                    {
-                        path: 'acupuncture',
-                        element: <PublicPages.Acupuncture/>
-                    }
-                ]
+                path: 'fiyatlarimiz',
+                element: <PublicPages.OurPrices/>
             },
             {
-                path: 'trip',
+                path: 'basarioranlari',
+                element: <PublicPages.OurSuccessRates/>
+            },
+            {
+                path: 'tupbebekivf',
+                element: <PublicPages.IVF/>
+            },
+            {
+                path: 'yumurtadonasyonu',
+                element: <PublicPages.EggDonation/>
+            },
+            {
+                path: 'spermdonasyonu',
+                element: <PublicPages.SpermDonr/>
+            },
+            {
+                path: 'embriyodonasyonu',
+                element: <PublicPages.EmbryoDonr/>
+            },
+            {
+                path: 'yumurtadondurma',
+                element: <PublicPages.EggFreezing/>
+            },
+            {
+                path: 'ovarianprp',
+                element: <PublicPages.Ovarian/>
+            },
+            {
+                path: 'akupunktur',
+                element: <PublicPages.Acupuncture/>
+            },
+            {
+                path: 'seyahat',
                 element: <PublicPages.Trip/>
             },
             {
-                path: 'FAQ',
+                path: 'sss',
                 element: <PublicPages.FAQ/>
             },
             {
-                path: 'communication',
+                path: 'iletisim',
                 element: <PublicPages.Communication/>
             },
             
@@ -116,79 +99,63 @@ const Router = createBrowserRouter([
                 index: true,
                 element: <AdminPages.Home/>
             },
-            
             {
                 path: 'home',
                 element: <Navigate to={'/admin/dashboard'}/>
             },
-            {
-                path: 'about-us',
-                children: [
-                    {
-                        path: 'whyus',
-                        element: <AdminPages.Whyus/>
-                    },
-                    {
-                        path: 'ourteam',
-                        element: <AdminPages.OurTeam/>
-                    },
-                    {
-                        path: 'ourteam',
-                        element: <AdminPages.OurTeam/>
-                    },
-                    {
-                        path: 'ourprices',
-                        element: <AdminPages.OurPrices/>
-                    },
-                    {
-                        path: 'oursuccessrate',
-                        element: <AdminPages.OurSuccessRates/>
-                    }
-                ]
+            {    path: 'nedenbiz',
+                element: <AdminPages.Whyus/>
             },
             {
-                path: 'treatments',
-                children: [
-                    {
-                        path: 'ivf',
-                        element: <AdminPages.IVF/>
-                    },
-                    {
-                        path: 'eggdonation',
-                        element: <AdminPages.EggDonation/>
-                    },
-                    {
-                        path: 'spermdonation',
-                        element: <AdminPages.SpermDonr/>
-                    },
-                    {
-                        path: 'embryodonation',
-                        element: <AdminPages.EmbryoDonr/>
-                    },
-                    {
-                        path: 'eggfreezing',
-                        element: <AdminPages.EggDonation/>
-                    },
-                    {
-                        path: 'ovarianprp',
-                        element: <AdminPages.Ovarian/>
-                    },
-                    {
-                        path: 'acupuncture',
-                        element: <AdminPages.Acupuncture/>
-                    }
-                ]
+                path: 'takimimiz',
+                element: <AdminPages.OurTeam/>
             },
             {
-                path: 'trip',
+                path: 'fiyatlarimiz',
+                element: <AdminPages.OurPrices/>
+            },
+            {
+                path: 'basarioranlari',
+                element: <AdminPages.OurSuccessRates/>
+            },
+            {
+                path: 'tupbebekivf',
+                element: <AdminPages.IVF/>
+            },
+            {
+                path: 'spermdonasyonu',
+                element: <AdminPages.SpermDonr/>
+            },
+            {
+                path: 'embriyodonasyonu',
+                element: <AdminPages.EmbryoDonr/>
+            },
+            {
+                path: 'yumurtadonasyonu',
+                element: <AdminPages.EggDonation/>
+            },
+            {
+                path: 'yumurtadondurma',
+                element: <AdminPages.EggFreezing/>
+            },
+            {
+                path: 'ovarianprp',
+                element: <AdminPages.Ovarian/>
+            },
+            {
+                path: 'akupunktur',
+                element: <AdminPages.Acupuncture/>
+            },
+            {
+                path: 'seyahat',
                 element: <AdminPages.Trip/>
             },
             {
-                path: 'FAQ',
+                path: 'sss',
                 element: <AdminPages.FAQ/>
             },
             {
-                path: 'communication',
+                path: 'iletisim',
                 element: <AdminPages.Communication/>
             },
         ]

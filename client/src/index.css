@@ -27,6 +27,35 @@ input:focus {
   outline: none;
 }
 
+.customLineParent{
+  position: relative;
+  overflow: hidden;
+  padding: 10px 0;
+  box-sizing: border-box;
+  &::before {
+    content: "";
+    display: block;
+    background: linear-gradient(
+      90deg,
+      #F08FB2 30%,
+      transparent 30%,
+      transparent 75%,
+      #F08FB2 75%
+    );
+    background-size: 40px;
+    position: absolute;
+    top: -1000px;
+    left: -50px;
+    bottom: -1000px;
+    right: -50px;
+    transform: rotate(45deg);
+  }
+  .customLine {
+    background: #F08FB2;
+    height: 20px;
+  }
+}
+
 @layer components{
   .groupMenuLinks{
     @apply group-hover:underline decoration-white group-hover:text-secondary_pink duration-500

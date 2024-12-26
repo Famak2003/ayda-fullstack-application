@@ -23,7 +23,7 @@ const Public = () => {
             
             <Outlet/>
             <PublicFooter/>
-            <Caption/>
+            {/* <Caption/> */}
         </div>
     )
 

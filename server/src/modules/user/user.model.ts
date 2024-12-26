@@ -26,6 +26,18 @@ export class User extends Model {
     type: DataType.STRING,
     allowNull: false
   })
-  password: boolean;
+  password: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true
+  })
+  reset_token: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true
+  })
+  expiring_date: string;
 
 }

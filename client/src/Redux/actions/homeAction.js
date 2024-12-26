@@ -9,9 +9,9 @@ export const getAllHomeContent = (data) => ({
   payload: data,
 });
 
-export const uploadHeroSection = (data) => async (dispatch) => {
+export const uploadSection = (pageName, type, data) => async (dispatch) => {
   try {
-      const res = await axiosInstance.post("/sections/upload-hero-section", data)
+      const res = await axiosInstance.post("/sections/create", {pageName, type, content: data})
       console.log(res)
       toast.success("upload complete")
       // dispatch({
@@ -22,3 +22,17 @@ export const uploadHeroSection = (data) => async (dispatch) => {
       console.log("There was an error when loggin out", error)
   }
 };
+
+export const getHome = () => async(dispatch) => {
+  try {
+      const res = await axiosInstance.get('/pages/home')
+      const content = res?.data?.data
+      dispatch({
+        type: GET_ALL_HOME_CONTENT,
+        payload: content
+      })
+  } catch (error) {
+      console.log(error)
+  }
+
+}

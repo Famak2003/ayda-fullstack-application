@@ -1,14 +1,21 @@
-import { HttpException, HttpStatus, Injectable } from '@nestjs/common';
+import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sections } from './sections.model';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Pages } from '../pages/pages.model';
 
 interface heroPayload {
     header: string;
     subHeader: string;
     image: string;
   }
+
+  interface sectionPayload {
+    pageName: string,
+    type: string,
+    content: any
+}
 
 @Injectable()
 export class SectionsService {
@@ -27,7 +34,47 @@ export class SectionsService {
         return {test: "testing route 1234567890"}
     }
 
-    async uploadHeroSection(body: heroPayload[] ): Promise<{message: string}>{
+    async createSection(body: sectionPayload): Promise<Pages> {
+      const page = await Pages.findOne({ where: { name: body.pageName } });
+    
+      if (page) {
+        try {
+          // Check if a section with the same type already exists for this page
+          const existingSection = await Sections.findOne({
+            where: {
+              type: body.type,
+              pageId: page.id, // Ensure it's for the same page
+            },
+          });
+    
+          let section;
+          if (existingSection) {
+            // Update the existing section
+            section = await existingSection.update({
+              content: body.content, // Overwrite content
+            });
+            console.log('Updated Section:', section);
+          } else {
+            // Create a new section if none exists
+            section = await (page as any).createSection({
+              type: body.type,
+              content: body.content,
+            });
+            console.log('Created Section:', section);
+          }
+        } catch (error) {
+          console.error('Error in createSection:', error);
+        }
+      } else {
+        console.error('Page not found!');
+        throw new InternalServerErrorException("Page not found")
+      }
+    
+      return page;
+    }
+    
+
+    async uploadSection(body: heroPayload[] ): Promise<{message: string}>{
         const savedData = [];
 
         for (const item of body) {

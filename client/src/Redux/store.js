@@ -1,20 +1,10 @@
 import { configureStore, applyMiddleware } from '@reduxjs/toolkit';
 import AppReducers from './reducers';
 import { thunk } from 'redux-thunk';
-import { persistStore, persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage"; 
-
-// Persist configuration
-const persistConfig = {
-    key: "root", // Key for localStorage (can be customized)
-    storage, // Storage mechanism (localStorage)
-  };
-
-  // Create a persisted reducer
-const persistedReducer = persistReducer(persistConfig, AppReducers);
+import { persistStore } from "redux-persist";
 
 const store = configureStore({
-  reducer: persistedReducer,
+  reducer: AppReducers,
   middleware: (getDefaultMiddleware) => getDefaultMiddleware({
     serializableCheck: {
         ignoredActions: ['persist/PERSIST', 'persist/REHYDRATE'], // Ignore redux-persist actions

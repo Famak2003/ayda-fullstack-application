@@ -2,12 +2,11 @@ import { useState } from "react";
 import UploadButton from "../components/UploadButton";
 import HeroForm from "./components/HeroForm";
 import AddButton from "../components/AddButton";
-import { data } from "react-router-dom";
 
 const Hero = () => {
   const [formNumber, setFormNumber] = useState(0);
-  const [data, setData] = useState([
-    {
+  const [data, setData] = useState({
+    0: {
         id: 0,
         header: "",
         subHeader: "",
@@ -15,7 +14,7 @@ const Hero = () => {
         start: "",
         stop: ""
     }
-  ])
+  })
 //   const handleAppend = () => {
 //     setData((prev) => {
 //         return{
@@ -30,13 +29,12 @@ const Hero = () => {
         <div className="flex flex-col gap-2">
             <h1 className="font-bold text-[20px]">Hero Section</h1>
             <div className=" flex flex-col gap-2 pl-2 " >
-                {/* <HeroForm id={0} data={data} setData={setData} /> */}
-                {data.map((value, idx) => (
+                <HeroForm id={0} data={data} setData={setData} />
+                {Array.from({ length: formNumber }, (_, idx) => (
                     <HeroForm
-                        key={idx}
-                        id={value.id}
-                        obj={value}
-                        data={data}
+                        key={idx + 1}
+                        id={idx + 1}
+                        data={data} 
                         setData={setData}
                     />
                 ))}

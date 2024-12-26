@@ -3,11 +3,19 @@ import { SectionsService } from './sections.service';
 import { FileFieldsInterceptor } from '@nestjs/platform-express';
 import * as fs from 'fs';
 import * as path from 'path';
+import { Sections } from './sections.model';
+import { Pages } from '../pages/pages.model';
 
 interface heroPayload {
   header: string;
   subHeader: string;
   image: string;
+}
+
+interface sectionPayload {
+    pageName: string,
+    type: string,
+    content: any
 }
 
 @Controller('/sections')
@@ -26,11 +34,19 @@ export class SectionsController {
         return this.sectionsService.getInfo();
     }
 
+
+    @Post("create")
+    async createSection(
+        @Body() body: sectionPayload
+    ): Promise<Pages>{
+        return this.sectionsService.createSection(body)
+    }
+
     @Post('/upload-hero-section')
-    async uploadHeroSection(
+    async uploadSection(
         @Body() body: heroPayload[],
     ): Promise<{status: number, message: string}> {
-        const {message} =  await this.sectionsService.uploadHeroSection(body)
+        const {message} =  await this.sectionsService.uploadSection(body)
 
 
        

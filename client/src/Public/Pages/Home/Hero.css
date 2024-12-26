@@ -2,3 +2,7 @@
     border-radius: 0 !important; /* remove annoying border radius */
     z-index: 1 !important;
 }
+
+#carousel > :nth-child(2) {
+    display: none;
+}

@@ -4,25 +4,25 @@ import { useEffect, useState } from 'react';
 import { Toaster } from "react-hot-toast";
 import { RouterProvider } from "react-router-dom";
 import Router from "./Router";
-// import Cookies from 'js-cookie';
+import Cookies from 'js-cookie';
 import { useDispatch, useSelector } from "react-redux";
-// import { setIsAuthenticated } from "./Redux/actions/authAction";
+import { setIsAuthenticated } from "./Redux/actions/authAction";
 
 function App() {
-  // const dispatch = useDispatch()
+  const dispatch = useDispatch()
   const [darkmode, setDarkmode] = useState(
     localStorage.getItem('dark-mode') === "true"
   )
 
-  // useEffect( () => {
-  //   const getTokenFromCookie = () => Cookies.get('token');
-  //   const token = getTokenFromCookie();
-  //   if (token) {
-  //     dispatch(setIsAuthenticated(true))
-  //   }else{
-  //     dispatch(setIsAuthenticated(false))
-  //   }
-  // }, [])
+  useEffect( () => {
+    const getTokenFromCookie = () => Cookies.get('token');
+    const token = getTokenFromCookie();
+    if (token) {
+      dispatch(setIsAuthenticated(true))
+    }else{
+      dispatch(setIsAuthenticated(false))
+    }
+  }, [])
 
 
   useEffect(() =>{

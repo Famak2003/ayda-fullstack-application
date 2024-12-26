@@ -1,22 +1,18 @@
-import { Column, DataType, Model, Table } from 'sequelize-typescript';
+import { Column, DataType, HasMany, Model, Table } from 'sequelize-typescript';
+import { Sections } from '../sections/sections.model';
 
-@Table
+@Table({
+  tableName: 'pages',
+  createdAt: "created_at",
+  updatedAt: "updated_at",
+})
 export class Pages extends Model {
   @Column({
-    type: DataType.STRING, // Specify the data type
-    allowNull: false, // Optional: Define if this column can be null
+    type: DataType.STRING,
+    allowNull: false,
   })
   name: string;
 
-  @Column({
-    type: DataType.STRING,
-    field: 'display_name', // Map to the custom column name in the database
-  })
-  displayName: string;
-
-  @Column({
-    type: DataType.BOOLEAN,
-    field: 'is_home'
-  })
-  isHome: boolean;
+  @HasMany(() => Sections) // establish relationship between tables
+  sections: Sections[]; // type of sections is an array of sections
 }
