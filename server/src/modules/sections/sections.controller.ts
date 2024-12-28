@@ -38,7 +38,7 @@ export class SectionsController {
     @Post("create")
     async createSection(
         @Body() body: sectionPayload
-    ): Promise<Pages>{
+    ): Promise<{message: string}>{
         return this.sectionsService.createSection(body)
     }
 

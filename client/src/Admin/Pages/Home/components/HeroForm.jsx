@@ -10,12 +10,15 @@ const HeroForm = ({ id, data, setData, obj }) => {
     const [imgLoader, setImgLoader] = useState(false)
   
     const handleChange = (e) => {
-        setData((prev) =>
-        prev.map((item) =>
-            item.id === id
-                ? { ...item, [e.target.name]: e.target.value } // Update the image for the matched id
-                : item // Leave other items unchanged
-            )
+        setData((prev) =>{
+            return {
+                ...prev,
+                content: prev.content.map((item) =>
+                    item.id === id
+                        ? { ...item, [e.target.name]: e.target.value } // Update the image for the matched id
+                        : item // Leave other items unchanged
+                    )
+            }}
         );
         // setData((prev) =>{
         //     return{
@@ -55,25 +58,17 @@ const HeroForm = ({ id, data, setData, obj }) => {
             const compressedFile = await imageCompression(file, options);
             const base64 = new FileReader()
             base64.addEventListener("load", ()=>{
-                setData((prev) =>
-                    prev.map((item) =>
-                      item.id === id
-                        ? { ...item, image: base64Image } // Update the image for the matched id
-                        : item // Leave other items unchanged
-                    )
-                  );
-
-
-                // setData((prev) => {
-                //     return {
-                //     ...prev,
-                //     [id]: {
-                //         id,
-                //         ...prev[id],
-                //         image: base64.result,
-                //         },
-                // }});
-            })
+                setData((prev) => {
+                    return {
+                        ...prev,
+                        content: prev.content.map((item) =>
+                            item.id === id
+                                ? { ...item, image: base64.result } // Update the image for the matched id
+                                : item // Leave other items unchanged
+                        )
+                    }
+                })
+            })  
             base64.readAsDataURL(compressedFile)
             document.getElementById(`file-input-${id}`).value = "";
         } catch (error) {
@@ -85,6 +80,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
     };
 
     const handleDeleteImage = (e, idToRemove) => {
+        console.log(idToRemove)
         e.preventDefault()
         const updatedData = data.map((item) => {
             if (item.id === idToRemove) {
@@ -92,8 +88,23 @@ const HeroForm = ({ id, data, setData, obj }) => {
             }
             return item
         } )
-        setData(updatedData)
+        setData( (prev) => {
+            return {
+                ...prev,
+                content: updatedData
+            }
+        })
         document.getElementById(`file-input-${id}`).value = "" ;// Clear the input field value
+    }
+
+    // Delete selected entry from hero
+    const handleDelete = (idToRemove) => {
+        setData((prev) => {
+            return{
+                ...prev,
+                content: prev.content.filter((item) => item.id !== idToRemove)
+            }
+        });
     }
     
   
@@ -183,6 +194,14 @@ const HeroForm = ({ id, data, setData, obj }) => {
                     </button>
                 </div>
             )}
+            <button 
+                className='group bg-red text-white flex justify-center items-center rounded-md p-2 hover:scale-[99.5%] duration-300 shadow-custom2 '
+                onClick={() => (
+                    handleDelete(id)
+                )}
+            >
+                Delete Section
+            </button>
         </form>
     );
   };

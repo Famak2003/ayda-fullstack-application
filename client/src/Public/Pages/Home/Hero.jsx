@@ -7,6 +7,7 @@ import IMAGE3 from './../../../Asset/image1.jpg'
 import LEFT from './../../../Asset/icons8-left-50.png'
 import ArrowComp from './components/ArrowComp'
 import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
 
 
 const carouselData = [
@@ -28,8 +29,17 @@ const carouselData = [
 ]
 
 const Hero = () => {
-    const hero = useSelector(state => state?.home?.content?.hero)
-
+    // Extracting hero data START
+    const content = useSelector(state => state?.home.content)
+    let rawData
+    content?.filter((item) => {
+        if (item.type === "hero"){
+            return rawData = item
+        }}
+    )
+    const hero = rawData ? JSON.parse(rawData?.content)[0] : ""
+    // Extracting hero data STOP
+    
     return (
         <div className=" flex justify-center items-center h-[905px] w-screen ">
             {
@@ -52,7 +62,7 @@ const Hero = () => {
                                     </div>
                                     <div>
                                         <p className=' text-white font-semibold tracking-[5px] text-[16px] '>
-                                            MONDAY - FRIDAY: 9:00 - 14:00
+                                            {`MONDAY - FRIDAY: ${obj.start} - ${obj.stop}`}
                                         </p>
                                     </div>
                                 </div>

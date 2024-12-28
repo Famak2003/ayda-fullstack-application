@@ -3,7 +3,18 @@ import DoubleHeader from '../../components/DoubleHeader'
 import { useSelector } from 'react-redux'
 
 const Methods = () => {
-    const methods = useSelector(state => state?.home?.content?.methods)
+    // const methods = useSelector(state => state?.home?.content?.methods)
+     // Extracting methods data START
+     const content = useSelector(state => state?.home.content)
+     let rawData
+     content?.filter((item) => {
+         if (item.type === "quickInfo"){
+             return rawData = item
+         }}
+     )
+     const methods = rawData ? JSON.parse(rawData?.content) : ""
+     console.log(methods)
+     // Extracting methods data STOP
 
     const listData = [
         "In vitro fertilization (IVF)-ICSI",
@@ -25,9 +36,11 @@ const Methods = () => {
                     <> 
                         <DoubleHeader header1={methods.header} header2={methods.subHeader} />
                         <p className=" text-center text-light_grey max-w-[1150px] leading-[28px] font-normal " >
-                            {
+                            <div className='overflow-scroll w-full items-start' dangerouslySetInnerHTML={{ __html: methods.content }} />
+
+                            {/* {
                                 methods.content
-                            }
+                            } */}
                             {/* Before you visit Ayda IVF Team, be sure to take a look at our treatment methods that we have prepared especially for you, carefully considering every detail, so that you can have more detailed information about your treatment. Here, you will have the opportunity to examine your suitable treatment more closely and get detailed information.
                             <br/>
                             <br/>
@@ -35,11 +48,11 @@ const Methods = () => {
                         </p>
                         <ul className=" grid max-[550px]:grid-cols-1 grid-cols-2 gap-2 gap-y-4 " >
                             {
-                                methods.links.map((obj, idx) => {
+                                methods.linksArr.map((obj, idx) => {
                                     return <li className=' flex gap-2 justify-center items-center text-[15px] text-light_grey font-semibold max-w-[360px] ' key={idx} >
                                         <figure className=' h-[15px] w-[15px] ' > <img className=' h-full w-full object-cover ' src={CHECK} alt="check-img"/> </figure>
-                                        <a href={obj.link} className=' text-[15px]' >
-                                            {obj.text}
+                                        <a href={obj.link} className=' font-bold leading- text-[15px] hover:text-secondary_pink duration-300 text-secondary_light_grey' >
+                                            {obj.linkName}
                                         </a>
                                     </li>
                                 })

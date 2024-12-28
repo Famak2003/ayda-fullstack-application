@@ -1,4 +1,4 @@
-import { HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
+import { BadRequestException, HttpException, HttpStatus, Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectModel } from '@nestjs/sequelize';
 import { Sections } from './sections.model';
 import * as fs from 'fs';
@@ -9,6 +9,8 @@ interface heroPayload {
     header: string;
     subHeader: string;
     image: string;
+    // start: string;
+    // stop: string;
   }
 
   interface sectionPayload {
@@ -34,13 +36,12 @@ export class SectionsService {
         return {test: "testing route 1234567890"}
     }
 
-    async createSection(body: sectionPayload): Promise<Pages> {
+    async createSection(body: sectionPayload): Promise<{message: string}> {
       const page = await Pages.findOne({ where: { name: body.pageName } });
     
       if (page) {
         try {
-          // Check if a section with the same type already exists for this page
-          const existingSection = await Sections.findOne({
+          const existingSection = await Sections.findOne({  // Check if a section with the same type already exists for this page
             where: {
               type: body.type,
               pageId: page.id, // Ensure it's for the same page
@@ -49,38 +50,47 @@ export class SectionsService {
     
           let section;
           if (existingSection) {
-            // Update the existing section
-            section = await existingSection.update({
+            section = await existingSection.update({   // Update the existing section
               content: body.content, // Overwrite content
             });
             console.log('Updated Section:', section);
+            return {message: "Updated Section "}
           } else {
-            // Create a new section if none exists
-            section = await (page as any).createSection({
+            section = await (page as any).createSection({  // Create a new section if none exists
               type: body.type,
               content: body.content,
             });
             console.log('Created Section:', section);
+            return {message: "Created Section "}
           }
         } catch (error) {
           console.error('Error in createSection:', error);
+          throw new BadRequestException("Cannot create section", {
+            cause: new Error(),
+            description: error.message || "An unexpected error occurred"
+          })
         }
       } else {
         console.error('Page not found!');
         throw new InternalServerErrorException("Page not found")
       }
-    
-      return page;
     }
     
 
     async uploadSection(body: heroPayload[] ): Promise<{message: string}>{
-        const savedData = [];
+      const savedData = [];
+      const pageName:string = "home"
+      const type:string = "hero"
 
+      const page = await Pages.findOne({ where: { name: pageName } });
+
+      if (page) {
         for (const item of body) {
-          const { header, subHeader, image } = item;
+          // const { header, subHeader, image, start, stop } = item;
+          const { header, subHeader, image} = item;
     
-          if (!image || !header || !subHeader) {
+          // if (!image || !header || !subHeader || !start || !stop) {
+            if (!image || !header || !subHeader ) {
             throw new HttpException('Missing Required Fields', HttpStatus.BAD_REQUEST);
           }
     
@@ -101,21 +111,63 @@ export class SectionsService {
           fs.writeFileSync(filePath, buffer);
     
           // Simulate saving to a database
+          // const savedItem = {
+          //   header,
+          //   subHeader,
+          //   start,
+          //   stop,
+          //   imagePath: `assets/${fileName}`, // Save relative path
+          // };
           const savedItem = {
             header,
             subHeader,
             imagePath: `assets/${fileName}`, // Save relative path
           };
+
           savedData.push(savedItem)
           //   this.database.push(savedItem); // Replace this with actual database logic
           //   savedData.push(savedItem);
         }
+        try {
+          const existingSection = await Sections.findOne({  // Check if a section with the same type already exists for this page
+            where: {
+              type: type,
+              pageId: page.id, // Ensure it's for the same page
+            },
+          });
+    
+          let section;
+          if (existingSection) {
+            section = await existingSection.update({   // Update the existing section
+              content: savedData, // Overwrite content
+            });
+            console.log('Updated Section:', section);
+            return {message: "Updated Section "}
+          } else {
+            section = await (page as any).createSection({  // Create a new section if none exists
+              type: type,
+              content: savedData,
+            });
+            console.log('Created Section:', section);
+            return {message: "Created Section "}
+          }
+        } catch (error) {
+          console.error('Error in createSection:', error);
+          throw new BadRequestException("Cannot create section", {
+            cause: new Error(),
+            description: error.message || "An unexpected error occurred"
+          })
+        }
+      } else {
+        console.error('Page not found!');
+        throw new InternalServerErrorException("Page not found")
+      }
 
         // const dataBaseQuerry = await this.sectionModel.create({
 
         // })
 
-        console.log(" ?????????????????? ",savedData)
+        // console.log(" ?????????????????? ",savedData)
     
         return { message: 'Images saved successfully'};
         // return { message: 'Images saved successfully', data: savedData };

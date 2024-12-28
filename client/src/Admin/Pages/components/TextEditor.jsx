@@ -8,7 +8,7 @@ import imageCompression from 'browser-image-compression';
 
 
 const TextEditor = ({ data, setData, buttomHeaders=false}) => {
-    const [value, setValue] = useState("")
+    const [value, setValue] = useState(data?.content)
     const [imgLoader, setImgLoader] = useState(false)
     const uploadREF = useRef(null)
 
@@ -94,6 +94,7 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
                     <input
                         id={`header`}
                         type="text"
+                        value={data?.header}
                         className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                         onChange={handleChange}
                         name="header"
@@ -104,6 +105,7 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
                     <input
                         id={`subHeader`}
                         type="text"
+                        value={data?.subHeader}
                         className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                         onChange={handleChange}
                         name="subHeader"
@@ -139,6 +141,7 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
                                 <input
                                     id={`buttomHeader`}
                                     type="text"
+                                    value={data?.buttomHeader}
                                     className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                                     onChange={handleChange}
                                     name="buttomHeader"
@@ -149,6 +152,7 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
                                 <input
                                     id={`buttomSubHeader`}
                                     type="text"
+                                    value={data?.buttomSubHeader}
                                     className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                                     onChange={handleChange}
                                     name="buttomSubHeader"

@@ -25,7 +25,7 @@ export class PagesController {
 
   @Public()
   @Get(':page')
-  getDynamicPage(@Param('page') page: string): Promise<{data: object}> {
+  getDynamicPage(@Param('page') page: string): Promise<Sections[]> {
     return this.pagesService.getPage(page);
   }
 }
