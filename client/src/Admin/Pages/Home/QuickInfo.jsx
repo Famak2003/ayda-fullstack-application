@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux"
 import UploadButton from "../components/UploadButton"
 import CANCEL from './../../../Asset/icons8-close-60.png'
-import { updateQuickInfoData } from "../../../Redux/actions/homeAction"
+import { updateQuickInfoData } from "../../../Redux/actions/adminHomeAction"
 
 const { useState, useEffect } = require("react")
 const { default: TextEditor } = require("../components/TextEditor")
@@ -9,7 +9,7 @@ const { default: AddButton } = require("../components/AddButton")
 
 const QuickInfo = () => {
     const dispatch = useDispatch()
-    const quickInfoData = useSelector((state) => state.persist.quickInfoData)
+    const quickInfoData = useSelector((state) => state.adminHome.quickInfoData)
     const [data, setData] = useState(quickInfoData)
 
     
@@ -44,6 +44,16 @@ const QuickInfo = () => {
             }
         })
     }
+
+    const handleContent = (value) => {
+        setData((prev) =>{
+            return{
+                ...prev,
+                content: value,
+              }
+          }
+        )
+    }
     
 
     return(
@@ -54,10 +64,10 @@ const QuickInfo = () => {
             <div className=" flex flex-col gap-2 pl-2 h-fit p-2 ">
                 {
                     <>
-                        <TextEditor data={data} setData={setData} />
-                        <div className=" grid grid-cols-2 gap-2 " >
+                        <TextEditor handleContent={handleContent} defaultContent={data.content} data={data} setData={setData} />
+                        <div className=" grid grid-cols-1 xxl:grid-cols-2 gap-2 " >
                             {
-                                data.linksArr.map((obj, idx) => (
+                                data?.linksArr?.map((obj, idx) => (
                                     <LinksComp obj={obj} id={obj?.id} key={idx} setData={setData} />
                                 ))
                             }
@@ -107,35 +117,39 @@ const LinksComp = ({ obj, id ,setData}) => {
     
 
     return(
-        <div className=" relative flex gap-2 border-b-2 border-dashed border-black pb-5 w-fit ">
-            <div className="flex flex-col gap-2">
-                <label htmlFor={`linkName`} children={"Link Name"} />
-                <input
-                    id={`linkName`}
-                    type="text"
-                    value={obj.linkName}
-                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
-                    onChange={(e) => handleChange(e, id)}
-                    name="linkName"
-                />
-            </div>
-            <div className="flex flex-col gap-2">
-                <label htmlFor={`link`} children={"Link"} />
-                <input
-                    id={`link`}
-                    placeholder="Input link here, e.g iletisim"
-                    type="text"
-                    value={obj.link}
-                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
-                    onChange={(e) => handleChange(e, id)}
-                    name="link"
-                />
+        <div className=" relative flex flex-col lmobile:flex-row gap-2 border-b-2 border-dashed border-black pb-5 w-full ">
+            <div className="flex flex-col mobile:flex-row gap-2" >
+                <div className="flex flex-col gap-2">
+                    <label htmlFor={`linkName`} children={"Link Name"} />
+                    <input
+                        id={`linkName`}
+                        type="text"
+                        value={obj.linkName}
+                        className="pl-2 w-[100%] p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                        onChange={(e) => handleChange(e, id)}
+                        name="linkName"
+                    />
+                </div>
+                <div className="flex flex-col gap-2">
+                    <label htmlFor={`link`} children={"Link"} />
+                    <input
+                        id={`link`}
+                        placeholder="Input link here, e.g iletisim"
+                        type="text"
+                        value={obj.link}
+                        className="pl-2 w-[100%] p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                        onChange={(e) => handleChange(e, id)}
+                        name="link"
+                    />
+                </div>
             </div>
             <button 
-                className=" absolute top-[35%] translate-y-[35%] right-[-50px] w-[25px] h-[25px] p-1 bg-primary_black rounded-md " 
+                className=" flex justify-center items-end h-full w-full lmobile:w-fit p-1 bg-black rounded-md lmobile:bg-transparent " 
                 onClick={() => handleDelete(id)}
             >
-                <img className=" h-full w-full object-cover " src={CANCEL} alt="undo" />
+                    <img className=" w-[25px] h-[25px] p-1 rounded-md object-cover bg-primary_black  " src={CANCEL} alt="undo" />
+                {/* <figure className=" w-full lmobile:w-[25px] h-[25px] p-1 rounded-md" >
+                </figure> */}
             </button>
         </div>
     )

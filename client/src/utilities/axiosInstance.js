@@ -1,5 +1,4 @@
 import axios from "axios";
-import axiosRetry from "axios-retry";
 import toast from "react-hot-toast";
 import Cookies from 'js-cookie';
 
@@ -7,9 +6,6 @@ export const API_URL = "http://localhost:4500/";
 
 const axiosInstance = axios.create({
   baseURL: API_URL,
-  headers: {
-    "Content-Type": "application/json",
-  },
 });
 
 // Request Interceptor: Called before sending the request
@@ -17,6 +13,8 @@ axiosInstance.interceptors.request.use(
   (config) => {
     // Show a loading toast
     config.withCredentials=true
+    config.headers["Content-Type"] = 'application/json';
+    config.headers.Accept = 'application/json';
     config._toastId = toast.loading("Sending request...");
     return config;
   },
@@ -49,7 +47,7 @@ axiosInstance.interceptors.response.use(
 
     if (error.response?.status === 401) {
       Cookies.remove('token')
-      window.location.href = "auth"
+      window.location.href = "/admin/auth"
     }
 
     return Promise.reject(error); // Propagate the error

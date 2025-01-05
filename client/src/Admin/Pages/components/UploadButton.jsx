@@ -8,7 +8,7 @@ const UploadButton = ({convertToArr, pageName, type, data}) => {
 
 
     return(
-        <button className=" group flex justify-center items-center gap-2 bg-green text-white rounded-md p-2 hover:scale-105 duration-300 " 
+        <button className=" group flex justify-center items-center gap-2 bg-green text-white rounded-md p-2 hover:scale-105 duration-300 w-full mobile:w-fit " 
             onClick={() => {
                 if(convertToArr){
                     const convertDataToArr = Object.values(data)

@@ -1,8 +1,8 @@
 const  Trip = () => {
     return(
-        <div>
+        <section>
             Trip
-        </div>
+        </section>
     )
 }
 

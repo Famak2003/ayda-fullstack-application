@@ -2,13 +2,47 @@
 @tailwind components;
 @tailwind utilities;
 
+:root {
+  --light_grey: #595959;
+  --primary_light_grey: #FaFaFa;
+  --secondary_light_grey: #706F6F;
+  --blue_head: #67c5dc;
+  --black: #c7c7c7;
+  --primary_black: #000;
+  --white: #fff;
+  --deep_black_red: #080100;
+  --secondary_pink: #f46197;
+  --primary_pink: #EA589A;
+  --light_pink: #F08FB2;
+  --hot_pink: #ff0000;
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --gray: #6c757d;
+  --gray_dark: #343a40;
+  --primary: #d63447;
+  --secondary: #f57b51;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a4a;
+}
+
 html {
   scroll-behavior: smooth;
 }
 
 body {
   margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: "Lato", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -27,6 +61,7 @@ input:focus {
   outline: none;
 }
 
+/* // Custom line // */
 .customLineParent{
   position: relative;
   overflow: hidden;
@@ -56,11 +91,48 @@ input:focus {
   }
 }
 
-@layer components{
-  .groupMenuLinks{
-    @apply group-hover:underline decoration-white group-hover:text-secondary_pink duration-500
-  }
-  .menuLinks{
-    @apply hover:underline decoration-white hover:text-secondary_pink duration-500
+/*  // Table Style //  */
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td, th {
+  border: 1px solid var(--primary_black);
+  text-align: center;
+  padding: 8px;
+}
+
+@media (max-width: 650px) {
+  td, th {
+    padding: 4px; /* Reduced padding for small screens */
   }
 }
+
+@media (max-width: 650px){
+  td, th{
+    font-size: 15px;
+  }
+}
+
+/* Change the background of the toolbar */
+.ql-toolbar {
+  background-color: #f0f0f0; /* Example: Light gray background */
+}
+
+
+@layer components{
+  .groupMenuLinks{
+    @apply list-none group-hover:underline decoration-white group-hover:text-secondary_pink duration-500
+  }
+  .menuLinks{
+    @apply !list-none  hover:underline decoration-white hover:text-secondary_pink duration-500
+  }
+  input{
+    @apply dark:text-primary_black
+  }
+  .ql-toolbar{
+    @apply dark:text-white
+  }
+}
+

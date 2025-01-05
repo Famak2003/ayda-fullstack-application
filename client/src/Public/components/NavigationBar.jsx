@@ -68,7 +68,7 @@ const NavigationBar = () => {
     }
     useOutsideClick(navRef, () => {
         handleOutsideClose(); // Close the modal when a click occurs outside
-      });
+    });
 
     return (
         <nav className={`  z-[9999999] fixed top-0 flex flex-col tab:flex-row justify-between h-fit tab:h-[75px] py-[5px] tab:py-0 w-full px-[15px] ${monitorScroll ? "bg-white border-b-4 border-secondary_pink" : " bg-white bg-opacity-45"} `}>
@@ -77,7 +77,7 @@ const NavigationBar = () => {
             </a>
             <div ref={navRef} className=" relative flex items-center h-full w-full tab:w-fit p-[10px] " >
                 <ul className={` flex gap-4 items-center flex-col tab:flex-row flex-grow tab:flex-none w-full tab:w-fit transition-height ease-in-out duration-300 tabless:duration-0 text-[16px] overflow-y-scroll tab:overflow-y-visible bg-primary_light_grey rounded-md bg-opacity-95 tab:bg-none tab:bg-opacity-0 font-bold px-1 ${isNavOpen ? ' h-80 p-5 ' : ' h-0 tab:h-full '}`}>
-                    <li className=" relative group h-[90%] flex items-center ">
+                    <li className=" relative group h-[100%] flex items-center ">
                         <a href="#" className=" groupMenuLinks ">
                             About us
                         </a>
@@ -91,7 +91,7 @@ const NavigationBar = () => {
                             })}
                         </ul>
                     </li>
-                    <li className=" relative group h-[90%] flex items-center">
+                    <li className=" relative group h-[100%] flex items-center">
                         <a href="#" className=" groupMenuLinks ">
                             Treatments
                         </a>

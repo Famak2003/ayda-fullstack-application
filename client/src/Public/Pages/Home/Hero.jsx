@@ -61,8 +61,8 @@ const Hero = () => {
                                         <h2 className="text-primary_pink text-[80px] font-semibold">{obj.subHeader}</h2>
                                     </div>
                                     <div>
-                                        <p className=' text-white font-semibold tracking-[5px] text-[16px] '>
-                                            {`MONDAY - FRIDAY: ${obj.start} - ${obj.stop}`}
+                                        <p className=' text-white text-center font-semibold tracking-[5px] text-[12px] mobile:text-[16px] px-2 '>
+                                            {`MONDAY - FRIDAY : ${obj.start} - ${obj.stop}`}
                                         </p>
                                     </div>
                                 </div>

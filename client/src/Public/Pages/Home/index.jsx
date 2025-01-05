@@ -13,12 +13,12 @@ const Home = () => {
     }, [])
 
     return (
-        <div className=" flex flex-col justify-center items-center w-full gap-6 ">
+        <section className=" flex flex-col justify-center items-center w-full gap-6 ">
             <Hero/>
             <Greetings/>
             <Methods/>
             <Location/>
-        </div>
+        </section>
     )
 }
 

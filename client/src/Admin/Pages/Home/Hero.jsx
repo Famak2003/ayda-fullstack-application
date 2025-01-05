@@ -3,12 +3,30 @@ import UploadButton from "../components/UploadButton";
 import HeroForm from "./components/HeroForm";
 import AddButton from "../components/AddButton";
 import { useDispatch, useSelector } from "react-redux";
-import { updateHeroData } from "../../../Redux/actions/homeAction";
+import { updateHeroData } from "../../../Redux/actions/adminHomeAction";
 
 const Hero = () => {
-    const heroData = useSelector((state) => state.persist.heroData)
+    // Extracting hero data START
+    const content = useSelector(state => state?.home.content)
+    let rawData
+    content?.filter((item) => {
+        if (item.type === "hero"){
+            return rawData = item
+        }}
+    )
+    const hero = rawData ? JSON.parse(rawData?.content) : ""
+    const convertToObj = {
+        content: hero[0], // First element becomes content
+        nextID: hero[1],  // Second element becomes nextID
+    }
+
+    console.log(" Hero from Dashboard ",convertToObj)
+    // Extracting hero data STOP
+
+    const heroData = useSelector((state) => state.adminHome.heroData)
     const dispatch = useDispatch()
-    const [data, setData] = useState(heroData)
+    const [data, setData] = useState(heroData)  
+    console.log("===== > Original ", heroData)
 
     // Sync Redux state to local state
     useEffect(() => {

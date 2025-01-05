@@ -28,10 +28,11 @@ const initialState = {
             },
         ],
         nextID: 1 // counter
-      },
+    },
+    
 };
 
-const persistedReducer = (state = initialState, action) => {
+const adminHomeReducer = (state = initialState, action) => {
   switch (action.type) {
     
     case SET_GREETINGS_DATA:
@@ -45,4 +46,4 @@ const persistedReducer = (state = initialState, action) => {
   }
 };
 
-export default persistedReducer;
+export default adminHomeReducer;

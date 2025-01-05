@@ -1,16 +1,32 @@
-import { useEffect, useRef, useState } from "react"
+import { use, useEffect, useRef, useState } from "react"
 import ReactQuill from "react-quill"
 import ADD from './../../../Asset/icons8-add-50.png'
 import IMGLOADER from './../../../Asset/image-loader.gif'
 import toast from "react-hot-toast"
 import imageCompression from 'browser-image-compression';
+import 'react-quill/dist/quill.snow.css';
+import TRASH from './../../../Asset/trash.svg'
 
 
-
-const TextEditor = ({ data, setData, buttomHeaders=false}) => {
-    const [value, setValue] = useState(data?.content)
+const TextEditor = ({ 
+    data,
+    setData,
+    header=true,
+    parentComp,
+    subHeader=true,
+    image=true,
+    buttomHeaders=false,
+    customHandleChange,
+    handleContent,
+    showDelete=false,
+    customImageFunc,
+    customImageRemoveFunc,
+    defaultContent,
+    }) => {
+    const [value, setValue] = useState(defaultContent ?? data?.content)
     const [imgLoader, setImgLoader] = useState(false)
     const uploadREF = useRef(null)
+
 
     const modules = {
         toolbar: [
@@ -18,9 +34,11 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
             [{'size': []}],
             ['bold', 'italic', 'underline','strike', 'blockquote'],
             [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'},   {'indent': '+1'}],
+            [{ 'color': [] }], 
             ['image', 'link', 'video'],
-            ['clean']
-        ]
+            ['clean'],
+        ],
+        
     }
 
     const handleChange = (e) => {
@@ -32,95 +50,157 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
         })
     }
 
-    useEffect(() => {
+    useEffect(() => { // rich text content
         if(!value) return
-        setData((prev) =>{
-            return{
-                ...prev,
-                content: value,
-              }
-          }
-        )
+        switch (parentComp) {
+            case "whyus":
+                handleContent(data.id, value)
+                
+                break;
+            case "ourteam":
+                handleContent(data.id, value)
+                
+                break;
+            case "oursuccessrates":
+                handleContent(data.id, value)
+                
+                break;
+            case "ourprices":
+                handleContent(value)
+
+                break;
+            default:
+                handleContent(value)
+                // setData((prev) =>{
+                //     return{
+                //         ...prev,
+                //         content: value,
+                //       }
+                //   }
+                // )
+                break;
+        }
     }, [value])
+
+    // useEffect(() => {
+
+    // }, [])
     
-      const handleImageUpload = async(e) => {
-        setImgLoader(true)
-        e.preventDefault();
-        const file = e.target.files[0];
-        if (!file) return
-    
-        const maxSize = 2 * 1024 * 1024; // 2mb is the max image size
-    
-        if (file.size > maxSize){
-          toast.error("Image size too big")
-          setImgLoader(false)
-          document.getElementById(`file-input`).value = "";
-          return
-        }
-    
-        const options = {
-          maxSizeMB: 1,
-          maxWidthOrHeight: 1920,
-          useWebWorker: true
-        }
-        try {
-          const compressedFile = await imageCompression(file, options);
-          const base64 = new FileReader()
-          base64.addEventListener("load", ()=>{
+    const handleImageUpload = async(e) => {
+    setImgLoader(true)
+    e.preventDefault();
+    const file = e.target.files[0];
+    if (!file) return
+
+    const maxSize = 2 * 1024 * 1024; // 2mb is the max image size
+
+    if (file.size > maxSize){
+        toast.error("Image size too big")
+        setImgLoader(false)
+        document.getElementById(`file-input`).value = "";
+        return
+    }
+
+    const options = {
+        maxSizeMB: 1,
+        maxWidthOrHeight: 1920,
+        useWebWorker: true
+    }
+    try {
+        const compressedFile = await imageCompression(file, options);
+        const base64 = new FileReader()
+        base64.addEventListener("load", ()=>{
+            customImageFunc ? customImageFunc(base64.result, data.id)
+            :
             setData((prev) => {
-              return {
+                return {
                 ...prev,
                 image: base64.result,
                 }
             });
-          })
-          base64.readAsDataURL(compressedFile)
-          document.getElementById(`file-input`).value = "";
-        } catch (error) {
-          console.log(error);
-        } finally {
-          setImgLoader(false)
-        }
+        })
+        base64.readAsDataURL(compressedFile)
+        document.getElementById(`file-input`).value = "";
+    } catch (error) {
+        console.log(error);
+    } finally {
+        setImgLoader(false)
+    }
+    
+    
+    };
+
+    const handleDeleteImage = (e) => {
+        e.preventDefault()
+        setData((prev) => {
+        return {
+            ...prev,
+            image: undefined,
+            }
+        })
         
-        
-      };
+        document.getElementById(`file-input`).value = "" ;// Clear the input field value
+    }
+
+    const handleDeleteSection = (idToRemove) => {
+        console.log(idToRemove)
+        // e.preventDefault(data.id)
+        setData((prev) => {
+            return{
+                ...prev,
+                body: prev.body.filter((item) => {
+                    console.log(item.id)
+                    return item.id !== idToRemove})
+            }
+        });
+    }
  
     
     return (
         <div>
             <form className=" flex flex-col gap-2 lg:gap-4 mb-[8px] " >
-                <div className="flex flex-col gap-2">
-                    <label htmlFor={`header`} children={"Header"} />
-                    <input
-                        id={`header`}
-                        type="text"
-                        value={data?.header}
-                        className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
-                        onChange={handleChange}
-                        name="header"
-                    />
-                </div>
-                <div className="flex flex-col gap-2">
-                    <label htmlFor={`subHeader`} children={"Sub-Header"} />
-                    <input
-                        id={`subHeader`}
-                        type="text"
-                        value={data?.subHeader}
-                        className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
-                        onChange={handleChange}
-                        name="subHeader"
-                    />
-                </div>
+                {
+                    header ? (
+                        <input
+                            id={`header`}
+                            placeholder="Header"
+                            type="text"
+                            value={data?.header}
+                            className=" dark:text-primary_black pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                            onChange={ customHandleChange ? (e) => customHandleChange(e, data.id) : handleChange}
+                            name="header"
+                        />
+                    ):
+                    ""
+                }
+                {
+                    subHeader ? (
+                        <div className=" dark:text-primary_black flex flex-col gap-2">
+                            <label htmlFor={`subHeader`} children={"Sub-Header"} />
+                            <input
+                                id={`subHeader`}
+                                type="text"
+                                value={data?.subHeader}
+                                className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                                onChange={ customHandleChange ? (e) => customHandleChange(e, data.id) : handleChange}
+                                name="subHeader"
+                            />
+                        </div>
+                    ) : (
+                        ""
+                    )
+                }
                 <div className=" flex flex-col tab:flex-row items-center justify-center w-full h-[70vh] gap-2 p-1 overflow-x-scroll">
-                    <div className=' rounded-lg tab:rounded-r-xl overflow-hidden flex  flex-col gap-2 items-center ring-2 ring-black h-full w-full tab:w-1/2'>
+                    <div className=' rounded-lg tab:rounded-r-xl overflow-hidden flex flex-col gap-2 items-center ring-2 ring-black h-full w-full tab:w-1/2'>
                         <h1 className=' flex justify-center items-center h-[5%] w-full '>
                             Editor
                         </h1>
-                        <ReactQuill className='h-[90%] w-full pb-5'
+                        <ReactQuill className='h-[90%] w-full pb-10'
                             theme='snow'
                             value={value}
                             onChange={setValue}
-                            modules={modules} />
+                            modules={modules}
+                        />
                     </div>
                     <div className=' rounded-lg tab:rounded-l-xl flex flex-col ring-2 ring-black h-full w-full tab:w-1/2'>
                         <h1 className="flex justify-center items-center h-[6%] w-full border-b-2 border-black">
@@ -170,47 +250,52 @@ const TextEditor = ({ data, setData, buttomHeaders=false}) => {
                     accept="image/*"
                     onChange={(e) => handleImageUpload(e)}
                 />
-                { imgLoader  ?
-                    <div className=" w-[200px] h-[200px] " >
-                        <img className=" h-full w-full object-cover " src={IMGLOADER} alt="image-loader" />
-                    </div>  :
-                    data?.image ? (
-                    <div className=" flex flex-col gap-2 " >
-                        <div className="w-[200px] h-[200px] overflow-hidden rounded-md shadow-custom5">            
-                            <img className="h-full w-full object-cover" src={data?.image} alt="uploaded" />         
-                        </div>
-                        <button 
-                            className=" w-fit rounded-lg p-1 ring-black ring-2 "
-                            onClick={(e) => {
-                                e.preventDefault()
-                                setData((prev) => {
-                                return {
-                                    ...prev,
-                                    image: undefined,
-                                    }
-                                })
-                                
-                                document.getElementById(`file-input`).value = "" ;// Clear the input field value
-                            }} 
-                        >
-                            remove image
+                {
+                    image ? (
+                        <>
+                            { imgLoader  ?
+                                <div className=" w-[200px] h-[200px] " >
+                                    <img className=" h-full w-full object-cover " src={IMGLOADER} alt="image-loader" />
+                                </div>  :
+                                data?.image ? (
+                                <div className=" flex flex-col gap-2 " >
+                                    <div className="w-[200px] h-[200px] overflow-hidden rounded-md shadow-custom5">            
+                                        <img className="h-full w-full object-cover" src={data?.image} alt="uploaded" />         
+                                    </div>
+                                    <button 
+                                        className=" w-fit rounded-lg p-1 ring-black ring-2 "
+                                        onClick={customImageRemoveFunc ? (e) => customImageRemoveFunc(e, data.id) : handleDeleteImage} 
+                                    >
+                                        remove image
+                                    </button>
+                                </div>
+                    
+                            ) : (
+                                <div className="flex gap-2">
+                                    <p>Please upload an image</p>
+                                    <button
+                                        className="flex justify-center items-center rounded-md p-1 ring-2 ring-black w-[80px] h-[30px] hover:scale-105 duration-300"
+                                        onClick={(e) => {
+                                            e.preventDefault();
+                                            uploadREF.current.click();
+                                        }}
+                                    >
+                                        <img className="h-full object-contain" src={ADD} alt="add button" />
+                                    </button>
+                                </div>
+                            )}
+                        </>
+                    ) : ""
+                }
+                
+                {
+                    showDelete ? 
+                        <button onClick={() => handleDeleteSection(data.id)} className=" group bg-red text-white w-full flex justify-center items-center rounded-md p-2 hover:scale-[99.5%] duration-300 shadow-custom2 " >
+                            Delete Section
                         </button>
-                    </div>
-        
-                ) : (
-                    <div className="flex gap-2">
-                        <p>Please upload an image</p>
-                        <button
-                            className="flex justify-center items-center rounded-md p-1 ring-2 ring-black w-[80px] h-[30px] hover:scale-105 duration-300"
-                            onClick={(e) => {
-                                e.preventDefault();
-                                uploadREF.current.click();
-                            }}
-                        >
-                            <img className="h-full object-contain" src={ADD} alt="add button" />
-                        </button>
-                    </div>
-                )}
+                        :
+                        ""
+                }
             </form>
         </div>
     )

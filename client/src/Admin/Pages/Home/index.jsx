@@ -4,9 +4,14 @@ import Hero from "./Hero"
 import CustomLine from "../components/CustomLine"
 import Greetings from "./Greetings"
 import QuickInfo from "./QuickInfo"
+import { useEffect } from "react"
+import { getAdminHomeContent } from "../../../Redux/actions/adminHomeAction"
 
 const Home = () => {
     const dispatch = useDispatch()
+    useEffect(() => {
+        dispatch(getAdminHomeContent())
+    }, [])
   
     return(
       <div className=" flex flex-col gap-4  p-2 dark:bg-teal-500" >

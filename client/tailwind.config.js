@@ -11,13 +11,19 @@ module.exports = {
     extend: {
       screens: {
         "xl": "1150px",
+        "lmd": "850px",
         "tab": "950px",
+        "xxl": "1250px",
+        "lmobile": "550px",
         "mobile": "450px"
       },
       colors: {
         light_grey: "#595959",
+        dark: "#171717",
+        dark_side: "#212121e6",
         primary_light_grey: "#FaFaFa",
         secondary_light_grey: "#706F6F",
+        blue_head: "#67c5dc",
         black: "#c7c7c7",
         primary_black: "#000",
         white: "#fff",

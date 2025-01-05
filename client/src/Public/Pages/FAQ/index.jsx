@@ -1,8 +1,8 @@
 const FAQ = () => {
     return (
-        <div>
+        <section>
             Hello FAQ
-        </div>
+        </section>
     )
 }
 

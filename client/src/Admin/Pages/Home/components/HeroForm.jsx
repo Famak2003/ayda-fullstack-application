@@ -20,16 +20,6 @@ const HeroForm = ({ id, data, setData, obj }) => {
                     )
             }}
         );
-        // setData((prev) =>{
-        //     return{
-        //     ...prev,
-        //     [id]: {
-        //         id,
-        //         ...prev[id],
-        //         [e.target.name]: e.target.value,
-        //     }
-        //     }
-        // })
     }
   
     console.log(data)
@@ -116,7 +106,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
                     id={`header-${id}`}
                     type="text"
                     value={obj.header}
-                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                    className=" dark:text-primary_black pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                     onChange={handleChange}
                     name="header"
                 />
@@ -127,7 +117,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
                     id={`subHeader-${id}`}
                     type="text"
                     value={obj.subHeader}
-                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                    className=" dark:text-primary_black pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                     onChange={handleChange}
                     name="subHeader"
                 />
@@ -141,7 +131,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
                         id={`start-${id}`}
                         type="time"
                         value={obj.start}
-                        className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                        className=" dark:text-primary_black pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                         onChange={handleChange}
                         name="start"
                     />
@@ -149,7 +139,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
                         id={`stop-${id}`}
                         type="time"
                         value={obj.stop}
-                        className="pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
+                        className=" dark:text-primary_black pl-2 p-1 bg-gray-300 ring-2 rounded-md ring-black"
                         onChange={handleChange}
                         name="stop"
                     />

@@ -17,10 +17,6 @@ export const uploadSection = (pageName, type, data) => async (dispatch) => {
     const res = await axiosInstance.post("/sections/create", {pageName, type, content: data})
     console.log(res)
     toast.success("upload complete")
-    // dispatch({
-    //           type: UPLOAD_HERO_SECTION,
-    //           payload: res.data.message
-    //         })
   } catch (error) {
       console.log("There was an error when loggin out", error)
   }
@@ -38,27 +34,6 @@ export const getHome = () => async(dispatch) => {
         console.log(error)
     }
 
-}
-
-export const updateHeroData = (data) => async(dispatch) => {
-  dispatch({
-    type: SET_HERO_DATA,
-    payload: data
-  })
-}
-
-export const updateGreetingsData = (data) => async(dispatch) => {
-  dispatch({
-    type: SET_GREETINGS_DATA,
-    payload: data
-  })
-}
-
-export const updateQuickInfoData = (data) => async(dispatch) => {
-  dispatch({
-    type: SET_QUICK_INFO_DATA,
-    payload: data
-  })
 }
 
 
