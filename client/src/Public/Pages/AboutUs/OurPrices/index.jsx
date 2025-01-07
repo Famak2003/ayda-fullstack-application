@@ -11,11 +11,11 @@ const OurPrices = () => {
     }, [])
     console.log("Public Our Price ******", data)
     return (
-        <section className=" flex flex-col gap-4 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[65.5px] " >
+        <section className=" flex flex-col gap-6 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[65.5px] " >
             {
                 data ? 
                     <>
-                        <h1 className=" text-blue_head text-[18px] sm:text-[25px] font-semibold " >
+                        <h1 className=" text-blue_head text-[19px] sm:text-[25px] font-semibold " >
                             {data.pageHeader}
                         </h1>
                         <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey " >
@@ -25,7 +25,7 @@ const OurPrices = () => {
                             IVF Prices
                         </h3>
                         <Table headers={["Treatment Type", "Price"]} data={data?.ivfPrices} />
-                        <h3 className=" text-light_pink text-[17.5px] text-center font-semibold " >
+                        <h3 className=" text-light_pink text-[17.5px] text-center font-semibold sm:mt-[5px] " >
                             {data.buttomHeader}
                         </h3>
                         <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey " >

@@ -1,0 +1,9 @@
+.target {
+    scroll-margin-top: 118px; /* Adjust based on your nav height */
+}
+
+@media (max-width: 650px){
+    .target{
+        scroll-margin-top: 135px
+    }
+}

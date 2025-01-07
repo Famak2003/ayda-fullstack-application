@@ -11,13 +11,15 @@ import jwtConfig from './config/jwt.config';
 import { APP_GUARD } from '@nestjs/core';
 import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
+import mailerConfig from './config/mailer.config';
+import { MailerModule } from '@nestjs-modules/mailer';
 
 
 @Module({
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Makes config globally available
-      load: [databaseConfig, jwtConfig], // Load custom configuration
+      load: [databaseConfig, jwtConfig, mailerConfig], // Load custom configuration
     }),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
@@ -42,6 +44,23 @@ import { JwtModule } from '@nestjs/jwt';
             signOptions: { expiresIn: '1h' }, // Move signOptions here
         }),
         inject: [ConfigService],
+    }),
+    MailerModule.forRootAsync({
+      imports: [ConfigModule],
+      useFactory: async (configService: ConfigService) => ({
+        transport: {
+          host: configService.get<string>('mailer.host'),
+          port: configService.get<number>('mailer.port'),
+          auth: {
+            user: configService.get<string>('mailer.username'),
+            pass: configService.get<string>('mailer.password'),
+          },
+        },
+        defaults: {
+          from: `"No Reply" Whats up testing 1234567890`, // Optional default sender
+        },
+      }),
+      inject: [ConfigService],
     }),
     PagesModule,
     SectionsModule,

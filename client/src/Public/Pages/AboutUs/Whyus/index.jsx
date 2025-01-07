@@ -28,7 +28,7 @@ const Whyus = () => {
                                             {obj?.header}
                                         </h4>
                                         <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey" >
-                                            <div className=' w-full items-start ' id='whyusContent' dangerouslySetInnerHTML={{ __html: obj.content }} />
+                                            <div className=' w-full items-start ' id='content' dangerouslySetInnerHTML={{ __html: obj.content }} />
                                         </div>
                                     </div>
                                 )

@@ -6,7 +6,7 @@ const AddButton = ({record, callBack}) => {
     // }
     return (
         <button
-            className=" group flex items-center gap-2 ring-1 ring-primary_black rounded-md p-2 duration-300 hover:scale-105 "
+            className=" group flex items-center gap-2 ring-1 ring-primary_black rounded-md p-2 duration-300 hover:scale-105 shadow-custom2 "
             onClick={ callBack }
         >
             <p>Add</p>

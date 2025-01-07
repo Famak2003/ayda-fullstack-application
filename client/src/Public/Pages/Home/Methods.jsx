@@ -1,6 +1,7 @@
 import CHECK from './../../../Asset/icons8-check-48.png'
 import DoubleHeader from '../../components/DoubleHeader'
 import { useSelector } from 'react-redux'
+import { Link } from 'react-router-dom'
 
 const Methods = () => {
     // const methods = useSelector(state => state?.home?.content?.methods)
@@ -58,9 +59,9 @@ const Methods = () => {
                                 })
                             }
                         </ul>
-                        <button className=' w-[161px] h-[56px] mt-[1.5rem] rounded-[32px] bg-light_pink ring-1 ring-secondary_pink flex justify-center items-center text-white font-semibold  ' >
+                        <Link to={'iletisim'} className=' cursor-pointer w-[161px] h-[56px] mt-[1.5rem] rounded-[32px] bg-light_pink ring-1 ring-secondary_pink flex justify-center items-center text-white font-semibold  ' >
                             Contact Us
-                        </button>
+                        </Link>
                     </> :
                     <div>
                         Loading

@@ -14,6 +14,7 @@ module.exports = {
         "lmd": "850px",
         "tab": "950px",
         "xxl": "1250px",
+        "3xl": "1380px",
         "lmobile": "550px",
         "mobile": "450px"
       },
@@ -54,6 +55,8 @@ module.exports = {
       },
       boxShadow: {
         custom_pink1: "rgb(240, 143, 178, 0.25) 0px 14px 28px, rgb(240, 143, 178, 0.22) 0px 10px 10px",
+        custom_pink2: "rgb(240, 143, 178, 0.3) 0px 1px 2px 0px, rgb(240, 143, 178, 0.15) 0px 1px 3px 1px",
+        custom_pink3: "rgb(240, 143, 178, 0.3) 0px 2px 4px, rgb(240, 143, 178, 0.15) 0px 7px 13px -3px, rgb(240, 143, 178, 0.2) 0px -3px 0px inset",
         custom1: "rgb(0,0, 0, 0.25) 0px 14px 28px, rgb(0,0, 0, 0.22) 0px 10px 10px",
         custom2: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
         custom3: "rgba(50, 50, 93, 0.25) 0px 30px 60px -12px inset, rgba(0, 0, 0, 0.3) 0px 18px 36px -18px inset",
@@ -67,3 +70,5 @@ module.exports = {
     flowbite.plugin(), // Correctly imported as a require statement
   ],
 };
+// box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;
+// box-shadow: rgba(0, 0, 0, 0.4) 0px 2px 4px, rgba(0, 0, 0, 0.3) 0px 7px 13px -3px, rgba(0, 0, 0, 0.2) 0px -3px 0px inset;

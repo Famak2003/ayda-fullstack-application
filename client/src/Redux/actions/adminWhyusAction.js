@@ -1,7 +1,6 @@
 import toast from "react-hot-toast";
 import axiosInstance from "../../utilities/axiosInstance";
 
-// export const GET_ADMIN_WHY_US = "GET_ADMIN_WHY_US"
 export const  SET_ADMIN_WHY_US_DATA = "SET_ADMIN_WHY_US_DATA"
 
 

@@ -19,7 +19,7 @@ const Greetings = () => {
                 greetings ? 
                     <div className="grid max-[1150px]:grid-cols-1 grid-cols-2 max-w-[1180px] bg-opacity-50 px-[15px] " >
                         <div className=" flex justify-center items-center " >
-                            <figure className=" w-4[04px] h-[558px] " >
+                            <figure className=" w-[404px] h-[558px] " >
                                 <img className=" h-full w-full object-contain " src={WELCOMEIMAGE} alt=" welcome image" />
                             </figure>
                         </div>

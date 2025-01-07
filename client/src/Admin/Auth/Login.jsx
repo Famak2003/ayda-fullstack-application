@@ -1,15 +1,18 @@
 import { useEffect, useState } from "react"
 import { login } from "../../Redux/actions/authAction"
 import { useDispatch, useSelector } from "react-redux"
-import { useNavigate, useSearchParams } from "react-router-dom"
+import { useLocation, useNavigate, useSearchParams } from "react-router-dom"
 
 const Login = () => {
     const { isAuthenticated } = useSelector(state => state.auth);
     const navigate = useNavigate()
+    const location = useLocation();
     const [formData, setFormData] = useState({})
     const dispatch = useDispatch()
     const [searchParams] = useSearchParams();
-    const redirectTo = searchParams.get("redirect_to") || "/admin/dashboard";
+
+    // Get the redirect path from location state or set default
+    const redirectTo = location.state?.from?.pathname || '/admin/dashboard';
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -26,10 +29,10 @@ const Login = () => {
         if (isAuthenticated){
             navigate(redirectTo, { replace: true })
         }
-    }, [])
+    }, [isAuthenticated, navigate, redirectTo])
 
     return(
-        <div className=" dark:text-light_grey grid place-items-stretch h-full w-full p-5">
+        <div className=" dark:text-light_grey grid place-items-stretch h-[100dvh] w-full p-5">
             <div className=" flex flex-col justify-center gap-[3rem] w-full" >
                 <h1 className=" text-center font-semibold text-[30px] " > 
                     Login

@@ -56,12 +56,48 @@ code {
     monospace;
 }
 
-/* disables input blue ring on focus */
+/* disables input ring on focus */
 input:focus { 
   outline: none;
 }
 
-/* // Custom line // */
+.ql-align-center {
+  text-align: center;
+}
+
+/* Rich Text */
+#content > ul {
+  list-style-type: disc !important; /* Ensures bullets are shown */
+  display: list-item; /* Forces the element to behave as a list item */
+}
+
+#content > h4 {
+  color: var(--primary_black);
+}
+
+#content > p > strong {
+  color: var(--primary_black) !important;
+}
+
+#content > ul >  li > strong {
+  color: var(--primary_black) !important;
+}
+
+#content > p > img {
+  max-width: 780px;
+  /* min-width: 300px; */
+  width: 100%;
+  object-fit: contain;
+}
+
+
+@media (max-width: 650px) {
+  #content > ul {
+    margin-left: 12px; /* Reduced padding for small screens */
+  }
+}
+
+/* Custom line */
 .customLineParent{
   position: relative;
   overflow: hidden;
@@ -91,7 +127,7 @@ input:focus {
   }
 }
 
-/*  // Table Style //  */
+/*   Table Style   */
 table {
   border-collapse: collapse;
   width: 100%;

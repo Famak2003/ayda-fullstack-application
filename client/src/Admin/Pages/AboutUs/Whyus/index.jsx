@@ -54,8 +54,8 @@ const Whyus = () => {
                 ...prev,
                 body: prev?.body?.map((item) =>
                     item.id === id
-                        ? { ...item, [e.target.name]: e.target.value } // Update the image for the matched id
-                        : item // Leave other items unchanged
+                        ? { ...item, [e.target.name]: e.target.value }
+                        : item
                     )
             }}
         );
@@ -68,7 +68,7 @@ const Whyus = () => {
                 body: prev.body.map((item) =>
                     item.id === id
                         ? { ...item, content: value } 
-                        : item // Leave other items unchanged
+                        : item
                     )
             }}
         );
@@ -79,9 +79,8 @@ const Whyus = () => {
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px] " >
                 WhyUS
             </h1>
-            <div className=" z-[99] sticky top-[5px] flex justify-end items-center bg-black px-2 py-4 rounded-md " >
-                <UploadButton convertToArr={false} data={data} pageName={"whyus"} type={"body"} />
-            </div>
+            
+            <UploadButton convertToArr={false} data={data} pageName={"whyus"} type={"body"} />
 
             <div className=" pl-2 flex flex-col gap-2 py-4 " >
                 <h2 className="text-[20px] font-semibold" >
@@ -109,7 +108,7 @@ const Whyus = () => {
                 {
                     data?.body?.map((obj, idx) => {
                         return (
-                            <TextEditor defaultContent={obj.content} handleContent={handleContent} key={idx} parentComp={"whyus"}  customHandleChange={handleChange} image={false} subHeader={false} data={obj} setData={setData} showDelete={true} />
+                            <TextEditor defaultContent={obj.content} handleContent={handleContent} key={idx} requireID={true} customHandleChange={handleChange} image={false} subHeader={false} data={obj} setData={setData} showDelete={true} />
                         )
                     })
                 }

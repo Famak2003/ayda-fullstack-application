@@ -10,7 +10,7 @@ const Public = () => {
     const pathname = location.pathname
     console.log(pathname === "/")
     return(
-        <div className=" flex flex-col h-fit relative ">
+        <div className=" flex flex-col justify-between min-h-[100dvh] h-fit relative ">
             <NavigationBar/>
             {
                 pathname === "/" ?
@@ -20,7 +20,6 @@ const Public = () => {
                         <img className=" w-full h-full object-cover " src={BODYHEADERIMG} alt="header image" />                       
                     </figure>
             }
-            
             <Outlet/>
             <PublicFooter/>
             {/* <Caption/> */}

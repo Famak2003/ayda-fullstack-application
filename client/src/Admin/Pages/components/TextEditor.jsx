@@ -10,9 +10,10 @@ import TRASH from './../../../Asset/trash.svg'
 
 const TextEditor = ({ 
     data,
+    allowRichTextImage=false,
     setData,
     header=true,
-    parentComp,
+    requireID,
     subHeader=true,
     image=true,
     buttomHeaders=false,
@@ -35,7 +36,7 @@ const TextEditor = ({
             ['bold', 'italic', 'underline','strike', 'blockquote'],
             [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'},   {'indent': '+1'}],
             [{ 'color': [] }], 
-            ['image', 'link', 'video'],
+            ...(allowRichTextImage ? [['image', 'link']] : [['link']]), // Conditionally include image and link
             ['clean'],
         ],
         
@@ -52,39 +53,12 @@ const TextEditor = ({
 
     useEffect(() => { // rich text content
         if(!value) return
-        switch (parentComp) {
-            case "whyus":
-                handleContent(data.id, value)
-                
-                break;
-            case "ourteam":
-                handleContent(data.id, value)
-                
-                break;
-            case "oursuccessrates":
-                handleContent(data.id, value)
-                
-                break;
-            case "ourprices":
-                handleContent(value)
-
-                break;
-            default:
-                handleContent(value)
-                // setData((prev) =>{
-                //     return{
-                //         ...prev,
-                //         content: value,
-                //       }
-                //   }
-                // )
-                break;
+        if (requireID){
+            handleContent(data.id, value)
+        }else{
+            handleContent(value)
         }
     }, [value])
-
-    // useEffect(() => {
-
-    // }, [])
     
     const handleImageUpload = async(e) => {
     setImgLoader(true)
@@ -190,24 +164,24 @@ const TextEditor = ({
                         ""
                     )
                 }
-                <div className=" flex flex-col tab:flex-row items-center justify-center w-full h-[70vh] gap-2 p-1 overflow-x-scroll">
-                    <div className=' rounded-lg tab:rounded-r-xl overflow-hidden flex flex-col gap-2 items-center ring-2 ring-black h-full w-full tab:w-1/2'>
+                <div className=" flex flex-col tab:flex-row items-center justify-center w-full h-[90vh] tab:h-[70vh] gap-2 p-1 overflow-x-scroll">
+                    <div className=' rounded-lg tab:rounded-r-xl overflow-hidden flex flex-col gap-2 items-center ring-2 ring-black h-1/2 tab:h-full w-full tab:w-1/2'>
                         <h1 className=' flex justify-center items-center h-[5%] w-full '>
                             Editor
                         </h1>
-                        <ReactQuill className='h-[90%] w-full pb-10'
+                        <ReactQuill className='h-[90%] w-full pb-[70px] tab:pb-[70px]'
                             theme='snow'
                             value={value}
                             onChange={setValue}
                             modules={modules}
                         />
                     </div>
-                    <div className=' rounded-lg tab:rounded-l-xl flex flex-col ring-2 ring-black h-full w-full tab:w-1/2'>
+                    <div className=' rounded-lg tab:rounded-l-xl flex flex-col ring-2 ring-black h-1/2 tab:h-full w-full tab:w-1/2'>
                         <h1 className="flex justify-center items-center h-[6%] w-full border-b-2 border-black">
                             Preview
                         </h1>
                         <div className=" ring-1 ring-black h-[90%] w-full overflow-scroll px-4 py-4 ">
-                            <div className='overflow-scroll w-full items-start' dangerouslySetInnerHTML={{ __html: value }} />
+                            <div className='overflow-scroll w-full items-start' id="content" dangerouslySetInnerHTML={{ __html: value }} />
                         </div>
                     </div>
                 </div>

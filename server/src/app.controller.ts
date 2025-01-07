@@ -1,4 +1,4 @@
-import { Controller, Get, Post } from '@nestjs/common';
+import { Controller, Get, Post, Res } from '@nestjs/common';
 import { AppService } from './app.service';
 
 @Controller("/")
@@ -18,5 +18,15 @@ export class AppController {
   @Get('auth')
   checkTokenHealth(): Promise<{expired: boolean}>{
     return this.appService.checkTokenHealth()
+  }
+
+  @Get("mailer")
+  sendMailer(@Res() response: any) {
+    const mail = this.appService.sendMail();
+
+    return response.status(200).json({
+      message: 'success',
+      mail,
+    });
   }
 }

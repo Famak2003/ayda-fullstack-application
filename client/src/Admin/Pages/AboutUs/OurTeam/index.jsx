@@ -80,9 +80,9 @@ const OurTeam = () => {
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px]" >
                 OurTeam
             </h1>
-            <div className=" z-[99] sticky top-[5px] flex justify-end items-center bg-black px-2 py-4 rounded-md " >
-                <UploadButton convertToArr={false} data={data} pageName={"ourteam"} type={"body"} />
-            </div>
+
+            <UploadButton convertToArr={false} data={data} pageName={"ourteam"} type={"body"} />
+            
             <div className=" flex flex-col gap-2 py-4  pl-2 ">
                 <h2 className=" text-[20px] font-semibold " >
                     Body
@@ -90,7 +90,7 @@ const OurTeam = () => {
                 {
                     data?.map((obj, idx) => {
                         return (
-                            <TextEditor handleContent={handleContent} key={idx} parentComp={"ourteam"}  customHandleChange={handleChange} subHeader={false} data={obj} setData={setData} customImageFunc={handleImageUpload} customImageRemoveFunc={handleImageRemove} />
+                            <TextEditor handleContent={handleContent} key={idx} requireID={true} customHandleChange={handleChange} subHeader={false} data={obj} setData={setData} customImageFunc={handleImageUpload} customImageRemoveFunc={handleImageRemove} />
                         )
                     })
                 }

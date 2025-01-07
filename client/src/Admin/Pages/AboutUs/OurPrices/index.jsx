@@ -72,83 +72,82 @@ const OurPrices = () => {
 
 
     return (
-        <div className=" flex flex-col gap-2 p-2 relative dark:bg-teal-500 w-full h-fit" >
-        <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px]" >
-            OurPrices
-        </h1>
-        <div className=" z-[99] sticky top-[5px] flex justify-end items-center bg-black px-2 py-2 mobile:py-4 rounded-md " >
-            <UploadButton convertToArr={false} data={data} pageName={"ourprices"} type={"body"} />
-        </div>
-        <div className="flex flex-col gap-2 py-4 " >
-            <h2 className=" text-[20px] font-semibold " >
-                Top Writeup
-            </h2>
-            <input 
-                className="pl-2 p-1 bg-gray-300 ring-2 rounded-md dark:text-primary_black ring-black w-full"
-                name="pageHeader"
-                value={data?.pageHeader}
-                onChange={(e) => {
-                    setData((prev) => {
-                        return {
-                            ...prev,
-                            [e.target.name]: e.target.value
-                        }
-                    })
-                }}
-                placeholder="Page header" 
-                type="text" 
-            />
-
-            <TextEditor header={false} handleContent={handleWriteUp} defaultContent={data?.writeUp} image={false} subHeader={false} data={data}/>
-        </div>
-
-        <CustomLine/>
-
-        <div className="flex flex-col gap-2 py-4 " >
-            <h2 className=" text-[20px] font-semibold " >
-                IVF Prices Table
-            </h2>
-            <div className=" flex flex-col gap-4 ">
-                {
-                    data?.ivfPrices.map((obj, _) => {
-                        return (
-                            <PricesComp obj={obj} id={obj.id} setData={setData} />
-                        )
-                    })
-                }
+        <section className=" flex flex-col gap-2 p-2 relative dark:bg-teal-500 w-full h-fit" >
+            <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px]" >
+                OurPrices
+            </h1>
             
+            <UploadButton convertToArr={false} data={data} pageName={"ourprices"} type={"body"} />
+
+            <div className="flex flex-col gap-2 py-4 " >
+                <h2 className=" text-[20px] font-semibold " >
+                    Top Writeup
+                </h2>
+                <input 
+                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md dark:text-primary_black ring-black w-full"
+                    name="pageHeader"
+                    value={data?.pageHeader}
+                    onChange={(e) => {
+                        setData((prev) => {
+                            return {
+                                ...prev,
+                                [e.target.name]: e.target.value
+                            }
+                        })
+                    }}
+                    placeholder="Page header" 
+                    type="text" 
+                />
+
+                <TextEditor header={false} handleContent={handleWriteUp} defaultContent={data?.writeUp} image={false} subHeader={false} data={data}/>
             </div>
-            <div className=" flex justify-between items-center bg-black px-2 py-4 h-fit rounded-md " >
-                <AddButton callBack={handleIncrement}  />
+
+            <CustomLine/>
+
+            <div className="flex flex-col gap-2 py-4 " >
+                <h2 className=" text-[20px] font-semibold " >
+                    IVF Prices Table
+                </h2>
+                <div className=" flex flex-col gap-4 ">
+                    {
+                        data?.ivfPrices.map((obj, _) => {
+                            return (
+                                <PricesComp obj={obj} id={obj.id} setData={setData} />
+                            )
+                        })
+                    }
+                
+                </div>
+                <div className=" flex justify-between items-center bg-black px-2 py-4 h-fit rounded-md " >
+                    <AddButton callBack={handleIncrement}  />
+                </div>
             </div>
-        </div>
 
-        <CustomLine/>
+            <CustomLine/>
 
-        <div className="flex flex-col gap-2 py-4 " >
-            <h2 className=" text-[20px] font-semibold " >
-                Buttom Writeup
-            </h2>
-            <input 
-                className="pl-2 p-1 bg-gray-300 ring-2 rounded-md dark:text-primary_black ring-black"
-                name="buttomHeader"
-                value={data?.buttomHeader}
-                onChange={(e) => {
-                    setData((prev) => {
-                        return {
-                            ...prev,
-                            [e.target.name]: e.target.value
-                        }
-                    })
-                }}
-                placeholder="Buttom header" 
-                type="text" 
-            />
-            <TextEditor header={false} handleContent={handleButtomContent} defaultContent={data.buttomContent} image={false} subHeader={false} data={data}/>
-        </div>
-
-        
-      </div>
+            <div className="flex flex-col gap-2 py-4 " >
+                <h2 className=" text-[20px] font-semibold " >
+                    Buttom Writeup
+                </h2>
+                <input 
+                    className="pl-2 p-1 bg-gray-300 ring-2 rounded-md dark:text-primary_black ring-black"
+                    name="buttomHeader"
+                    value={data?.buttomHeader}
+                    onChange={(e) => {
+                        setData((prev) => {
+                            return {
+                                ...prev,
+                                [e.target.name]: e.target.value
+                            }
+                        })
+                    }}
+                    placeholder="Buttom header" 
+                    type="text" 
+                />
+                <TextEditor header={false} handleContent={handleButtomContent} defaultContent={data.buttomContent} image={false} subHeader={false} data={data}/>
+            </div>
+ 
+        </section>
     )
 }
 

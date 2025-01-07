@@ -41,7 +41,7 @@ const Hero = () => {
     // Extracting hero data STOP
     
     return (
-        <div className=" flex justify-center items-center h-[905px] w-screen ">
+        <div className=" flex justify-center items-center h-[100dvh] w-screen ">
             {
                 hero ? 
                 <div className=' h-full w-full relative '>

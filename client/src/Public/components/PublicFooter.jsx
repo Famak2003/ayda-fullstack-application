@@ -7,14 +7,14 @@ import Caption from './Caption';
 function PublicFooter() {
     return <footer className=" flex flex-col justify-center items-center gap-[50px] h-fit pt-[40px] bg-cyan ">
         <ul className=" flex flex-wrap justify-center gap-[30px] items-center h-full w-full px-5 max-w-[1150px] ">
-            <li className=" flex flex-col justify-center items-center max-[1150px]:min-w-[260px] w-[30%] xl:w-[343px]  h-[247px] rounded-md bg-white ">
-                <figure className=" h-[37px] w-[37px] bg-secondary_pink rounded-md ">
-                    <img className=" h-full object-cover " src={MAP} alt="address" />
+            <li className=" flex flex-col justify-center items-center mobile:min-w-[260px] w-full lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] py-6 px-2 lmobile:p-0 lmobile:h-[247px] rounded-md bg-white ">
+                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
+                    <img className=" h-[35px] w-[35px] object-cover " src={MAP} alt="address" />
                 </figure>
                 <h2 className=" text-[22px] font-bold ">
                     Our address
                 </h2>
-                <div className=" flex justify-center items-center gap-2 ">
+                <div className=" flex flex-col lmobile:flex-row justify-center items-center gap-2 ">
                     <figure className=" w-[91px] h-[95px] ">
                         <img className=" w-full h-full object-cover " src={CERTIFIED} alt="certifications" />
                     </figure>
@@ -24,9 +24,9 @@ function PublicFooter() {
                 </div>
 
             </li>
-            <li className=" flex flex-col justify-center items-center max-[1150px]:min-w-[260px] w-[30%] xl:w-[343px]  h-[247px] rounded-md bg-white ">
-                <figure className=" h-[37px] w-[37px] bg-secondary_pink rounded-md ">
-                    <img className=" h-full object-cover " src={PHONE} alt="address" />
+            <li className=" flex flex-col justify-center items-center mobile:min-w-[260px] w-full lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
+                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
+                    <img className=" h-[35px] w-[35px] object-cover " src={PHONE} alt="address" />
                 </figure>
                 <h2 className=" text-[22px] font-bold ">
                     Communication
@@ -41,17 +41,17 @@ function PublicFooter() {
                 </div>
 
             </li>
-            <li className=" flex flex-col justify-center items-center max-[1150px]:min-w-[260px] w-[30%] xl:w-[343px]  h-[247px] rounded-md bg-white ">
-                <figure className=" h-[37px] w-[37px] bg-secondary_pink rounded-md ">
-                    <img className=" h-full object-cover " src={CHAIN} alt="address" />
+            <li className=" flex flex-col justify-center items-center mobile:min-w-[260px] w-full lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
+                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
+                    <img className=" h-[35px] w-[35px] object-cover " src={CHAIN} alt="address" />
                 </figure>
                 <h2 className=" text-[22px] font-bold ">
                     Quick Access
                 </h2>
                 <div className=" flex flex-col justify-center items-center gap-5 text-[16px] font-semibold text-secondary_pink ">
-                    <p>Home Page</p>
-                    <p>Treatments</p>
-                    <p>Trip</p>
+                    <a href='/' >Home Page</a>
+                    <a href='#' >Treatments</a>
+                    <a href='/seyahat' >Trip</a>
                 </div>
 
             </li>
