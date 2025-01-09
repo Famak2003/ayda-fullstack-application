@@ -32,9 +32,8 @@ async canActivate(context: ExecutionContext): Promise<boolean> {
     // Else continue with the verification
     const request = context.switchToHttp().getRequest();
     const response = context.switchToHttp().getResponse();
-    // const token = this.extractTokenFromHeader(request);
     const token = request.cookies.token // get token from cookies in the request
-    console.log("TOKEN ?? ", token)
+    // console.log("TOKEN ?? ", token)
     if (!token) {
         throw new UnauthorizedException();
     }

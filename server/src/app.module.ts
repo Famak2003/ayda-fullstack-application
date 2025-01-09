@@ -13,6 +13,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import mailerConfig from './config/mailer.config';
 import { MailerModule } from '@nestjs-modules/mailer';
+// import { User } from './modules/user/user.model';
 
 
 @Module({
@@ -52,8 +53,8 @@ import { MailerModule } from '@nestjs-modules/mailer';
           host: configService.get<string>('mailer.host'),
           port: configService.get<number>('mailer.port'),
           auth: {
-            user: configService.get<string>('mailer.username'),
-            pass: configService.get<string>('mailer.password'),
+            user: configService.get<string>('mailer.gmailUsername'),
+            pass: configService.get<string>('mailer.gmailPassword'),
           },
         },
         defaults: {
@@ -64,6 +65,7 @@ import { MailerModule } from '@nestjs-modules/mailer';
     }),
     PagesModule,
     SectionsModule,
+    // SequelizeModule.forFeature([User]),
     UserModule
   ],
   controllers: [AppController],
