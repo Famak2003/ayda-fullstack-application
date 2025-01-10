@@ -74,12 +74,14 @@ const Whyus = () => {
         );
     }
 
+    
+
     return (
         <section className=" flex flex-col gap-2 p-2 relative dark:bg-teal-500 w-full h-fit" >
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px] " >
                 WhyUS
             </h1>
-            
+
             <UploadButton convertToArr={false} data={data} pageName={"whyus"} type={"body"} />
 
             <div className=" pl-2 flex flex-col gap-2 py-4 " >

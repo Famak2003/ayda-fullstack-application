@@ -25,7 +25,7 @@ const OurTeam = () => {
                                             {obj.header}
                                         </h3>
                                         <div className=" text-center leading-[26px] text-[16px] text-light_grey w-full " >
-                                            <div className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: obj.content }} />
+                                            <div id="content" className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: obj.content }} />
                                         </div>
                                     </div>
                                 )

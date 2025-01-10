@@ -48,7 +48,9 @@ body {
 }
 /* font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; */
 
-
+/* h1{
+  font-size: 36px;
+} */
 
 
 code {
@@ -66,6 +68,7 @@ input:focus {
 }
 
 /* Rich Text */
+
 #content > ul {
   list-style-type: disc !important; /* Ensures bullets are shown */
   display: list-item; /* Forces the element to behave as a list item */
@@ -165,7 +168,7 @@ td, th {
     @apply !list-none  hover:underline decoration-white hover:text-secondary_pink duration-500
   }
   input{
-    @apply dark:text-primary_black
+    @apply dark:text-primary_black border-none !shadow-custom4 !ring-0
   }
   .ql-toolbar{
     @apply dark:text-white

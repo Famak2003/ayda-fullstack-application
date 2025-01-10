@@ -90,7 +90,7 @@ const OurTeam = () => {
                 {
                     data?.map((obj, idx) => {
                         return (
-                            <TextEditor handleContent={handleContent} key={idx} requireID={true} customHandleChange={handleChange} subHeader={false} data={obj} setData={setData} customImageFunc={handleImageUpload} customImageRemoveFunc={handleImageRemove} />
+                            <TextEditor defaultContent={obj.content} handleContent={handleContent} key={idx} requireID={true} customHandleChange={handleChange} subHeader={false} data={obj} setData={setData} customImageFunc={handleImageUpload} customImageRemoveFunc={handleImageRemove} />
                         )
                     })
                 }

@@ -106,11 +106,25 @@ export class UserService{
         } 
     }
 
+    async contactUs(message: string, email: string, subject: string, name: string){
+        try {
+            this.mailService.sendMail({
+              to: "famaki310@gmail.com",
+              subject: subject,
+              html: `<div> This mail is sent by ${name} <br/><br/> ${message} <br/><br/> Contact the sender from ${email}</div>`
+            });
+            return {message: "Success", status: 200}
+          } catch (error) {
+              console.error("Maill Error ===> ", error )
+              throw new ServiceUnavailableException("Mail failed")
+          }
+    }
+
     async verifyMail (user: user,email: string ) {
         const otp = generateSecureOTP();
         const message = `<p>Forgot your password? <br/> Here is your one time password ${otp} <br/><br/> If you didn't request for this mail, please ignore this email! </p>`;
         // console.log(user)
-        const userData = await this.userModel.findOne({where: { email: user.email }})
+        const userData = await this.userModel.findOne({where: { email: email }})
         if(!userData){
             throw new NotFoundException("User not found")
         }
@@ -138,10 +152,11 @@ export class UserService{
         }
     }
 
-    async verifyToken (user: user, otp: number) :Promise<{message: string, code: number}> {
-        const userData = await this.userModel.findOne({where: { email: user.email }})
+    async verifyToken (email: string, otp: number) :Promise<{message: string, code: number}> {
+        console.log(email)
+        const userData = await this.userModel.findOne({where: { email }})
         if(!userData){
-            throw new NotFoundException("User not found")
+            throw new NotFoundException("Error verifying email")
         }
         const databaseResetToken = userData.dataValues.reset_token
         try {
@@ -159,9 +174,9 @@ export class UserService{
         if (Date.now() > expiryTime) {
             console.error(" /// Token Expired ///")
             throw new ForbiddenException("Token expired")
-        }
+        }       
 
-        const clearToken = await this.clearResetToken(user.sub)
+        // const clearToken = await this.clearResetToken(user.sub)
 
         return {message: "OTP verification succeded", code: 200}
     }
@@ -187,20 +202,20 @@ export class UserService{
       
 
     
-    async resetPassword( user: user, newPassword: string, response: Response): Promise<{code: number, status: string}>{
-        if ( !newPassword ){
+    async resetPassword( email: string, newPassword: string): Promise<{code: number, status: string}>{
+        if ( !newPassword || !email ){
             throw new BadRequestException("Missing Required Field")
         }
-        const userData = await this.userModel.findOne({where: { name: user.username }}) // checks if user is in the database
+        const userData = await this.userModel.findOne({where: { email }}) // checks if user is in the database
         if(!userData){
-            throw new NotFoundException("User not found")
+            console.error("Error")
+            throw new NotFoundException("Error reseting password")
         }
         try { // if user is found, perform resetpassword logic
             const hashedNewPassword = await bcrypt.hash(newPassword.toString(), 10)
             if (hashedNewPassword) {
                 console.log(" /// hashedpassword // ",hashedNewPassword)
                 const newPassword = await userData.update({password: hashedNewPassword}) // update password
-                this.logout(response) // after changing password, log user out
                 return {code: 200, status: 'password updated successfully'}
             }
         } catch (error) {

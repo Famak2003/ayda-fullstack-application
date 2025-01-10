@@ -15,7 +15,7 @@ axiosInstance.interceptors.request.use(
     config.withCredentials=true
     config.headers["Content-Type"] = 'application/json';
     config.headers.Accept = 'application/json';
-    config._toastId = toast.loading("Sending request...");
+    // config._toastId = toast.loading("Sending request...");
     return config;
   },
   (error) => {
@@ -29,8 +29,8 @@ axiosInstance.interceptors.response.use(
   (response) => {
     // Dismiss the loading toast and show success
     if (response.config._toastId) {
-      toast.dismiss(response.config._toastId);
-      toast.success("Request completed successfully!");
+      // toast.dismiss(response.config._toastId);
+      // toast.success("Request completed successfully!");
     }
 
     return response;
@@ -46,8 +46,10 @@ axiosInstance.interceptors.response.use(
 
 
     if (error.response?.status === 401) {
-      Cookies.remove('token')
-      window.location.href = "/admin/auth"
+      if (!(window.location.pathname === "/admin/auth")){
+        Cookies.remove('token')
+        window.location.href = "/admin/auth"
+      }
     }
 
     return Promise.reject(error); // Propagate the error

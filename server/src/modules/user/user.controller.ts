@@ -60,6 +60,14 @@ export class UserController {
         
     }
 
+    @Public()
+    @Post("contact-us")
+    async contactUs(
+        @Body() body: {email: string, name:string, message: string, subject: string}){
+            return await this.userService.contactUs(body.message, body.email, body.subject, body.name)
+        }
+
+    @Public()
     @Post("verify-mail")
       async verifyMail(@Body() body: {email: string}, @Req() request: {user : user}) {
         const mail = await this.userService.verifyMail(request.user, body.email);
@@ -67,16 +75,18 @@ export class UserController {
         return mail
     }
 
+    @Public()
     @Post("verify-token")
-      async verifyToken(@Body() body: {otp: number}, @Req() request: {user : user}) {
-        const verifyToken = await this.userService.verifyToken(request.user, body.otp);
+      async verifyToken(@Body() body: {otp: number, email: string}) {
+        const verifyToken = await this.userService.verifyToken(body.email, body.otp);
     
         return verifyToken
     }
 
-    @Put('reset-password')
-    async resetPassord(@Body() body: {newPassword: string}, @Req() request: {user : user}, @Res({ passthrough: true}) response: Response): Promise<{code: number, status: string}>{
-        const resetPassord = await this.userService.resetPassword( request.user, body.newPassword, response)
+    @Public()
+    @Post('reset-password')
+    async resetPassord(@Body() body: {newPassword: string, email: string}, @Req() request: {user : user}): Promise<{code: number, status: string}>{
+        const resetPassord = await this.userService.resetPassword( body.email, body.newPassword)
         return resetPassord
     }
 }

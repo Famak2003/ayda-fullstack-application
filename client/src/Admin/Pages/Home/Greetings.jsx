@@ -41,7 +41,7 @@ const Greetings = () => {
         </h1>
         <div className=" pl-2 ">
             {
-                <TextEditor handleContent={handleContent} data={data} setData={setData} buttomHeaders={true}/>
+                <TextEditor defaultContent={data.content} handleContent={handleContent} data={data} setData={setData} buttomHeaders={true}/>
             }
             <div className=" flex justify-end items-center bg-black px-2 py-4 h-fit rounded-md " >
                 {<UploadButton convertToArr={false} data={data} pageName={"home"} type={"greetings"} />}

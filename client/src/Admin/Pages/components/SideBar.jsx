@@ -1,29 +1,35 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Link, NavLink } from "react-router-dom"
 import { logout } from "../../../Redux/actions/authAction"
 import LOGO from './../../../Asset/ayda-logo.png'
 import { updateAboutusDropdown, updateTreatmentDropdown } from "../../../Redux/actions/dashboardAction"
+import { useOutsideClick } from "../../../hooks/useOutsideClick"
 
-const SideBar = ({ref, showSideBar}) => {
+const SideBar = ({setShowSidebar, showSideBar}) => {
     const dispatch = useDispatch()
+    const sidebarRef = useRef(null)
     const aboutUsDropDown = useSelector(state => state.dashboard.aboutUsDropDown)
     const treatmentDropDown = useSelector(state => state.dashboard.treatmentDropDown)
     // const [aboutUsDropDown, setAboutusDropDown] = useState(false)
     // const [treatmentDropDown, setTreatmentDropDown] = useState(false)
     const [isSuperAdmin, setIsSuperAdmin] = useState(true)
-
-
+    const closeSidebar = () => {
+        setShowSidebar(false)
+    }
+    useOutsideClick(sidebarRef, closeSidebar)
     const handleLogout = () => {
             dispatch(logout());
         };
     return(
-        <aside ref={ref} className={` fixed md:relative w-full h-screen shadow-custom4 transition-transform -translate-x-full z-[99999] ${showSideBar ? "translate-x-0" : " translate-x-[-200%] md:translate-x-0 "} md:translate-x-0 bg-black bg-opacity-30 backdrop-blur-md `}>
-              <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-dark_side">
-                  <ul className="space-y-2 font-medium">
-                    <a href="/admin/dashboard" className=" block max-w-[126px] max-h-[65px]  ">
-                        <img className=" h-full w-full object-cover " src={LOGO} alt=" ayda logo " />
-                    </a>
+        <aside ref={sidebarRef} className={` fixed lmd:relative px-2 lmd:px-0 w-fit lmd:w-full min-h-screen h-fit shadow-custom4 transition-transform -translate-x-full z-[99999] ${showSideBar ? "translate-x-0" : " translate-x-[-200%] lmd:translate-x-0 "} lmd:translate-x-0 bg-black bg-opacity-30 backdrop-blur-md `}>
+              <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 ">
+                  <ul className="space-y-2 font-medium w-full ">
+                    <li className=" flex justify-center dark:bg-white dark:rounded-2xl " >
+                        <a href="/admin/dashboard" className=" block max-w-[126px] max-h-[65px] w-full  ">
+                            <img className=" h-full w-full object-cover " src={LOGO} alt=" ayda logo " />
+                        </a>
+                    </li>
                     <li>
                         <NavLink 
                             to="/admin/dashboard"
@@ -123,16 +129,16 @@ const SideBar = ({ref, showSideBar}) => {
                           <span className="flex-1 ms-3 whitespace-nowrap">FAQ</span>
                         </NavLink>
                     </li>
-                    <li>
+                    {/* <li>
                         <NavLink to="iletisim" className={({isActive}) => ` ${isActive ? "bg-light_pink text-white shadow-custom2 " : ""} flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group`}>
                           <span className="flex-1 ms-3 whitespace-nowrap">Communication</span>
                         </NavLink>
-                    </li>
-                    <li>
+                    </li> */}
+                    {/* <li>
                         <NavLink to="#" className="flex items-center p-2 text-gray-900 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-700 group">
                           <span className="flex-1 ms-3 whitespace-nowrap">Others</span>
                         </NavLink>
-                    </li>
+                    </li> */}
                     {
                         isSuperAdmin ? 
                             <li>

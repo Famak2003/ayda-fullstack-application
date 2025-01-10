@@ -19,7 +19,7 @@ const OurPrices = () => {
                             {data.pageHeader}
                         </h1>
                         <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey " >
-                            <div className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: data.writeUp }} />
+                            <div id="content" className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: data.writeUp }} />
                         </div>
                         <h3 className=" text-light_pink text-[17.5px] text-center font-semibold " >
                             IVF Prices
@@ -29,7 +29,7 @@ const OurPrices = () => {
                             {data.buttomHeader}
                         </h3>
                         <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey " >
-                            <div className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: data.buttomContent }} />
+                            <div id="content" className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: data.buttomContent }} />
                         </div>
                     </>
                     :

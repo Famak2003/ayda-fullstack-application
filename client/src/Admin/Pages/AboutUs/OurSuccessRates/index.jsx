@@ -113,7 +113,7 @@ const OurSuccessRates = () => {
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px]" >
                 Our Success Rates
             </h1>
-            
+
             <UploadButton convertToArr={false} data={data} pageName={"oursuccessrate"} type={"body"} />
            
             <div>
@@ -174,7 +174,7 @@ const OurSuccessRates = () => {
                         {
                             data?.body?.map((obj, idx) => {
                                 return (
-                                    <TextEditor handleContent={handleContent} key={idx} requireID={true}  customHandleChange={handleChange}  subHeader={false} data={obj} setData={setData} image={false} showDelete={true} />
+                                    <TextEditor defaultContent={obj.content} handleContent={handleContent} key={idx} requireID={true}  customHandleChange={handleChange}  subHeader={false} data={obj} setData={setData} image={false} showDelete={true} />
                                 )
                             })
                         }

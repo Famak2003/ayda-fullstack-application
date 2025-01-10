@@ -82,7 +82,7 @@ const Router = createBrowserRouter([
                 element: <AuthPages.Login/>
             },
             {
-                path: 'ResetPassword',
+                path: 'resetPassword',
                 element: <AuthPages.ResetPassword/>
             }
         ]

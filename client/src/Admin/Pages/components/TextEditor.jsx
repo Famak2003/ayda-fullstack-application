@@ -24,9 +24,15 @@ const TextEditor = ({
     customImageRemoveFunc,
     defaultContent,
     }) => {
-    const [value, setValue] = useState(defaultContent ?? data?.content)
+    const [value, setValue] = useState(defaultContent)
     const [imgLoader, setImgLoader] = useState(false)
     const uploadREF = useRef(null)
+
+    // console.log("*******************", defaultContent, "*******************")
+
+    useEffect(() => { // makes sure default values are set
+        setValue(defaultContent);
+    }, [defaultContent]);
 
 
     const modules = {
