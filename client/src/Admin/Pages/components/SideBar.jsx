@@ -45,15 +45,19 @@ const SideBar = ({setShowSidebar, showSideBar}) => {
                     <li >
                         <button 
                           type="button" 
-                          className="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" 
-                          onClick={() => dispatch(updateAboutusDropdown(!aboutUsDropDown))}
+                          className=" flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700" 
+                          onClick={() => {
+                              dispatch(updateAboutusDropdown(!aboutUsDropDown))
+                              dispatch(updateTreatmentDropdown(false))
+                            }
+                          }
                         >
                               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">About Us</span>
-                              <svg className={`w-3 h-3 ${!aboutUsDropDown ? "" : "rotate-[270deg]"} transition-transform duration-300 `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                              <svg className={`w-3 h-3 ${!aboutUsDropDown ? "" : "rotate-[180deg]"} transition-transform duration-300 `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
                               </svg>
                         </button>
-                        <ul id="dropdown-example" className={` py-2 space-y-2 ${!aboutUsDropDown ?  "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-screen"} transition-none duration-300 `}>
+                        <ul id="dropdown-example" className={` transition-height ease-in-out duration-300 py-2 space-y-2 overflow-y-scroll ${!aboutUsDropDown ?  " !h-0 !p-0 " : " h-[200px]"} duration-300 `}>
                               <li>
                                 <NavLink to="nedenbiz" className={({isActive}) => ` ${isActive ? "bg-light_pink text-white shadow-custom2 " : ""}  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}>Why Us</NavLink>
                               </li>
@@ -71,17 +75,21 @@ const SideBar = ({setShowSidebar, showSideBar}) => {
                     <li >
                         <button 
                           type="button" 
-                          className="flex items-center w-full p-2 text-base text-gray-900 cursor-pointer transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
+                          className=" flex items-center w-full p-2 text-base text-gray-900 cursor-pointer transition duration-75 rounded-lg group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700"
                           aria-controls="dropdown-example"
                           data-collapse-toggle="dropdown-example"
-                          onClick={() => dispatch(updateTreatmentDropdown(!treatmentDropDown))}
+                          onClick={() => {
+                              dispatch(updateTreatmentDropdown(!treatmentDropDown))
+                              dispatch(updateAboutusDropdown(false))
+                            }
+                          }
                         >
                               <span className="flex-1 ms-3 text-left rtl:text-right whitespace-nowrap">Treatments</span>
-                              <svg className={`w-3 h-3 ${!treatmentDropDown ? "" : "rotate-[270deg]"} transition-transform duration-300 `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                              <svg className={`w-3 h-3 ${!treatmentDropDown ? "" : "rotate-[180deg]"} transition-transform duration-300 `} aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                                 <path stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="m1 1 4 4 4-4"/>
                               </svg>
                         </button>
-                        <ul id="dropdown-example" className={` py-2 space-y-2 ${!treatmentDropDown ?  "opacity-0 max-h-0 overflow-hidden" : "opacity-100 max-h-screen"} transition-none duration-300 `}>
+                        <ul id="dropdown-example" className={` py-2 space-y-2 overflow-y-scroll ${!treatmentDropDown ?  " !h-0 !p-0 " : " h-[345px]"} duration-300 `}>
                               <li>
                                 <NavLink to="tupbebekivf" className={({isActive}) => ` ${isActive ? "bg-light_pink text-white shadow-custom2 " : ""}  flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gray-100 dark:text-white dark:hover:bg-gray-700`}>
                                     IVF

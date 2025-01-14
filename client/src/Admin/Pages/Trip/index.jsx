@@ -80,8 +80,6 @@ const  Trip = () => {
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px] " >
                 Trip
             </h1>
-
-            <UploadButton convertToArr={false} data={data} pageName={"trip"} type={"body"} />
            
             <div className=" pl-2 py-4 ">
                 {
@@ -96,6 +94,9 @@ const  Trip = () => {
             <div className=" flex justify-end items-center bg-black px-2 py-4 h-fit rounded-md " >
                 <AddButton callBack={handleIncrement}/>
             </div>
+            
+            <UploadButton convertToArr={false} data={data} pageName={"trip"} type={"body"} />
+
         </section>
     )
 }

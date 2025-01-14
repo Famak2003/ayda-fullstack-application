@@ -77,7 +77,6 @@ const OurPrices = () => {
                 OurPrices
             </h1>
             
-            <UploadButton convertToArr={false} data={data} pageName={"ourprices"} type={"body"} />
 
             <div className="flex flex-col gap-2 py-4 " >
                 <h2 className=" text-[20px] font-semibold " >
@@ -146,7 +145,8 @@ const OurPrices = () => {
                 />
                 <TextEditor header={false} handleContent={handleButtomContent} defaultContent={data.buttomContent} image={false} subHeader={false} data={data}/>
             </div>
- 
+            <UploadButton convertToArr={false} data={data} pageName={"ourprices"} type={"body"} />
+            
         </section>
     )
 }

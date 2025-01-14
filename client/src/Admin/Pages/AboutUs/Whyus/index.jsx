@@ -82,8 +82,6 @@ const Whyus = () => {
                 WhyUS
             </h1>
 
-            <UploadButton convertToArr={false} data={data} pageName={"whyus"} type={"body"} />
-
             <div className=" pl-2 flex flex-col gap-2 py-4 " >
                 <h2 className="text-[20px] font-semibold" >
                     Header
@@ -119,6 +117,8 @@ const Whyus = () => {
             <div className=" flex justify-end items-center bg-black px-2 py-4 h-fit rounded-md " >
                 <AddButton callBack={handleIncrement}/>
             </div>
+            <UploadButton convertToArr={false} data={data} pageName={"whyus"} type={"body"} />
+
         </section>
     )
 }

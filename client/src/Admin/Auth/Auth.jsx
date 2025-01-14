@@ -1,15 +1,16 @@
-import { Outlet } from "react-router-dom"
+import { Link, Outlet } from "react-router-dom"
 import AUTHIMG from './../../Asset/loginpage-image.png'
+import LOGO from './../../Asset/ayda-logo.png'
 
 
 const Auth = () => {
     return (
-        <div className=" min-h-[100dvh] dark:bg-deep_black_red dark:text-primary_black" >
-            <div className=" grid grid-cols-1 lg:grid-cols-2 h-full">
-                <section className=" order-2 lg:order-1 overflow-hidden rounded-lg h-full bg-opacity-0 ">
-                    <img className=" h-full w-full object-cover " src={AUTHIMG} alt="auth-img"/>
-                </section>
-                <section className=" order-1 lg:order-2 overflow-hidden rounded-lg h-full w-full ">
+        <div className=" min-h-[100dvh] w-screen dark:bg-deep_black_red dark:text-primary_black" >
+            <div className=" flex flex-col gap-4 justify-center items-center w-full h-full px-3">
+                <Link to={"/"} className=" overflow-hidden rounded-lg w-[160px] h-[160px] mobile:w-[192px] mobile:h-[192px] bg-opacity-0 ">
+                    <img className=" h-full w-full object-contain " src={LOGO} alt="ayda logo"/>
+                </Link>
+                <section className=" overflow-hid rounded-lg h-fit w-full sm:w-[585px] ">
                     <Outlet/>
                 </section>
             </div>

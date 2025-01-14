@@ -81,7 +81,6 @@ const OurTeam = () => {
                 OurTeam
             </h1>
 
-            <UploadButton convertToArr={false} data={data} pageName={"ourteam"} type={"body"} />
             
             <div className=" flex flex-col gap-2 py-4  pl-2 ">
                 <h2 className=" text-[20px] font-semibold " >
@@ -96,6 +95,7 @@ const OurTeam = () => {
                 }
             
             </div>
+            <UploadButton convertToArr={false} data={data} pageName={"ourteam"} type={"body"} />
       </div>
     )
 }

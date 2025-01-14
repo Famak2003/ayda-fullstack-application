@@ -98,9 +98,7 @@ const EggFreezing = () => {
             <h1 className="font-bold text-blue_head text-[25px] sm:text-[30px] mt-[10px] mb-[20px] " >
                 EggFreezing
             </h1>
-            
-            <UploadButton convertToArr={false} data={data} pageName={"eggfreezing"} type={"body"} />
-           
+                       
             <div className=" flex flex-col gap-2 pl-2 py-4 ">
                 <h2 className=" text-[20px] font-semibold " >
                     Body
@@ -134,6 +132,8 @@ const EggFreezing = () => {
                 Buttom Writeup
             </h2>
             <TextEditor header={false} handleContent={handleWriteUp} defaultContent={data?.writeUp} image={false} subHeader={false} data={data}/>
+
+            <UploadButton convertToArr={false} data={data} pageName={"eggfreezing"} type={"body"} />
 
         </section>
     )

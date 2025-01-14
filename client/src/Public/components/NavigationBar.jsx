@@ -76,7 +76,7 @@ const NavigationBar = ({setOpenSearch, openSearch}) => {
                 <img className=" max-w-[126px] max-h-[65px] object-cover " src={LOGO} alt=" ayda logo " />
             </a>
             <div ref={navRef} className=" relative flex items-center h-full w-full tab:w-fit p-[10px] " >
-                <ul className={` flex gap-4 items-center flex-col tab:flex-row flex-grow tab:flex-none w-full tab:w-fit transition-height ease-in-out duration-300 tabless:duration-0 text-[16px] overflow-y-scroll tab:overflow-y-visible bg-primary_light_grey rounded-md bg-opacity-95 tab:bg-none tab:bg-opacity-0 font-bold px-1 ${isNavOpen ? ' h-80 p-5 ' : ' h-0 tab:h-full '}`}>
+                <ul className={` flex gap-4 items-center flex-col tab:flex-row flex-grow tab:flex-none w-full tab:w-fit transition-height ease-in-out duration-300 tab:duration-0 text-[16px] overflow-y-scroll tab:overflow-y-visible bg-primary_light_grey rounded-md bg-opacity-95 tab:bg-none tab:bg-opacity-0 font-bold px-1 ${isNavOpen ? ' h-80 p-5 ' : ' h-0 tab:h-full '}`}>
                     <li className=" relative group h-[100%] flex items-center ">
                         <a href="#" className=" groupMenuLinks ">
                             About us

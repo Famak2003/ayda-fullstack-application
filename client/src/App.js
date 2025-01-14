@@ -25,11 +25,6 @@ function App() {
     }
   }, [])  
 
-  useEffect(()=>{
-    if(token){
-      dispatch(setIsAuthenticated(true))
-    }
-  },[])
 
 
   // useEffect(() =>{

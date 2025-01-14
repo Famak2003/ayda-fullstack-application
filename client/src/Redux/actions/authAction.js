@@ -10,11 +10,10 @@ export const login = (data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/user/login", data)
         dispatch(setIsAuthenticated(true))
-        window.location.href = "/admin/dashboard"
-        console.log(res.data)
+        toast.success("login success")
     } catch (error) {
         console.log(error)
-        // toast.error(error)
+        toast.error("Incorrect credential")
         console.log("There was an error when loggin in", error)
     }
 };

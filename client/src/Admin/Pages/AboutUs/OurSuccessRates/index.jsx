@@ -114,7 +114,6 @@ const OurSuccessRates = () => {
                 Our Success Rates
             </h1>
 
-            <UploadButton convertToArr={false} data={data} pageName={"oursuccessrate"} type={"body"} />
            
             <div>
                 <div className=" flex flex-col gap-2 py-4 " >
@@ -187,6 +186,9 @@ const OurSuccessRates = () => {
                 </div>
 
             </div>
+            
+            <UploadButton convertToArr={false} data={data} pageName={"oursuccessrate"} type={"body"} />
+
         </div>
     )
 }

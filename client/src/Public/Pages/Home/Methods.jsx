@@ -30,7 +30,7 @@ const Methods = () => {
 
     return (
         <div id='method' style={{
-                backgroundImage: `url(${methods.image})`,
+                backgroundImage: `url("https://aydaivf.com/templates/aydaivf/imgs/logoonly.svg")`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",

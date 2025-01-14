@@ -122,9 +122,9 @@ const TextEditor = ({
         document.getElementById(`file-input`).value = "" ;// Clear the input field value
     }
 
-    const handleDeleteSection = (idToRemove) => {
+    const handleDeleteSection = (e,idToRemove) => {
         console.log(idToRemove)
-        // e.preventDefault(data.id)
+        e.preventDefault(data.id)
         setData((prev) => {
             return{
                 ...prev,
@@ -170,26 +170,26 @@ const TextEditor = ({
                         ""
                     )
                 }
-                <div className=" flex flex-col tab:flex-row items-center justify-center w-full h-[90vh] tab:h-[70vh] gap-2 p-1 overflow-x-scroll">
-                    <div className=' rounded-lg tab:rounded-r-xl overflow-hidden flex flex-col gap-2 items-center ring-2 ring-black h-1/2 tab:h-full w-full tab:w-1/2'>
-                        <h1 className=' flex justify-center items-center h-[5%] w-full '>
+                <div className=" flex items-center w-full h-[90vh] tab:h-[50vh] gap-2 p-1 overflow-x-scroll">
+                    <div className=' flex flex-col gap-2 items-center h-full w-full'>
+                        {/* <h1 className=' flex justify-center items-center h-[5%] w-full '>
                             Editor
-                        </h1>
-                        <ReactQuill className='h-[90%] w-full pb-[70px] tab:pb-[70px]'
+                        </h1> */}
+                        <ReactQuill className='h-full w-full pb-[70px] tab:pb-[70px]'
                             theme='snow'
                             value={value}
                             onChange={setValue}
                             modules={modules}
                         />
                     </div>
-                    <div className=' rounded-lg tab:rounded-l-xl flex flex-col ring-2 ring-black h-1/2 tab:h-full w-full tab:w-1/2'>
+                    {/* <div className=' rounded-lg tab:rounded-l-xl flex flex-col ring-2 ring-black h-1/2 tab:h-full w-full tab:w-1/2'>
                         <h1 className="flex justify-center items-center h-[6%] w-full border-b-2 border-black">
                             Preview
                         </h1>
                         <div className=" ring-1 ring-black h-[90%] w-full overflow-scroll px-4 py-4 ">
                             <div className='overflow-scroll w-full items-start' id="content" dangerouslySetInnerHTML={{ __html: value }} />
                         </div>
-                    </div>
+                    </div> */}
                 </div>
 
                 
@@ -270,7 +270,7 @@ const TextEditor = ({
                 
                 {
                     showDelete ? 
-                        <button onClick={() => handleDeleteSection(data.id)} className=" group bg-red text-white w-full flex justify-center items-center rounded-md p-2 hover:scale-[99.5%] duration-300 shadow-custom2 " >
+                        <button onClick={(e) => handleDeleteSection(e, data.id)} className=" group bg-red text-white w-full flex justify-center items-center rounded-md p-2 hover:scale-[99.5%] duration-300 shadow-custom2 " >
                             Delete Section
                         </button>
                         :

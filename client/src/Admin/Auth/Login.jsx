@@ -12,7 +12,7 @@ const Login = () => {
     const [searchParams] = useSearchParams();
 
     // Get the redirect path from location state or set default
-    const redirectTo = location.state?.from?.pathname || '/';
+    const redirectTo = location.state?.from?.pathname || '/admin';
 
     const handleSubmit = (e) => {
         e.preventDefault()
@@ -25,19 +25,19 @@ const Login = () => {
         })
     }
 
-    useLayoutEffect(() => { // returns user back to admin dashboard if they are logged in
+    useEffect(() => { // returns user back to admin dashboard if they are logged in
         if (isAuthenticated){
             navigate(redirectTo, { replace: true })
         }
     }, [isAuthenticated, navigate, redirectTo])
 
     return(
-        <div className=" dark:text-primary_black grid place-items-stretch h-[100dvh] w-full p-5">
+        <div className=" dark:text-primary_black grid place-items-stretch h-full w-full p-5">
             <div className=" flex flex-col justify-center gap-[3rem] w-full" >
                 <h1 className=" text-center font-semibold text-[30px] dark:text-white " > 
                     Login
                 </h1>
-                <form onSubmit={handleSubmit} className=" flex flex-col gap-4 w-full h-fit px-[1rem] py-[3rem] rounded-lg overflow-hidden bg-primary_light_grey dark:bg-blue_head shadow-custom4 dark:shadow-custom_white1 dark:bg-opacity-50 " >
+                <form onSubmit={handleSubmit} className=" flex flex-col gap-4 w-full h-fit px-[1rem] pb-[2rem] py-[3rem] mobile:py-[3rem] rounded-lg overflow-hidden bg-primary_light_grey dark:bg-blue_head shadow-custom4 dark:shadow-custom_white1 dark:bg-opacity-50 " >
                     <div className=' flex flex-col gap-2  '>
                         <label className="" htmlFor='email' children={"Email"} />
                         <input 
@@ -55,9 +55,9 @@ const Login = () => {
                             type='password'
                             name='password' />
                     </div>
-                    <div className=" flex justify-between " >
-                        <Link to={"/admin/auth/resetPassword"} className=" text-blue hover:underline " >Forgort password?</Link>
-                        <button type="submit" className=" w-fit py-1 px-12 bg-primary_black text-[15px] text-white shadow-custom7 dark:bg-primary_light_grey rounded-3xl overflow-hidden dark:text-primary_black " >
+                    <div className=" flex flex-col gap-6 mobile:flex-row justify-between  " >
+                        <Link to={"/admin/auth/resetPassword"} className=" pt-4 mobile:pt-0 border-t-2 mobile:border-none border-black text-center mobile:text-left order-2 mobile:order-1 text-blue hover:underline " >Forgort password?</Link>
+                        <button type="submit" className=" order-1 mobile:order-2 w-full mobile:w-fit py-1 px-12 bg-primary_black text-[15px] text-white shadow-custom7 dark:bg-primary_light_grey rounded-3xl overflow-hidden dark:text-primary_black " >
                             Login
                         </button>
 
