@@ -6,6 +6,7 @@ import * as bcrypt from 'bcrypt'
 import { JwtService } from '@nestjs/jwt';
 import { MailerService } from '@nestjs-modules/mailer';
 import generateSecureOTP from 'src/helpers/generateSecureOTP';
+import { where } from 'sequelize';
 
 interface user {
     sub: number, 
@@ -32,14 +33,14 @@ export class UserService{
         return {test: "User route running"}
     }
 
-    async createUser(name: string, email: string, password: string): Promise<User>{
+    async createUser(name: string, email: string, password: string, role: string): Promise<User>{
         if (!name || !email || !password){
             throw new BadRequestException("Missing Required Field")
         }
         // Check if email already exists
         const existingUser = await this.userModel.findOne({where: { email }})
         if (existingUser){
-            throw new ConflictException("Email exist in the database")
+            throw new ConflictException("Email already exist")
         }
         try {
             // Hash password
@@ -51,7 +52,8 @@ export class UserService{
             const result = await this.userModel.create({
                 name,
                 password: hashedPassword,
-                email
+                email,
+                role
             })
 
             return result
@@ -63,13 +65,13 @@ export class UserService{
         }
     }
 
-    async login(email: string, password: string): Promise<{code: number, token: string}> {
+    async login(email: string, password: string): Promise<{code: number, token: string, role: string, id: number}> {
         if ( !email || !password ){
             throw new BadRequestException("Missing Required Field")
         }
         const userData = await this.userModel.findOne({where: { email }})
         if (!userData){
-            throw new UnauthorizedException("Unknown User")
+            throw new UnauthorizedException("Check Credentials")
         }
         const databasePassword = userData.dataValues.password
         try {
@@ -77,6 +79,8 @@ export class UserService{
             if (!isPasswordValid){
                 throw new UnauthorizedException("Incorrect Password")
             }
+            const role = userData.dataValues.role
+            const id = userData.dataValues.id
             // Generate token
             const username = userData.dataValues.name
             const userID = userData.dataValues.id
@@ -84,7 +88,9 @@ export class UserService{
             const token = await this.jwtService.signAsync(payload)
             return {
                 code: 200,
-                token
+                token,
+                role,
+                id
             }
             
         } catch (error) {
@@ -122,8 +128,7 @@ export class UserService{
 
     async verifyMail (user: user,email: string ) {
         const otp = generateSecureOTP();
-        const message = `<p>Forgot your password? <br/> Here is your one time password ${otp} <br/><br/> If you didn't request for this mail, please ignore this email! </p>`;
-        // console.log(user)
+        const message = `<div> Hello,<br/> Your verifiation code is ${otp} <br/><br/> Return to the website to enter this code. If you no longer have the tab open, try the process again and recieve a new code. <br/><br/> Kind regards, <br/><br/> Aydaivf. </div> `;
         const userData = await this.userModel.findOne({where: { email: email }})
         if(!userData){
             throw new NotFoundException("User not found")
@@ -153,7 +158,6 @@ export class UserService{
     }
 
     async verifyToken (email: string, otp: number) :Promise<{message: string, code: number}> {
-        console.log(email)
         const userData = await this.userModel.findOne({where: { email }})
         if(!userData){
             throw new NotFoundException("Error verifying email")
@@ -219,8 +223,100 @@ export class UserService{
                 return {code: 200, status: 'password updated successfully'}
             }
         } catch (error) {
-            console.error(`Error while resetting password ===> ${error}`)
+            console.error(`/// Error while resetting password ===> ${error} ///`)
             throw new InternalServerErrorException("Error resetting password")
         }
+    }
+
+    async getAll(){
+        try {
+            const users = await this.userModel.findAll({
+                attributes: ['id', 'name', 'email', 'role', "avatar", 'created_at'],
+            })
+            return users
+        } catch (error) {
+            throw new InternalServerErrorException("Error getting data")
+            
+        }
+    }
+
+    async deleteAdmin(id: number){
+        try {
+            const result = await this.userModel.destroy({
+              where: { id }, // Specify the condition
+            });
+      
+            if (result === 0) {
+              // No rows deleted
+              throw new Error('Admin not found or already deleted');
+            }
+            console.log(`Admin with ID ${id} deleted successfully.`);
+            return {status: 200, message: "Deleted Successfully"}
+        } catch (error) {
+            console.error('/// Error deleting admin:', error.message, " ///");
+            throw error;
+        }
+    }
+
+    async updateRole(id: number, role: string, user: any){
+        const checkPermisson = await this.userModel.findOne({
+            where: { id: user.sub }, 
+        })
+        if (checkPermisson.dataValues.role === "super-admin"){
+            try {
+                const userData = await this.userModel.findOne({
+                  where: { id }, // Specify the condition
+                });
+                if (!userData){
+                    throw new InternalServerErrorException("User Does not exist")
+                }
+                userData.update({role})
+                return({status: 200, message: "Updated Successfully"})
+            } catch (error) {
+                console.error('/// Error updating admin role:', error.message, " ///");
+                throw error;
+            }
+        }else{
+            throw new UnauthorizedException("Unauthorized")
+        }
+    }
+
+    async updateProfile(avatar: string, name: string, email: string, user: any){
+        try {
+            const checkPermission = await this.userModel.findOne({ // Check if user is in the database
+              where: { id: user?.sub }, 
+            });
+            if (!checkPermission){
+                throw new InternalServerErrorException("User Does not exist")
+            }
+            const checkMailConflict = await this.userModel.findOne({ // checks if email is already choosen
+                where: { email }, // Specify the condition
+            });
+            
+            if(checkMailConflict && checkMailConflict.dataValues.id !== user.sub) throw new ConflictException("Email belongs to a user, choose another")
+        
+            this.userModel.update({avatar, name, email}, {where: {id: user?.sub}}) // update data
+            
+            return({status: 200, message: "Updated Successfully"})
+        
+        } catch (error) {
+            console.error('/// Error updating admin role:', error.message, " ///");
+            throw error;
+        }
+    }
+
+    async getProfile(user: any){
+        console.log(" /// === > ? ",user)
+        try {
+            const userData = await this.userModel.findOne({
+                where: { id: user?.sub }, 
+                attributes: ['avatar', 'name', 'email']
+            });
+            return userData
+        } catch (error) {
+            console.log("///", error, "///")
+            throw new InternalServerErrorException("Error when getting profile")
+        }
+       
     }
 }

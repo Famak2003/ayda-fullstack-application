@@ -12,7 +12,7 @@ const Whyus = () => {
     }, [])
     console.log("Public Whyus ******", data)
     return (
-        <section className=" flex flex-col gap-6 py-[30px] sm:py-[70px] px-[15px] mobile:px-[30px] sm:px-[65.5px] ">
+        <section className=" max-w-[1200px] flex flex-col gap-6 py-[30px] sm:py-[70px] px-[15px] mobile:px-[30px] sm:px-[30px] ">
             {
                 data ? 
                 <>

@@ -31,6 +31,7 @@ import ovarianPRPReducer from "./ovarianPRPReducer";
 import eggFreezingReducer from "./eggFreezingReducer";
 import acupunctureReducer from "./acupunctureReducer";
 import dashboardReducer from "./dashboardReducer";
+import adminsReducer from "./adminsReducer";
 
 
 // Persist configurations start //
@@ -155,6 +156,7 @@ const AppReducers = combineReducers(
     faq: faqReducer,
     dashboard: dashboardPersistedReducer,
     auth: authPersistedReducer,
+    admins: adminsReducer,
     adminHome: adminHomePersistedReducer,
     adminWhyus: adminWhyusPersistedReducer,
     adminOurTeam: adminOurTeamPersistedReducer,

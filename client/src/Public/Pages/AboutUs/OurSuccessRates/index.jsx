@@ -11,7 +11,7 @@ const OurSuccessRates = () => {
         dispatch(getOurSuccessRateContent())
     }, [])
     return (
-        <section className="flex flex-col gap-4 py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[65.5px]" >
+        <section className=" max-w-[1200px] flex flex-col gap-4 py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[30px]" >
             {
                 data ? 
                     <>

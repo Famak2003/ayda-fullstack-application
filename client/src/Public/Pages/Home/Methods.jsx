@@ -2,6 +2,7 @@ import CHECK from './../../../Asset/icons8-check-48.png'
 import DoubleHeader from '../../components/DoubleHeader'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
+import { Skeleton } from 'antd'
 
 const Methods = () => {
      // Extracting methods data START
@@ -61,8 +62,8 @@ const Methods = () => {
                                 Contact Us
                             </Link>
                         </> :
-                        <div>
-                            Loading
+                        <div className=' w-full h-[500px] '>
+                            <Skeleton.Input active />
                         </div>
                 }
             </div>

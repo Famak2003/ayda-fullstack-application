@@ -4,18 +4,6 @@ import axiosInstance from "../../utilities/axiosInstance";
 export const  SET_ADMIN_FAQ_DATA = "SET_ADMIN_FAQ_DATA"
 
 
-export const setAdminFAQContent = (pageName, type, data) => async (dispatch) => {
-  try {
-    const res = await axiosInstance.post("/pages/faq", {pageName, type, content: data})
-    console.log(res)
-    toast.success("upload complete")
-  } catch (error) {
-      console.log("There was an error when loggin out", error)
-  }
-};
-
-
-
 export const getAdminFAQContent = () => async(dispatch) => {
     try {
       const res = await axiosInstance.get('/pages/faq')

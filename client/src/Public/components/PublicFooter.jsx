@@ -5,12 +5,12 @@ import CHAIN from './../../Asset/icons8-chain-48.png'
 import Caption from './Caption';
 
 function PublicFooter() {
-    return <footer className=" flex flex-col justify-center items-center gap-[50px] h-fit pt-[40px] bg-cyan ">
+    return <footer className=" flex flex-col justify-center items-center gap-[50px] h-fit pt-[40px] w-full bg-footer_bg ">
         <ul className=" flex flex-wrap justify-center gap-[30px] items-center h-full w-full px-5 max-w-[1150px] ">
             <li className=" flex flex-col justify-center items-center w-full mobile:min-w-[260px] lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] py-6 px-2 lmobile:p-0 lmobile:h-[247px] rounded-md bg-white ">
-                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
-                    <img className=" h-[35px] w-[35px] object-cover " src={MAP} alt="address" />
-                </figure>
+                <div className="  icon ">                    
+                    <svg className=' ' fill='#fff' height={'100%'} width={'100%'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 476.1L192 421.2l0-385.3L384 90.8l0 385.3zm32-1.2l0-386.5L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3l0 334.8c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2l0 386.5L32.9 474.5C17.1 480.8 0 469.2 0 452.2L0 117.4c0-9.8 6-18.6 15.1-22.3z"/></svg>
+                </div>
                 <h2 className=" text-[22px] font-bold ">
                     Our address
                 </h2>
@@ -25,9 +25,9 @@ function PublicFooter() {
 
             </li>
             <li className=" flex flex-col justify-center items-center w-full mobile:min-w-[260px] lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
-                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
-                    <img className=" h-[35px] w-[35px] object-cover " src={PHONE} alt="address" />
-                </figure>
+                <div className=" icon ">
+                    <i class="fa fa-phone fs22" aria-hidden="true" style={{'fontSize': "20px", "color": "#fff"}}></i>
+                </div>
                 <h2 className=" text-[22px] font-bold ">
                     Communication
                 </h2>
@@ -42,14 +42,14 @@ function PublicFooter() {
 
             </li>
             <li className=" flex flex-col justify-center items-center w-full mobile:min-w-[260px] lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
-                <figure className="  h-fit w-fit p-2  bg-secondary_pink rounded-md ">
-                    <img className=" h-[35px] w-[35px] object-cover " src={CHAIN} alt="address" />
-                </figure>
+                <div className=" icon ">
+                    <i class="fa fa-link" aria-hidden="true" style={{'fontSize': "20px", "color": "#fff"}}></i>
+                </div>
                 <h2 className=" text-[22px] font-bold ">
                     Quick Access
                 </h2>
                 <div className=" flex flex-col justify-center items-center gap-5 text-[16px] font-semibold text-secondary_pink ">
-                    <a href='/' >Home Page</a>
+                    <a className=' duration-300 hover:text-blue_head hover:border-secondary_pink hover:border-b-[1px] p-2 hover:pb-2 ' href='/' >Home Page</a>
                     <a href='#' >Treatments</a>
                     <a href='/seyahat' >Trip</a>
                 </div>

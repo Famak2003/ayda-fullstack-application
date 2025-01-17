@@ -4,18 +4,6 @@ import axiosInstance from "../../utilities/axiosInstance";
 export const  SET_ADMIN_EMBRYO_DONOR_DATA = "SET_ADMIN_EMBRYO_DONOR_DATA"
 
 
-export const setAdminEmbryoDonorContent = (pageName, type, data) => async (dispatch) => {
-  try {
-    const res = await axiosInstance.post("/pages/embryodonor", {pageName, type, content: data})
-    console.log(res)
-    toast.success("upload complete")
-  } catch (error) {
-      console.log("There was an error when loggin out", error)
-  }
-};
-
-
-
 export const getAdminEmbryoDonorContent = () => async(dispatch) => {
     try {
       const res = await axiosInstance.get('/pages/embryodonor')

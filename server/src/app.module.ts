@@ -13,6 +13,7 @@ import { AuthGuard } from './auth/auth.guard';
 import { JwtModule } from '@nestjs/jwt';
 import mailerConfig from './config/mailer.config';
 import { MailerModule } from '@nestjs-modules/mailer';
+import { MulterModule } from '@nestjs/platform-express';
 // import { User } from './modules/user/user.model';
 
 
@@ -62,6 +63,9 @@ import { MailerModule } from '@nestjs-modules/mailer';
         },
       }),
       inject: [ConfigService],
+    }),
+    MulterModule.register({
+      dest: './uploads'
     }),
     PagesModule,
     SectionsModule,

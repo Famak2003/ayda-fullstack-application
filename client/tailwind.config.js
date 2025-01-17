@@ -52,6 +52,10 @@ module.exports = {
         danger: "#dc3545",
         light: "#f8f9fa",
         dark: "#343a40",
+        footer_bg: "#98e0f2",
+        caption_text: "#CECECE",
+        menu_text_bg: "#ddd",
+        menu_hover: "#ED6FA7"
       },
       boxShadow: {
         custom_pink1: "rgb(240, 143, 178, 0.25) 0px 14px 28px, rgb(240, 143, 178, 0.22) 0px 10px 10px",

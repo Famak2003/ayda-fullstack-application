@@ -44,7 +44,7 @@ function App() {
     <>
       <Toaster position={'top-right'} />
       <div className=" w-full flex justify-center items-center h-fit dark:bg-black " >
-        <div className=" flex justify-center items-center h-fit max-w-[150rem] relative dark:bg-dark dark:text-white" >
+        <div className=" flex justify-center items-center h-fit relative dark:bg-dark dark:text-white" >
           {/* <button className=' z-[9999] hover:animate-pulse duration-300 absolute right-[20px] top-[10px] flex rounded-xl text-[10px] ring-2 ring-black dark:ring-white px-1 self-end ' onClick={() => { 
               setDarkmode(!darkmode)
           }} >

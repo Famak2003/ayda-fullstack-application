@@ -4,18 +4,6 @@ import axiosInstance from "../../utilities/axiosInstance";
 export const  SET_ADMIN_WHY_US_DATA = "SET_ADMIN_WHY_US_DATA"
 
 
-export const setAdminWhyusContent = (pageName, type, data) => async (dispatch) => {
-  try {
-    const res = await axiosInstance.post("/pages/whyus", {pageName, type, content: data})
-    console.log(res)
-    toast.success("upload complete")
-  } catch (error) {
-      console.log("There was an error when loggin out", error)
-  }
-};
-
-
-
 export const getAdminWhyusContent = () => async(dispatch) => {
     try {
       const res = await axiosInstance.get('/pages/whyus')

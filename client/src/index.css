@@ -4,6 +4,8 @@
 
 :root {
   --light_grey: #595959;
+  --dark: #171717;
+  --dark_side: #212121e6;
   --primary_light_grey: #FaFaFa;
   --secondary_light_grey: #706F6F;
   --blue_head: #67c5dc;
@@ -34,6 +36,7 @@
   --danger: #dc3545;
   --light: #f8f9fa;
   --dark: #343a4a;
+  --odd_role: #374151;
 }
 
 html {
@@ -42,7 +45,7 @@ html {
 
 body {
   margin: 0;
-  font-family: "Lato", serif;
+  font-family: "Lato", sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -63,11 +66,16 @@ input:focus {
   outline: none;
 }
 
+
+
+/* Rich Text */
 .ql-align-center {
   text-align: center;
 }
 
-/* Rich Text */
+#content{
+  font-weight: 400;
+}
 
 #content > ul {
   list-style-type: disc !important; /* Ensures bullets are shown */
@@ -93,12 +101,40 @@ input:focus {
   object-fit: contain;
 }
 
-
 @media (max-width: 650px) {
   #content > ul {
     margin-left: 12px; /* Reduced padding for small screens */
   }
 }
+
+
+/* Ant Table */
+.ant-table {
+  background-color: #f0f2f5;
+}
+
+.ant-table-thead > tr > th {
+  background-color: var(--primary_light_grey) !important;
+  border: 1px solid #d9d9d9;
+  color: var(--primary_black) !important ;
+  text-align: center !important;
+}
+
+.ant-table-tbody > tr > td {
+  border: 1px solid #d9d9d9;
+}
+
+.odd-row{
+  background-color: var(--primary_light_grey);
+  color: var(--primary_black);
+}
+
+.odd-row:hover{
+  color: var(--primary_black);
+}
+
+
+
 
 /* Custom line */
 .customLineParent{
@@ -129,6 +165,20 @@ input:focus {
     height: 20px;
   }
 }
+
+/* Modal style */
+@media (max-width: 1200px) {
+  .createAdminForm{
+    width: 50% !important;
+  }
+}
+
+@media (max-width: 849px) {
+  .createAdminForm{
+    width: 80% !important;
+  }
+}
+
 
 /*   Table Style   */
 table {
@@ -170,8 +220,16 @@ td, th {
   input{
     @apply dark:text-primary_black border-none !shadow-custom4 !ring-0
   }
+  select{
+    @apply dark:text-primary_black border-none !shadow-custom4 !ring-0
+  }
   .ql-toolbar{
     @apply dark:text-white
   }
+  .icon{
+    @apply flex justify-center items-center h-[37px] w-[37px] p-2  bg-secondary_pink rounded-md hover:bg-blue_head duration-300
+  }
+  .menuText{
+    @apply dark:text-white px-[12px] py-[16px] hover:bg-menu_text_bg hover:text-menu_hover
+  }
 }
-

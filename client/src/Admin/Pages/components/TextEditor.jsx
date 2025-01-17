@@ -67,44 +67,44 @@ const TextEditor = ({
     }, [value])
     
     const handleImageUpload = async(e) => {
-    setImgLoader(true)
-    e.preventDefault();
-    const file = e.target.files[0];
-    if (!file) return
+        setImgLoader(true)
+        e.preventDefault();
+        const file = e.target.files[0];
+        if (!file) return
 
-    const maxSize = 2 * 1024 * 1024; // 2mb is the max image size
+        const maxSize = 2 * 1024 * 1024; // 2mb is the max image size
 
-    if (file.size > maxSize){
-        toast.error("Image size too big")
-        setImgLoader(false)
-        document.getElementById(`file-input`).value = "";
-        return
-    }
+        if (file.size > maxSize){
+            toast.error("Image size too big")
+            setImgLoader(false)
+            document.getElementById(`file-input`).value = "";
+            return
+        }
 
-    const options = {
-        maxSizeMB: 1,
-        maxWidthOrHeight: 1920,
-        useWebWorker: true
-    }
-    try {
-        const compressedFile = await imageCompression(file, options);
-        const base64 = new FileReader()
-        base64.addEventListener("load", ()=>{
-            customImageFunc ? customImageFunc(base64.result, data.id)
-            :
-            setData((prev) => {
-                return {
-                ...prev,
-                image: base64.result,
-                }
-            });
-        })
-        base64.readAsDataURL(compressedFile)
-        document.getElementById(`file-input`).value = "";
-    } catch (error) {
-        console.log(error);
-    } finally {
-        setImgLoader(false)
+        const options = {
+            maxSizeMB: 1,
+            maxWidthOrHeight: 1920,
+            useWebWorker: true
+        }
+        try {
+            const compressedFile = await imageCompression(file, options);
+            const base64 = new FileReader()
+            base64.addEventListener("load", ()=>{
+                customImageFunc ? customImageFunc(base64.result, data.id)
+                :
+                setData((prev) => {
+                    return {
+                        ...prev,
+                        image: base64.result,
+                    }
+                });
+            })
+            base64.readAsDataURL(compressedFile)
+            document.getElementById(`file-input`).value = "";
+        } catch (error) {
+            console.log(error);
+        } finally {
+            setImgLoader(false)
     }
     
     
@@ -170,7 +170,7 @@ const TextEditor = ({
                         ""
                     )
                 }
-                <div className=" flex items-center w-full h-[90vh] tab:h-[50vh] gap-2 p-1 overflow-x-scroll">
+                <div className=" flex items-center w-full h-[600px] gap-2 p-1 overflow-x-scroll">
                     <div className=' flex flex-col gap-2 items-center h-full w-full'>
                         {/* <h1 className=' flex justify-center items-center h-[5%] w-full '>
                             Editor

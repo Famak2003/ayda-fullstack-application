@@ -4,18 +4,6 @@ import axiosInstance from "../../utilities/axiosInstance";
 export const  SET_ADMIN_TRIP_DATA = "SET_ADMIN_TRIP_DATA"
 
 
-export const setAdminTripContent = (pageName, type, data) => async (dispatch) => {
-  try {
-    const res = await axiosInstance.post("/pages/trip", {pageName, type, content: data})
-    console.log(res)
-    toast.success("upload complete")
-  } catch (error) {
-      console.log("There was an error when loggin out", error)
-  }
-};
-
-
-
 export const getAdminTripContent = () => async(dispatch) => {
     try {
       const res = await axiosInstance.get('/pages/trip')

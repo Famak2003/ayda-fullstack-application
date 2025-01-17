@@ -10,7 +10,7 @@ const SpermDonr = () => {
     }, [])
     console.log("Public SpermDonor ******", data)
     return (
-        <section className="flex flex-col gap-4 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[65.5px]">
+        <section className="max-w-[1200px] flex flex-col gap-4 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[30px]">
                 <h1 className=" text-blue_head text-[19px] sm:text-[25px] font-semibold " >
                     Sperm Donation
                 </h1>

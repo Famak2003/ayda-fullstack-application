@@ -1,9 +1,10 @@
 import { Column, DataType, Model, Table } from 'sequelize-typescript';
 
-@Table({tableName: 'user',
+@Table({
+    tableName: 'user',
     createdAt: "created_at", // Map to DB column
     updatedAt: "updated_at",
-    deletedAt: "deleted_at"
+    deletedAt: "deleted_at",
 })
 export class User extends Model {
   @Column({
@@ -11,6 +12,12 @@ export class User extends Model {
     allowNull: false,
   })
   name: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true
+  })
+  avatar: string;
 
   @Column({
     type: DataType.STRING,
@@ -39,5 +46,11 @@ export class User extends Model {
     allowNull: true
   })
   expiring_date: string;
+
+  @Column({
+    type: DataType.STRING,
+    allowNull: true
+  })
+  role: string;
 
 }

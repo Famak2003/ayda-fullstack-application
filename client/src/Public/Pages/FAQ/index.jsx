@@ -12,7 +12,7 @@ const FAQ = () => {
     }, [])
     console.log("Public FAQ Data ******", data)
     return (
-        <section className='flex flex-col gap-6 py-[30px] sm:py-[70px] px-[15px] mobile:px-[30px] sm:px-[65.5px]' >
+        <section className=' max-w-[1200px] flex flex-col gap-6 py-[30px] sm:py-[70px] px-[15px] mobile:px-[30px] sm:px-[30px]' >
             {
                 data ? 
                  <>
@@ -26,9 +26,11 @@ const FAQ = () => {
                                     return(
                                         <>
                                             <a className=' flex items-center gap-2 ' href={`#sss${obj.id}`} >
-                                                <figure className=' flex justify-center items-center p-[7px] min-w-[40px] min-h-[40px] rounded-md bg-secondary_pink ' >
-                                                    <img className='h-[30px] w-[30px] ' src={ARROW} alt="arrow down" />
-                                                </figure>
+                                                <div className=' icon ' >
+                                                    
+                                                    <i class="fa fa-arrow-down" aria-hidden="true" style={{'fontSize': "20px", "color": "#fff"}}></i>
+                                                    
+                                                </div>
                                                 <p className=' text-[16px] mobile:text-[18px] font-semibold ' >
                                                     {obj.header}
                                                 </p>

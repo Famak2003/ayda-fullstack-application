@@ -1,9 +1,11 @@
-import { IS_AUTHENTICATED, IS_EMAIL_VERIFIED, IS_OTP_VERIFIED } from '../actions/authAction';
+import { IS_AUTHENTICATED, IS_EMAIL_VERIFIED, IS_OTP_VERIFIED, SET_PROFILE, SET_PRTMISSION, SET_USER_ID } from '../actions/authAction';
 
 const initialState = {
   isAuthenticated: false,
   isEmailVerified: null,
-  isOTPVerified: false
+  isOTPVerified: false,
+  permission: 'admin',
+  userInfo: {},
 };
 
 const authReducer = (state = initialState, action) => {
@@ -14,6 +16,13 @@ const authReducer = (state = initialState, action) => {
       return { ...state, isEmailVerified: action.payload };
     case IS_OTP_VERIFIED:
       return { ...state, isOTPVerified: action.payload };
+    case SET_PRTMISSION:
+      return { ...state, permission: action.payload };
+    case SET_USER_ID:
+      return { ...state, userInfo: {...state.userInfo, userID: action.payload} };
+    case SET_PROFILE:
+      return { ...state, userInfo: {...state.userInfo, ...action.payload} };
+      
     default:
       return state;
   }

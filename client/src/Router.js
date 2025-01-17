@@ -158,6 +158,10 @@ const Router = createBrowserRouter([
                 path: 'iletisim',
                 element: <AdminPages.Communication/>
             },
+            {
+                path: 'admins',
+                element: <AdminPages.Admins/>
+            },
         ]
     },
     {

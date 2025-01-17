@@ -10,14 +10,14 @@ const OurTeam = () => {
     }, [])
     console.log("Public Our Team ******", data)
     return (
-        <section className="flex flex-col lmd:flex-row justify-center items-center lmd:items-start py-[15px] sm:py-[30px] px-[15px] sm:px-[30px] tab:px-[65.5px]" >
+        <section className=" max-w-[1200px] flex flex-col lmd:flex-row justify-center items-center lmd:items-start py-[15px] sm:py-[30px] px-[15px] sm:px-[30px] tab:px-[30px]" >
             {
                  data ? 
-                    <>
+                    <div className=" flex w-full justify-center items-start" >
                         {
                             data.map((obj, idx) => {
                                 return (
-                                    <div key={idx} className=" flex flex-col gap-4 justify-center items-center w-full lmd:w-[45%] tab:max-w-[560px] p-[15px] " >
+                                    <div key={idx} className=" flex flex-col gap-4 justify-center items-center w-full lmd:w-[45%] tab:w-full p-[15px] xxl:p-[19px] " >
                                         <figure className=" h-fit w-fit max-h-[353px] max-w-[265px] " >
                                             <img className=" h-full w-full object-cover " src={obj.image} alt="article image" />
                                         </figure>
@@ -31,7 +31,7 @@ const OurTeam = () => {
                                 )
                             })
                         }
-                    </>
+                    </div>
                     :
                     <>
                         <div>

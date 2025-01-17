@@ -1,9 +1,10 @@
 import { Outlet, useLocation } from "react-router-dom"
 import PublicFooter from "./components/PublicFooter";
 import NavigationBar from "./components/NavigationBar";
-import BODYHEADERIMG from './../Asset/image7.jpg'
+import BODYHEADERIMG from './../Asset/sub-hero-img.jpg'
 import CANCEL from './../Asset/icons8-x-50.png'
 import SEARCH from './../Asset/icons8-search-50 (1).png'
+import DOT from './../Asset/dots.png'
 import { useState } from "react";
 
 
@@ -13,13 +14,23 @@ const Public = () => {
     const pathname = location.pathname
     console.log(pathname === "/")
     return(
-        <div className=" flex flex-col justify-between min-h-[100dvh] h-fit relative ">
+        <div className=" flex flex-col justify-between items-center min-h-[100dvh] h-fit relative ">
             <NavigationBar setOpenSearch={setOpenSearch} openSearch={openSearch} />
             {
                 pathname === "/" ?
                      "" 
                     : 
-                    <figure className=" h-[220px] w-screen " >
+                    <figure 
+                        className=" relative h-[220px] w-screen "
+                        
+                    >
+                        <div 
+                            className=" absolute top-0 w-full h-full "
+                            style={{
+                                backgroundImage: `url(${DOT})`
+                            }}
+                        >
+                        </div>
                         <img className=" w-full h-full object-cover " src={BODYHEADERIMG} alt="header image" />                       
                     </figure>
             }

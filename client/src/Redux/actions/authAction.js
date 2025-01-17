@@ -4,19 +4,39 @@ import axiosInstance from "../../utilities/axiosInstance";
 export const IS_AUTHENTICATED = 'IS_AUTHENTICATED';
 export const IS_EMAIL_VERIFIED = 'IS_EMAIL_VERIFIED';
 export const IS_OTP_VERIFIED = 'IS_OTP_VERIFIED';
+export const SET_PRTMISSION = 'SET_PRTMISSION';
+export const SET_USER_ID = 'SET_USER_ID';
+export const  SET_PROFILE = "SET_PROFILE"
+
 
 
 export const login = (data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/user/login", data)
+        const permission = res?.data?.role
+        console.log(res?.data)
         dispatch(setIsAuthenticated(true))
+        dispatch(setPermission(permission))
+        dispatch(setUserID(res.data.id))
         toast.success("login success")
     } catch (error) {
-        console.log(error)
         toast.error("Incorrect credential")
-        console.log("There was an error when loggin in", error)
     }
 };
+
+export const setPermission = (data) => (dispatch) => {
+    dispatch({
+        type: SET_PRTMISSION,
+        payload: data
+    })
+}
+
+export const setUserID = (data) => (dispatch) => {
+    dispatch({
+        type: SET_USER_ID,
+        payload: data
+    })
+}
 
 export const verifyEmail = (data) => async (dispatch) => {
     const _toastId = toast.loading("Sending mail...");
@@ -24,7 +44,6 @@ export const verifyEmail = (data) => async (dispatch) => {
         const res = await axiosInstance.post("/user/verify-mail", data)
         toast.dismiss(_toastId);
         toast.success(" Mail sent 🎉! ");
-        console.log(" /// Mail sent ///", res.data)
         dispatch({ // update isEmailVerified state
             type: IS_EMAIL_VERIFIED,
             payload: {email: data?.email}
@@ -116,7 +135,33 @@ export const logout = () => async (dispatch) => {
     }
 };
 
+export const getProfile = (data) => async(dispatch) => {
+    try {
+        const res = await axiosInstance.get('/user/get-profile', data)
+        const result = res?.data
+        dispatch({
+            type: SET_PROFILE,
+            payload: result
+        })
+    } catch (error) {
+        toast.error("trouble getting profile")
+    }
 
-// export const updateIsEmailVerified = () => async (dispatch) => {
-//     disp
-// }
+}
+
+export const updateProfile = (data) => async(dispatch) => {
+    try {
+        const res = await axiosInstance.post('/user/update-profile', data)
+        toast.success('profile updated')
+        
+    } catch (error) {
+        console.log(error.response.data.error === "Conflict")
+        if(error.response.data.error === "Conflict"){
+            toast.error("Email already in use")
+            return
+        }
+        toast.error("trouble changing profile")
+    }
+
+}
+

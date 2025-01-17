@@ -46,6 +46,7 @@ axiosInstance.interceptors.response.use(
 
 
     if (error.response?.status === 401) {
+      toast.error("Unauthorized")
       if (!(window.location.pathname === "/admin/auth")){
         Cookies.remove('token')
         window.location.href = "/admin/auth"

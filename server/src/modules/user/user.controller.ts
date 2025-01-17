@@ -24,11 +24,11 @@ export class UserController {
         return this.userService.getTest();
     }
 
-    @Put('create')
+    @Post('create')
     async createUser(
-        @Body() body: { email: string, name: string, password: string } 
+        @Body() body: { email: string, name: string, password: string, role: string } 
     ): Promise<User>{
-        const result = await this.userService.createUser(body.name, body.email, body.password);
+        const result = await this.userService.createUser(body.name, body.email, body.password, body.role);
         return result
     }
 
@@ -37,16 +37,16 @@ export class UserController {
     async login(
         @Body() body: {email: string, password: string},
         @Res({ passthrough: true}) response: Response
-    ): Promise<{code: number, status: string, token: string}>{
-        const {code, token} = await this.userService.login(body.email, body.password);
+    ): Promise<{status: number, message: string, role: string, id: number}>{
+        const {code, token, role, id} = await this.userService.login(body.email, body.password);
         try {
             // Set cookie
             response.cookie('token', token)
 
-            return {code, status: 'success', token}
+            return {status: code, message: 'success', role, id}
         } catch (error) {
-            console.error('Error during registration:', error);
-            throw new InternalServerErrorException("Error creating user")
+            console.error('Error setting cookie:', error);
+            throw new InternalServerErrorException("Error logging in")
         } 
     }
 
@@ -89,5 +89,31 @@ export class UserController {
         const resetPassord = await this.userService.resetPassword( body.email, body.newPassword)
         return resetPassord
     }
+
+    @Get("get-all")
+    async getAll(){
+        return await this.userService.getAll()
+    }
+
+    @Post("delete-admin")
+    async deleteAdmin(@Body() body: {id: number}){
+        return await this.userService.deleteAdmin( body.id )
+    }
+
+    @Post("update-role")
+    async updateRole(@Body() body: {id: number, role: string}, @Req() req){
+        return await this.userService.updateRole( body.id, body.role, req.user )
+    }
+
+    @Post("update-profile")
+    async updateProfile(@Body() body: {avatar: string, name: string, email: string}, @Req() req){
+        return await this.userService.updateProfile( body.avatar, body.name, body.email, req.user )
+    }
+
+    @Get("get-profile")
+    async getProfile(@Req() req){
+        return await this.userService.getProfile(req.user)
+    }
+    
 }
 
