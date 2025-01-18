@@ -115,7 +115,8 @@ export class UserService{
     async contactUs(message: string, email: string, subject: string, name: string){
         try {
             this.mailService.sendMail({
-              to: "famaki310@gmail.com",
+              to: "info@aydaivf.com",
+              bcc: "orhan.ozkilic@neareasttechnology.com",
               subject: subject,
               html: `<div> This mail is sent by ${name} <br/><br/> ${message} <br/><br/> Contact the sender from ${email}</div>`
             });
@@ -292,7 +293,7 @@ export class UserService{
             const checkMailConflict = await this.userModel.findOne({ // checks if email is already choosen
                 where: { email }, // Specify the condition
             });
-            
+
             if(checkMailConflict && checkMailConflict.dataValues.id !== user.sub) throw new ConflictException("Email belongs to a user, choose another")
         
             this.userModel.update({avatar, name, email}, {where: {id: user?.sub}}) // update data

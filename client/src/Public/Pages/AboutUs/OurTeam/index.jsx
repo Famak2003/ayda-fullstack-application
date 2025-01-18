@@ -24,7 +24,7 @@ const OurTeam = () => {
                                         <h3 className=" text-light_pink text-[17.5px] text-center font-semibold w-full lg:w-[408px] " >
                                             {obj.header}
                                         </h3>
-                                        <div className=" text-center leading-[26px] text-[16px] text-light_grey w-full " >
+                                        <div className=" text-center leading-[24px] text-[16px] text-light_grey w-full " >
                                             <div id="content" className=' w-full items-start ' dangerouslySetInnerHTML={{ __html: obj.content }} />
                                         </div>
                                     </div>
@@ -35,7 +35,7 @@ const OurTeam = () => {
                     :
                     <>
                         <div>
-                            Loading...
+                            Yükleniyor...
                         </div>
                     </>
             }

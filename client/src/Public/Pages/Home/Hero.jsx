@@ -1,32 +1,11 @@
 import './Hero.css'
 import {Carousel} from 'flowbite-react'
-import IMAGE1 from './../../../Asset/image5.jpg'
-import IMAGE2 from './../../../Asset/image4.jpg'
-import IMAGE3 from './../../../Asset/image1.jpg'
 import DOT from './../../../Asset/dots.png'
 
 import LEFT from './../../../Asset/icons8-left-50.png'
 import ArrowComp from './components/ArrowComp'
 import { useSelector } from 'react-redux'
 
-
-const carouselData = [
-    {
-        image: IMAGE1, 
-        header: 'Come To Us To Have You', 
-        subHeader: "Let's Give the Best Gift"
-    },
-    {
-        image: IMAGE2, 
-        header: 'Come To Us To Have You', 
-        subHeader: "Let's Give the Best Gift"
-    },
-    {
-        image: IMAGE3, 
-        header: 'Come To Us To Have You', 
-        subHeader: "Let's Give the Best Gift"
-    },
-]
 
 const Hero = () => {
     // Extracting hero data START
@@ -78,42 +57,11 @@ const Hero = () => {
                     </Carousel>
                 </div> :
                 <div>
-                    Loading...
+                    Yükleniyor...
                 </div>
             }
         </div>
     )
 }
-{/* <div className=" flex w-fit h-full overflow-x-scroll " >
-    {
-        carouselData.map((obj, idx) => {
-            return (
-                <div className={` h-full w-screen `}
-                    style={{ 
-                        backgroundImage: `url(${obj.image})`,
-                        backgroundPosition: 'center', // Centers the image
-                        backgroundSize: 'cover', // Ensures the image covers the container
-                        backgroundRepeat: 'no-repeat', // Prevents tiling
-                        height: '100vh', // Full-screen height
-                        width: '100vw', // Full-screen width
-                    }}
-                >
-                    <h1>{obj.header}</h1>
-                    <h2>{obj.subHeader}</h2>
-
-                </div>
-            )
-        })
-    }
-
-</div> */}
-
-
-//     --breakpoint-xs: 0;
-//     --breakpoint-sm: 576px;
-//     --breakpoint-md: 768px;
-//     --breakpoint-lg: 992px;
-//     --breakpoint-xl: 1200px;
-//    
 
 export default Hero;

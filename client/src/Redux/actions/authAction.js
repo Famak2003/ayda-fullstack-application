@@ -144,7 +144,7 @@ export const getProfile = (data) => async(dispatch) => {
             payload: result
         })
     } catch (error) {
-        toast.error("trouble getting profile")
+        
     }
 
 }

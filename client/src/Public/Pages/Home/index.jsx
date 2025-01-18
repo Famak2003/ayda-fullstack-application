@@ -13,7 +13,7 @@ const Home = () => {
     }, [])
 
     return (
-        <section className=" flex flex-col justify-center items-center w-full gap-6 ">
+        <section className=" flex flex-col justify-center items-center w-full ">
             <Hero/>
             <Greetings/>
             <Methods/>

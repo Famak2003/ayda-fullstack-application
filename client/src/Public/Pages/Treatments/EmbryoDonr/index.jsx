@@ -12,7 +12,7 @@ const EmbryoDonr = () => {
     return (
         <section className="max-w-[1200px] flex flex-col gap-4 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[30px]">
                 <h1 className=" text-blue_head text-[19px] sm:text-[25px] font-semibold " >
-                    Embryo Donation
+                    Embriyo Donasyonu
                 </h1>
                 {
                     data ?
@@ -25,7 +25,7 @@ const EmbryoDonr = () => {
                                                 <h4 className="text-[17.5px] text-light_pink font-bold text-center " >
                                                     {obj?.header}
                                                 </h4>
-                                                <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey" >
+                                                <div className=" text-left leading-[24px] text-[15px] mobile:text-[16px] text-light_grey" >
                                                     <div className=' w-full items-start ' id='content' dangerouslySetInnerHTML={{ __html: obj.content }} />
                                                 </div>
                                             </div>
@@ -39,7 +39,7 @@ const EmbryoDonr = () => {
                         </>
                     :
                         <div>
-                            Loading...
+                            Yükleniyor...
                         </div>
                 }
         </section>

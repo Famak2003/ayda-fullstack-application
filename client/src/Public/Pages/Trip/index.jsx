@@ -15,7 +15,7 @@ const  Trip = () => {
                 data ? 
                     <>
                         <h1 className=" text-blue_head text-[19px] text-center sm:text-[25px] font-semibold " >
-                            Trip
+                            Seyahat
                         </h1>
                         <ul className=' flex flex-col gap-8 ' >
                             {
@@ -25,7 +25,7 @@ const  Trip = () => {
                                             <h3 className=" text-light_pink text-[17.5px] text-center font-semibold " >
                                                 {obj.header}
                                             </h3>
-                                            <div className=" text-left leading-[26px] text-[15px] mobile:text-[16px] text-light_grey " >
+                                            <div className=" text-left leading-[24px] text-[15px] mobile:text-[16px] text-light_grey " >
                                                 <div className=' w-full items-start ' id='content' dangerouslySetInnerHTML={{ __html: obj.content }} />
                                             </div>
 
@@ -37,7 +37,7 @@ const  Trip = () => {
                         </ul>
                     </>
                 :
-                    <div>Loading...</div>
+                    <div>Yükleniyor...</div>
             }
         </section>
     )

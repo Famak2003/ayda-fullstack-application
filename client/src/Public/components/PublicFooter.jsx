@@ -12,14 +12,15 @@ function PublicFooter() {
                     <svg className=' ' fill='#fff' height={'100%'} width={'100%'} xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path d="M384 476.1L192 421.2l0-385.3L384 90.8l0 385.3zm32-1.2l0-386.5L543.1 37.5c15.8-6.3 32.9 5.3 32.9 22.3l0 334.8c0 9.8-6 18.6-15.1 22.3L416 474.8zM15.1 95.1L160 37.2l0 386.5L32.9 474.5C17.1 480.8 0 469.2 0 452.2L0 117.4c0-9.8 6-18.6 15.1-22.3z"/></svg>
                 </div>
                 <h2 className=" text-[22px] font-bold ">
-                    Our address
+                Adresimiz
+
                 </h2>
                 <div className=" flex flex-col lmobile:flex-row justify-center items-center gap-2 ">
                     <figure className=" w-[91px] h-[95px] ">
                         <img className=" w-full h-full object-cover " src={CERTIFIED} alt="certifications" />
                     </figure>
                     <address className=" w-[50%] overflow-clip ">
-                        Martyr Erdoğan Yıldız St. No:5 Kızılay, Nicosia Northern Cyprus (TRNC)
+                        Şehit Erdoğan Yıldız Cd. No:5 Kızılay, Lefkoşa Kuzey Kıbrıs (KKTC)
                     </address>
                 </div>
 
@@ -29,7 +30,7 @@ function PublicFooter() {
                     <i class="fa fa-phone fs22" aria-hidden="true" style={{'fontSize': "20px", "color": "#fff"}}></i>
                 </div>
                 <h2 className=" text-[22px] font-bold ">
-                    Communication
+                    İletişim
                 </h2>
                 <div className=" flex flex-col justify-center items-center gap-2 ">
                     <p className='text-[16px] leading-[28px]' >
@@ -41,19 +42,19 @@ function PublicFooter() {
                 </div>
 
             </li>
-            <li className=" flex flex-col justify-center items-center w-full mobile:min-w-[260px] lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
+            <li className=" relative flex flex-col justify-center items-center w-full mobile:min-w-[260px] lmobile:w-[30%] xl:w-[343px] h-fit mobile:h-[330px] p-3 lmobile:h-[247px] rounded-md bg-white ">
                 <div className=" icon ">
                     <i class="fa fa-link" aria-hidden="true" style={{'fontSize': "20px", "color": "#fff"}}></i>
                 </div>
                 <h2 className=" text-[22px] font-bold ">
-                    Quick Access
+                    Hızlı Erişim
                 </h2>
-                <div className=" flex flex-col justify-center items-center gap-5 text-[16px] font-semibold text-secondary_pink ">
-                    <a className=' duration-300 hover:text-blue_head hover:border-secondary_pink hover:border-b-[1px] p-2 hover:pb-2 ' href='/' >Home Page</a>
-                    <a href='#' >Treatments</a>
-                    <a href='/seyahat' >Trip</a>
+                <div className=" flex flex-col justify-center items-center gap-1 text-[16px] font-semibold text-secondary_pink ">
+                    <a className=' duration-300 hover:text-blue_head hover:border-secondary_pink p-2 ' href='/' >Anasayfa</a>
+                    <a className=' duration-300 hover:text-blue_head hover:border-secondary_pink p-2 ' href='#' >Tedaviler</a>
+                    <a className=' duration-300 hover:text-blue_head hover:border-secondary_pink p-2 ' href='/seyahat' >Seyahat</a>
                 </div>
-
+                <p className=' absolute translate-y-[-20000000000%]' >akande</p>
             </li>
         </ul>
         <Caption/>

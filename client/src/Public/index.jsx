@@ -46,7 +46,9 @@ const Public = () => {
                     <input className=" text-primary_black text-[14px] sm:text-[15px] h-full w-full  " type="search" placeholder="Article Search..." />
                 </div>
             </div>
-            <Outlet/>
+            <div className=" flex justify-center items-start flex-1 ring-2 w-full " >
+                <Outlet/>
+            </div>
             <PublicFooter/>
             {/* <Caption/> */}
         </div>

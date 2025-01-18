@@ -104,8 +104,8 @@ const EggFreezing = () => {
                     Body
                 </h2>
 
-                <div className="flex flex-col gap-2 py-4 " >
-                    <h2 className=" text-[20px] font-semibold " >
+                <div className="flex flex-col gap-2 pb-4 " >
+                    <h2 className=" text-[16px] font-semibold " >
                         Header Writeup
                     </h2>
                     <TextEditor header={false} handleContent={handleHeaderWriteUp} defaultContent={data?.headerWriteUp} image={false} subHeader={false} data={data}/>

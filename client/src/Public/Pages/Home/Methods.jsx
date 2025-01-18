@@ -1,4 +1,5 @@
 import CHECK from './../../../Asset/icons8-check-48.png'
+import BACKIMG from './../../../Asset/greetingslogo.svg'
 import DoubleHeader from '../../components/DoubleHeader'
 import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
@@ -31,7 +32,7 @@ const Methods = () => {
 
     return (
         <div id='method' style={{
-                backgroundImage: `url("https://aydaivf.com/templates/aydaivf/imgs/logoonly.svg")`,
+                backgroundImage: `url(${BACKIMG})`,
                 backgroundPosition: "center",
                 backgroundRepeat: "no-repeat",
                 backgroundSize: "contain",
@@ -59,7 +60,7 @@ const Methods = () => {
                                 }
                             </ul>
                             <Link to={'iletisim'} className=' cursor-pointer w-[161px] h-[56px] mt-[1.5rem] rounded-[32px] bg-light_pink ring-1 ring-secondary_pink flex justify-center items-center text-white font-semibold  ' >
-                                Contact Us
+                                Bize Ulaşın
                             </Link>
                         </> :
                         <div className=' w-full h-[500px] '>

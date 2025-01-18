@@ -14,7 +14,22 @@
 
 @media (max-width: 550px) {
     #greetingsIMG{
-        background-size: 100% 100%; /* Set the gradient size */
+        background-size: 430px 430px; /* Set the gradient size */
+        background-position: center; 
+    }
+}
+
+@media (max-width: 430px) {
+    #greetingsIMG{
+        background-size: 350px 350px; /* Set the gradient size */
+        background-position: center; 
+    }
+}
+
+
+@media (max-width: 350px) {
+    #greetingsIMG{
+        background-size: 300px 300px; /* Set the gradient size */
         background-position: center; 
     }
 }
