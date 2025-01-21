@@ -13,10 +13,8 @@ const UploadButton = ({convertToArr, pageName, type, data}) => {
                 onClick={() => {
                     if(convertToArr){
                         const convertDataToArr = Object.values(data)
-                        console.log(convertDataToArr)
                         dispatch(uploadSection( pageName, type, JSON.stringify(convertDataToArr)))
                     }else{
-                        console.log(data)
                         dispatch(uploadSection( pageName, type, JSON.stringify(data)))
                     }
                 }} 

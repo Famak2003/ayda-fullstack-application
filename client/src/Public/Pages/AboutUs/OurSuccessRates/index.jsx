@@ -5,7 +5,6 @@ import SuccessRateTable from "../../../components/SuccessRateTable"
 
 const OurSuccessRates = () => {
     const data = useSelector(state => state.ourSuccessRate.data)
-    console.log(data)
     const dispatch = useDispatch()
     useEffect(()=>{
         dispatch(getOurSuccessRateContent())

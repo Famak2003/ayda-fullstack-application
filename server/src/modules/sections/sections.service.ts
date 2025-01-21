@@ -86,11 +86,9 @@ export class SectionsService {
 
       if (page) {
         for (const item of body) {
-          // const { header, subHeader, image, start, stop } = item;
           const { header, subHeader, image} = item;
     
-          // if (!image || !header || !subHeader || !start || !stop) {
-            if (!image || !header || !subHeader ) {
+          if (!image || !header || !subHeader ) {
             throw new HttpException('Missing Required Fields', HttpStatus.BAD_REQUEST);
           }
     
@@ -110,14 +108,7 @@ export class SectionsService {
           // Save the image to the assets folder
           fs.writeFileSync(filePath, buffer);
     
-          // Simulate saving to a database
-          // const savedItem = {
-          //   header,
-          //   subHeader,
-          //   start,
-          //   stop,
-          //   imagePath: `assets/${fileName}`, // Save relative path
-          // };
+         
           const savedItem = {
             header,
             subHeader,
@@ -162,14 +153,5 @@ export class SectionsService {
         console.error('Page not found!');
         throw new InternalServerErrorException("Page not found")
       }
-
-        // const dataBaseQuerry = await this.sectionModel.create({
-
-        // })
-
-        // console.log(" ?????????????????? ",savedData)
-    
-        return { message: 'Images saved successfully'};
-        // return { message: 'Images saved successfully', data: savedData };
     }
 }

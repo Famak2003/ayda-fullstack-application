@@ -9,7 +9,6 @@ import { useEffect, useState } from "react"
 const Ovarian = () => {
     const dispatch = useDispatch()
     const adminOvarianPRP = useSelector(state => state.adminOvarianPRP.data)
-    console.log("AdminOvarianPRP ===> ?",adminOvarianPRP)
     const [data, setData] = useState(adminOvarianPRP)
 
     // Sync Redux state to local state

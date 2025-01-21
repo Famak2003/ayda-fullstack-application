@@ -9,7 +9,6 @@ const OurPrices = () => {
     useEffect(() => {
         dispatch(getOurPricesContent())
     }, [])
-    console.log("Public Our Price ******", data)
     return (
         <section className=" max-w-[1200px] flex flex-col gap-6 justify-center items-center py-[15px] sm:py-[30px] px-[15px] mobile:px-[30px] sm:px-[30px] " >
             {

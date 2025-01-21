@@ -10,7 +10,6 @@ const FAQ = () => {
     const dispatch = useDispatch()
     const adminFAQ = useSelector(state => state.adminFAQ.data)
     const [data, setData] = useState(adminFAQ)
-    console.log("FAQ ===?  ", adminFAQ)
 
     // Sync Redux state to local state
     useEffect(() => {

@@ -10,7 +10,6 @@ import CustomLine from "../../components/CustomLine"
 const OurSuccessRates = () => {
     const dispatch = useDispatch()
     const adminOurSuccessRate = useSelector(state => state.adminOurSuccessRate.data)
-    console.log("AdminOurSuccessRate ===> ?",adminOurSuccessRate)
     const [data, setData] = useState(adminOurSuccessRate)
 
     // Sync Redux state to local state
@@ -211,7 +210,6 @@ const IVFInfo = ({ obj, id ,setData}) => {
 
     const handleDelete = (id) => {
         setData((prev) => {
-            console.log(id)
             return {
                 ...prev,
                 ivfDetails: prev.ivfDetails.filter((item) => item.id !== id),

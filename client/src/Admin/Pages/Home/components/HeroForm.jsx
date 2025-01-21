@@ -22,8 +22,6 @@ const HeroForm = ({ id, data, setData, obj }) => {
         );
     }
   
-    console.log(data)
-  
     const handleImageUpload = async(e, id) => {
         setImgLoader(true)
         e.preventDefault();
@@ -62,7 +60,7 @@ const HeroForm = ({ id, data, setData, obj }) => {
             base64.readAsDataURL(compressedFile)
             document.getElementById(`file-input-${id}`).value = "";
         } catch (error) {
-            console.log(error);
+            console.warn(error);
         } finally {
             setImgLoader(false)
         }
@@ -70,7 +68,6 @@ const HeroForm = ({ id, data, setData, obj }) => {
     };
 
     const handleDeleteImage = (e, idToRemove) => {
-        console.log(idToRemove)
         e.preventDefault()
         const updatedData = data.map((item) => {
             if (item.id === idToRemove) {

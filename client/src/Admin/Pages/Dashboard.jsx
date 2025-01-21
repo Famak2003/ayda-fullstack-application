@@ -24,7 +24,6 @@ const Dashboard = () => {
             dispatch(getProfile({id: userInfo.userID}))
         }, [])
 
-    console.log("PERMISSIOON === > ?", permission)
 
     const handleCloseSidebar = () => {
         setShowSidebar(false)

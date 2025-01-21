@@ -10,7 +10,6 @@ const Whyus = () => {
     const dispatch = useDispatch()
     const adminWhyus = useSelector(state => state.adminWhyus.data)
     const [data, setData] = useState(adminWhyus)
-    console.log("Admin why us ", adminWhyus)
 
     // Sync Redux state to local state
     useEffect(() => {

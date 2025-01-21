@@ -114,6 +114,10 @@ export class UserController {
     async getProfile(@Req() req){
         return await this.userService.getProfile(req.user)
     }
-    
+
+    @Post("verify-recaptcha")
+    async verifyRecaptcha(@Body() body: {token: string}){
+        return await this.userService.verifyRecaptcha(body.token)
+    }
 }
 

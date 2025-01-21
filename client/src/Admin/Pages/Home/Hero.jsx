@@ -20,13 +20,11 @@ const Hero = () => {
         nextID: hero[1],  // Second element becomes nextID
     }
 
-    console.log(" Hero from Dashboard ",convertToObj)
     // Extracting hero data STOP
 
     const heroData = useSelector((state) => state.adminHome.heroData)
     const dispatch = useDispatch()
-    const [data, setData] = useState(heroData)  
-    console.log("===== > Original ", heroData)
+    const [data, setData] = useState(heroData)
 
     // Sync Redux state to local state
     useEffect(() => {

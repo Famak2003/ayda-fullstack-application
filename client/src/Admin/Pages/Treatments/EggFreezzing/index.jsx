@@ -9,7 +9,6 @@ import UploadButton from "../../components/UploadButton"
 const EggFreezing = () => {
     const dispatch = useDispatch()
     const adminEggFreezing = useSelector(state => state.adminEggFreezing.data)
-    console.log("AdminEggFreezing ===> ?",adminEggFreezing)
     const [data, setData] = useState(adminEggFreezing)
 
     // Sync Redux state to local state

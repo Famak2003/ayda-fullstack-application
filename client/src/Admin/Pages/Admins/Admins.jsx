@@ -38,7 +38,6 @@ const Admins = () =>{
         setIsAdminRoleVisible(false)
     }
 
-    console.log(admins)
 
     useOutsideClick(roleRef, closeRoleDropDown)
 
@@ -52,7 +51,6 @@ const Admins = () =>{
             dataIndex: 'name',
             key: 'name',
             render: (_,record) =>{
-                console.log(record)
                 return(
                     <div className=' flex justify-center items-center gap-2 ' >
                         {
@@ -183,7 +181,7 @@ const Admins = () =>{
             <Table className=' !border-none text-center w-full ' 
                 columns={columns}
                 scroll={{
-                    x: scrollX, // using a dynamic value to adjust table size based on screen size
+                    x: 656.08, // using a dynamic value to adjust table size based on screen size
                 }}
                 dataSource={admins || []}
                 loading={!admins}

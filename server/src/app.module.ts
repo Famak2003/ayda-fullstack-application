@@ -14,6 +14,7 @@ import { JwtModule } from '@nestjs/jwt';
 import mailerConfig from './config/mailer.config';
 import { MailerModule } from '@nestjs-modules/mailer';
 import { MulterModule } from '@nestjs/platform-express';
+import envConfig from './config/env.config';
 // import { User } from './modules/user/user.model';
 
 
@@ -21,7 +22,7 @@ import { MulterModule } from '@nestjs/platform-express';
   imports: [
     ConfigModule.forRoot({
       isGlobal: true, // Makes config globally available
-      load: [databaseConfig, jwtConfig, mailerConfig], // Load custom configuration
+      load: [databaseConfig, jwtConfig, mailerConfig, envConfig], // Load custom configuration
     }),
     SequelizeModule.forRootAsync({
       imports: [ConfigModule],
@@ -47,6 +48,14 @@ import { MulterModule } from '@nestjs/platform-express';
         }),
         inject: [ConfigService],
     }),
+  //   envConfig.registerAsync({
+  //     imports: [ConfigModule],
+  //     global: true,
+  //     useFactory: async (configService: ConfigService) => ({
+  //       recaptcha: configService.get<string>('jwt.recaptcha'),
+  //     }),
+  //     inject: [ConfigService],
+  // }),
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

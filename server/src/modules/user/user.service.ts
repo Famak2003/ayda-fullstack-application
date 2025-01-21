@@ -7,6 +7,8 @@ import { JwtService } from '@nestjs/jwt';
 import { MailerService } from '@nestjs-modules/mailer';
 import generateSecureOTP from 'src/helpers/generateSecureOTP';
 import { where } from 'sequelize';
+import axios from 'axios';
+import { ConfigService } from '@nestjs/config';
 
 interface user {
     sub: number, 
@@ -27,6 +29,7 @@ export class UserService{
         private userModel: typeof User,
         private jwtService: JwtService,
         private readonly mailService: MailerService,
+        private configService: ConfigService
     ){}
 
     getTest(): {test: string} {
@@ -219,7 +222,6 @@ export class UserService{
         try { // if user is found, perform resetpassword logic
             const hashedNewPassword = await bcrypt.hash(newPassword.toString(), 10)
             if (hashedNewPassword) {
-                console.log(" /// hashedpassword // ",hashedNewPassword)
                 const newPassword = await userData.update({password: hashedNewPassword}) // update password
                 return {code: 200, status: 'password updated successfully'}
             }
@@ -307,7 +309,6 @@ export class UserService{
     }
 
     async getProfile(user: any){
-        console.log(" /// === > ? ",user)
         try {
             const userData = await this.userModel.findOne({
                 where: { id: user?.sub }, 
@@ -319,5 +320,20 @@ export class UserService{
             throw new InternalServerErrorException("Error when getting profile")
         }
        
+    }
+
+    async verifyRecaptcha(token: string){
+        const secretToken = this.configService.get<string>('env.recaptcha')
+        
+        const res = await axios.post(`https://www.google.com/recaptcha/api/siteverify?secret=${secretToken}&response=${token}`);
+        const data = res.data
+        if (data?.success){
+            if (data.score < 0.5){
+                return { status: 200, message: "bot"}
+            }else if(data.score >= 0.5){
+                return {status: 200, message: "human"}
+            }
+        }
+        throw new InternalServerErrorException("Something went wrong")
     }
 }

@@ -80,7 +80,6 @@ const Profile = ({setIsProfileVisible, isProfileVisible}) => {
     
     const handleSubmit = () => {
         dispatch(updateProfile(formData))
-        console.log(formData)
         setIsProfileVisible(false)
     }
     

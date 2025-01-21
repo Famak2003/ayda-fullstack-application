@@ -9,7 +9,6 @@ import { getAdminAcupunctureContent, updateAdminAcupunctureData } from "../../..
 const Acupuncture = () => {
     const dispatch = useDispatch()
     const adminAcupuncture = useSelector(state => state.adminAcupuncture.data)
-    console.log("AdminAcupuncture ===> ?",adminAcupuncture)
     const [data, setData] = useState(adminAcupuncture)
 
     // Sync Redux state to local state

@@ -90,7 +90,7 @@ const NavigationBar = ({setOpenSearch, openSearch}) => {
     });
 
     return (
-        <nav className={`  z-[99999] fixed top-0 flex flex-col tab:flex-row justify-between h-fit tab:h-[90px] py-[5px] tab:py-0 w-full px-[30px] ${monitorScroll ? "bg-white border-b-4 border-secondary_pink" : " bg-white bg-opacity-45"} `}>
+        <nav className={`  z-[99999] fixed top-0 flex flex-col tab:flex-row justify-between h-fit tab:h-[90px] py-[5px] tab:py-0 w-full px-[5px] mobile:px-[20px] sm:px-[30px] ${monitorScroll ? "bg-white border-b-4 border-secondary_pink" : " bg-white bg-opacity-45"} `}>
             <a href="/" className=" flex justify-center items-center max-w-[126px] h-full  ">
                 <img className=" max-w-[126px] max-h-[65px] object-cover transition-all duration-500 hover:contrast-[2] " src={LOGO} alt=" ayda logo " />
             </a>

@@ -18,7 +18,6 @@ const ResetPassword = () => {
                 
                 break;
             case "otp":
-                console.log(formData)
                 const otpData = { 
                     otp: formData?.otp, 
                     email: isEmailVerified?.email
@@ -27,7 +26,6 @@ const ResetPassword = () => {
                 
                 break;
             case "forgotPassword":
-                console.log(formData)
                 const resetData = {
                     newPassword: formData?.newPassword,
                     email: isEmailVerified?.email
@@ -46,7 +44,6 @@ const ResetPassword = () => {
         })
     }
 
-    console.log(formData)
 
     useEffect(() => {
         if(isEmailVerified){

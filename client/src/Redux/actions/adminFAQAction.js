@@ -9,7 +9,6 @@ export const getAdminFAQContent = () => async(dispatch) => {
       const res = await axiosInstance.get('/pages/faq')
       const data = res?.data
       const adminFAQParsedContent = JSON.parse(data[0].content)
-      console.log(" Server data for FAQ ",adminFAQParsedContent)
 
 
       dispatch(updateAdminFAQData(adminFAQParsedContent))

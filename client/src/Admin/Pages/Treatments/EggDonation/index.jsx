@@ -9,7 +9,6 @@ import CustomLine from "../../components/CustomLine"
 const EggDonation = () => {
     const dispatch = useDispatch()
     const adminEggDonor = useSelector(state => state.adminEggDonor.data)
-    console.log("AdminEggDonor ===> ?",adminEggDonor)
     const [data, setData] = useState(adminEggDonor)
 
     // Sync Redux state to local state

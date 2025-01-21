@@ -107,7 +107,6 @@ const LinksComp = ({ obj, id ,setData}) => {
 
     const handleDelete = (id) => {
         setData((prev) => {
-            console.log(id)
             return {
                 ...prev,
                 linksArr: prev.linksArr.filter((item) => item.id !== id),

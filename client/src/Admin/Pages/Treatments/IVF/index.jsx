@@ -9,7 +9,6 @@ import CustomLine from "../../components/CustomLine"
 const IVF = () => {
     const dispatch = useDispatch()
     const adminIVF = useSelector(state => state.adminIVF.data)
-    console.log("AdminIVF ===> ?",adminIVF)
     const [data, setData] = useState(adminIVF)
 
     // Sync Redux state to local state

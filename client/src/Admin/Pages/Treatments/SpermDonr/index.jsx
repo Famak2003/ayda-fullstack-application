@@ -9,7 +9,6 @@ import AddButton from "../../components/AddButton"
 const SpermDonr = () => {
     const dispatch = useDispatch()
     const adminSpermDonor = useSelector(state => state.adminSpermDonor.data)
-    console.log("adminSpermDonor ===> ?",adminSpermDonor)
     const [data, setData] = useState(adminSpermDonor)
 
     // Sync Redux state to local state

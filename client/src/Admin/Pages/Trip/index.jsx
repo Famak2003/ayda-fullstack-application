@@ -10,7 +10,6 @@ const  Trip = () => {
     const dispatch = useDispatch()
     const adminTrip = useSelector(state => state.adminTrip.data)
     const [data, setData] = useState(adminTrip)
-    console.log("Admin Trip ", adminTrip)
 
     // Sync Redux state to local state
     useEffect(() => {

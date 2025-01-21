@@ -14,7 +14,6 @@ export const login = (data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/user/login", data)
         const permission = res?.data?.role
-        console.log(res?.data)
         dispatch(setIsAuthenticated(true))
         dispatch(setPermission(permission))
         dispatch(setUserID(res.data.id))
@@ -55,7 +54,6 @@ export const verifyEmail = (data) => async (dispatch) => {
         })
         toast.dismiss(_toastId);
         toast.error(` Failed ! `);
-        console.log("There was an error sending mail", error?.response?.data)
     }
 };
 
@@ -65,15 +63,13 @@ export const verifyToken = (data) => async (dispatch) => {
         const res = await axiosInstance.post("/user/verify-token", data)
         toast.dismiss(_toastId);
         toast.success(" Successful 🎉! ");
-        console.log(" /// Verified OTP ///", res.data)
         dispatch({ // update isOTPVerified state
             type: IS_OTP_VERIFIED,
             payload: true
         })
     } catch (error) {
         toast.dismiss(_toastId);
-        toast.error(` Failed ${error?.response?.data?.message}! `);
-        console.log("There was an error sending otp", error?.response?.data)
+        toast.error(` Something went wrong! `);
     }
 };
 
@@ -81,8 +77,6 @@ export const resetPassword = (data) => async (dispatch) => {
     try {
         const res = await axiosInstance.post("/user/reset-password", data);
         toast.success("Password Reset Successful 🎉!");
-
-        console.log("Password Reset Response: ", res.data);
 
         await dispatch({
             type: IS_OTP_VERIFIED,
@@ -97,7 +91,7 @@ export const resetPassword = (data) => async (dispatch) => {
         window.location.href = "/admin/auth";
     } catch (error) {
         toast.error(`Password Reset Failed: ${error?.response?.data?.message}`);
-        console.log("Error during password reset: ", error?.response?.data);
+        console.log("something went wrong");
     }
 };
 
@@ -144,7 +138,7 @@ export const getProfile = (data) => async(dispatch) => {
             payload: result
         })
     } catch (error) {
-        
+
     }
 
 }

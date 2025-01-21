@@ -7,7 +7,6 @@ import { getAdminOurTeamContent, updateOurTeamData } from "../../../../Redux/act
 const OurTeam = () => {
     const dispatch = useDispatch()
     const adminOurTeam = useSelector(state => state.adminOurTeam.data)
-    console.log("AdminOurTeam ===> ?",adminOurTeam)
     const [data, setData] = useState(adminOurTeam)
 
     // Sync Redux state to local state
@@ -65,7 +64,6 @@ const OurTeam = () => {
 
     const handleContent = (id, value) => {
         setData((prev) =>{
-            console.log(id)
             return prev.map((item) =>
                 item.id === id
                     ? { ...item, content: value } // Update the image for the matched id

@@ -8,7 +8,6 @@ const OurTeam = () => {
     useEffect(() => {
         dispatch(getOurTeamContent())
     }, [])
-    console.log("Public Our Team ******", data)
     return (
         <section className=" max-w-[1200px] flex flex-col lmd:flex-row justify-center items-center lmd:items-start py-[15px] sm:py-[30px] px-[15px] sm:px-[30px] tab:px-[30px]" >
             {

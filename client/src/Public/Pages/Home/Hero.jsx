@@ -47,7 +47,7 @@ const Hero = () => {
                                         </div>
                                         <div className=' hidden lg:block lg:absolute lg:right-[-100px] lg:rotate-90 ' >
                                             <p className=' text-white text-center font-semibold tracking-[5px] text-[12px] mobile:text-[16px] px-2 '>
-                                                {`MONDAY - FRIDAY : ${obj.start} - ${obj.stop}`}
+                                                {`PTESİ - CUMA : ${obj.start} - ${obj.stop}`}
                                             </p>
                                         </div>
                                     </div>

@@ -9,7 +9,6 @@ import UploadButton from "../../components/UploadButton"
 const EmbryoDonr = () => {
     const dispatch = useDispatch()
     const adminEmbryoDonor = useSelector(state => state.adminEmbryoDonor.data)
-    console.log("adminEmbryoDonor ===> ?",adminEmbryoDonor)
     const [data, setData] = useState(adminEmbryoDonor)
 
     // Sync Redux state to local state

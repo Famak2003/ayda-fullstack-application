@@ -28,8 +28,6 @@ const TextEditor = ({
     const [imgLoader, setImgLoader] = useState(false)
     const uploadREF = useRef(null)
 
-    // console.log("*******************", defaultContent, "*******************")
-
     useEffect(() => { // makes sure default values are set
         setValue(defaultContent);
     }, [defaultContent]);
@@ -123,13 +121,11 @@ const TextEditor = ({
     }
 
     const handleDeleteSection = (e,idToRemove) => {
-        console.log(idToRemove)
         e.preventDefault(data.id)
         setData((prev) => {
             return{
                 ...prev,
                 body: prev.body.filter((item) => {
-                    console.log(item.id)
                     return item.id !== idToRemove})
             }
         });

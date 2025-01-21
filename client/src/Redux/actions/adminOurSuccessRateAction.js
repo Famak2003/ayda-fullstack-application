@@ -11,7 +11,6 @@ export const getAdminOurSuccessRateContent = () => async(dispatch) => {
         const res = await axiosInstance.get('/pages/oursuccessrate')
         const data = res?.data
         const adminOurSuccessRateContent = JSON.parse(data[0].content)
-        console.log("Our success rate from server ===> ?", adminOurSuccessRateContent)
 
         dispatch(updateOurSuccessRateData(adminOurSuccessRateContent))
     } catch (error) {

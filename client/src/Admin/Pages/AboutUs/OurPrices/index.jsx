@@ -11,7 +11,6 @@ import CustomLine from "../../components/CustomLine"
 const OurPrices = () => {
     const dispatch = useDispatch()
     const adminOurPrices = useSelector(state => state.adminOurPrices.data)
-    console.log("AdminOurPrices ===> ?",adminOurPrices)
     const [data, setData] = useState(adminOurPrices)
 
     // Sync Redux state to local state
@@ -169,7 +168,6 @@ const PricesComp = ({ obj, id ,setData}) => {
 
     const handleDelete = (id) => {
         setData((prev) => {
-            console.log(id)
             return {
                 ...prev,
                 ivfPrices: prev.ivfPrices.filter((item) => item.id !== id),
