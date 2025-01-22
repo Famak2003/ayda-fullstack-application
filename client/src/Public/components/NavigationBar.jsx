@@ -90,7 +90,7 @@ const NavigationBar = ({setOpenSearch, openSearch}) => {
     });
 
     return (
-        <nav className={`  z-[99999] fixed top-0 flex flex-col tab:flex-row justify-between h-fit tab:h-[90px] py-[5px] tab:py-0 w-full px-[5px] mobile:px-[20px] sm:px-[30px] ${monitorScroll ? "bg-white border-b-4 border-secondary_pink" : " bg-white bg-opacity-45"} `}>
+        <nav className={`  z-[999] fixed top-0 flex flex-col tab:flex-row justify-between h-fit tab:h-[90px] py-[5px] tab:py-0 w-full px-[5px] mobile:px-[20px] sm:px-[30px] ${monitorScroll ? "bg-white border-b-4 border-secondary_pink" : " bg-white bg-opacity-45"} `}>
             <a href="/" className=" flex justify-center items-center max-w-[126px] h-full  ">
                 <img className=" max-w-[126px] max-h-[65px] object-cover transition-all duration-500 hover:contrast-[2] " src={LOGO} alt=" ayda logo " />
             </a>
@@ -104,7 +104,7 @@ const NavigationBar = ({setOpenSearch, openSearch}) => {
                         >
                             Hakkımızda
                         </a>
-                        <ul className={` z-[400] w-[200px] transition-height ease-in-out duration-500 overflow-y-scroll rounded-md shadow-custom4 tab:hidden tab:rounded-none tab:absolute tab:top-[50px] ${isAboutus ? "max-h-[500px] tab:max-h-fit my-2 " : "max-h-0 my-0 tab:max-h-fit"} flex tab:group-hover:flex flex-col gap-2 bg-light ${monitorScroll ? " tab:shadow-custom_pink1" : "tab:shadow-custom1"} `}>
+                        <ul className={` z-[400] w-[200px] transition-height ease-in-out duration-500 overflow-y-scroll rounded-md shadow-custom4 tab:hidden tab:rounded-none tab:absolute tab:top-[50px] ${isAboutus ? "max-h-[500px] tab:max-h-fit my-2 " : "max-h-0 my-0 tab:max-h-fit"} flex tab:group-hover:flex flex-col gap-2 bg-light ${monitorScroll ? " tab:shadow-custom_pink4" : "tab:shadow-custom1"} `}>
                             {aboutUsData.map((obj, idx) => {
                                 return (
                                     <Link key={idx} className=" menuText " to={`${obj.link}`}>
@@ -122,7 +122,7 @@ const NavigationBar = ({setOpenSearch, openSearch}) => {
                         >
                             Tedaviler
                         </a>
-                        <ul className={` z-[400] w-[200px] transition-height ease-in-out duration-500 overflow-y-scroll rounded-md shadow-custom4 tab:hidden tab:my-0 tab:rounded-none tab:absolute top-[50px] ${isTreatmentOpen ? "max-h-[500px] my-2 tab:max-h-fit " : " my-0 max-h-0 tab:max-h-fit"} flex tab:group-hover:flex  flex-col gap-2 bg-light ${monitorScroll ? " tab:shadow-custom_pink1" : "tab:shadow-custom1"} `}>
+                        <ul className={` z-[400] w-[200px] transition-height ease-in-out duration-500 overflow-y-scroll rounded-md shadow-custom4 tab:hidden tab:my-0 tab:rounded-none tab:absolute top-[50px] ${isTreatmentOpen ? "max-h-[500px] my-2 tab:max-h-fit " : " my-0 max-h-0 tab:max-h-fit"} flex tab:group-hover:flex  flex-col gap-2 bg-light ${monitorScroll ? " tab:shadow-custom_pink4" : "tab:shadow-custom1"} `}>
                             {treatmentsData.map((obj, idx) => {
                                 return (
                                     <Link key={idx} className="menuText" to={`${obj.link}`}>

@@ -48,14 +48,6 @@ import envConfig from './config/env.config';
         }),
         inject: [ConfigService],
     }),
-  //   envConfig.registerAsync({
-  //     imports: [ConfigModule],
-  //     global: true,
-  //     useFactory: async (configService: ConfigService) => ({
-  //       recaptcha: configService.get<string>('jwt.recaptcha'),
-  //     }),
-  //     inject: [ConfigService],
-  // }),
     MailerModule.forRootAsync({
       imports: [ConfigModule],
       useFactory: async (configService: ConfigService) => ({

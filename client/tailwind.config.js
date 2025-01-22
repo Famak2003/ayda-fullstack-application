@@ -61,6 +61,7 @@ module.exports = {
         custom_pink1: "rgb(240, 143, 178, 0.25) 0px 14px 28px, rgb(240, 143, 178, 0.22) 0px 10px 10px",
         custom_pink2: "rgb(240, 143, 178, 0.3) 0px 1px 2px 0px, rgb(240, 143, 178, 0.15) 0px 1px 3px 1px",
         custom_pink3: "rgb(240, 143, 178, 0.3) 0px 2px 4px, rgb(240, 143, 178, 0.15) 0px 7px 13px -3px, rgb(240, 143, 178, 0.2) 0px -3px 0px inset",
+        custom_pink4: "rgba(240, 143, 178, 0.3) 0px 1px 2px 0px, rgba(240, 143, 178, 0.15) 0px 2px 6px 2px",
         custom_white1: "rgb(255, 255, 255, 0.3) 0px 2px 4px, rgb(255, 255, 255, 0.15) 0px 7px 13px -3px, rgb(255, 255, 255, 0.2) 0px -3px 0px inset",
         custom1: "rgb(0,0, 0, 0.25) 0px 14px 28px, rgb(0,0, 0, 0.22) 0px 10px 10px",
         custom2: "rgba(50, 50, 93, 0.25) 0px 50px 100px -20px, rgba(0, 0, 0, 0.3) 0px 30px 60px -30px, rgba(10, 37, 64, 0.35) 0px -2px 6px 0px inset",
@@ -77,4 +78,3 @@ module.exports = {
     flowbite.plugin(), // Correctly imported as a require statement
   ],
 };
-// box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;

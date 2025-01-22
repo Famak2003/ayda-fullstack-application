@@ -20,9 +20,9 @@ export const verifyRecaptcha = (data) => async (dispatch) => {
         const res = await axiosInstance.post("/user/verify-recaptcha", data)
         dispatch({
             type: SET_IS_RECAPTCHA_VERIFIED,
-            payload: res.data.message
+            payload: res?.data?.message
         })
     } catch (error) {
-        console.warn(error.data.message)
+        console.warn(error?.data?.message)
     }
 }
